@@ -23,6 +23,34 @@ namespace OnlineShop.Core
         {
             return Task.FromResult(GenerateUserIdentity(manager));
         }
+
+        //AÑADO MAS DATOS A LA ENTIDAD USUARIO//
+
+        /// <summary>
+        /// DNI del usuario
+        /// </summary>
+        public string DNI {  get; set; }
+
+        /// <summary>
+        /// Dirección del usuario
+        /// </summary>
+        public string Adress {  get; set; }
+
+        /// <summary>
+        /// Codigo Postal del usuario
+        /// </summary>
+        public string PostalCode { get; set; }
+
+        /// <summary>
+        /// Ciudad del usuario
+        /// </summary>
+
+        public string City { get; set; }
+
+        /// <summary>
+        /// País del Usuario
+        /// </summary>
+        public string Country { get; set; }
     }
 
 }
