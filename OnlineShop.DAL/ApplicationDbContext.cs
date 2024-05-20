@@ -2,6 +2,7 @@
 using OnlineShop.Core;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,5 +20,21 @@ namespace OnlineShop.DAL
         {
             return new ApplicationDbContext();
         }
+
+        /// <summary>
+        /// Creamos las colecciones persistentes == Tablas de Datos de 
+        /// las entidades de negocio
+        /// </summary>
+
+        //Coleccion/Tabla de Categorías
+        public DbSet<Category> Categories { get; set; }
+        //Coleccion/Taba de productos
+        public DbSet<Product> Products { get; set; }
+        //Coleccion/Tabla de pedidos
+        public DbSet<Order> Orders { get; set; }
+        //Coleccion/Tabla de Detalles del pedido
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
+
     }
 }

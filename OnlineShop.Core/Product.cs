@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineShop.Core
 {
-    public class Products
+    public class Product
     {
         /// <summary>
         /// Identificador del Producto
@@ -33,7 +33,7 @@ namespace OnlineShop.Core
         /// <summary>
         /// Path de la fotografía del producto
         /// </summary>
-        public string Fotography { get; set; }
+        public string FotographyPath { get; set; }
 
         /// <summary>
         /// Categoria a la que pertenece el producto. Clave foranea de categoria

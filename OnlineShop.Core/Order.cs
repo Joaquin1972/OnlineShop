@@ -15,27 +15,22 @@ namespace OnlineShop.Core
         public int Id { get; set; }
 
         /// <summary>
-        /// Usuario que realiza el pedido. Clave foranea
+        /// Usuario que realiza el pedido. Clave foránea
         /// </summary>
         public ApplicationUser User { get; set; }
         [ForeignKey("User")]
         public int User_Id { get; set; }
 
         /// <summary>
-        /// Producto seleccionado. Clave foranea
+        /// Detalles del pedido. Un pedido tendrá uno o varios productos
+        /// Pero cada OrderDetails pertenece a un solo pedido.
         /// </summary>
-        public Products SelectedProduct { get; set; }
-        [ForeignKey("SelectedProduct")]
-        public int Product_Id { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
 
         /// <summary>
-        /// Cantidad a comprar
+        /// Precio total del pedido
         /// </summary>
-        public int ProductQuantity { get; set; }
-        
-        /// <summary>
-        /// Precio Total del producto
-        /// </summary>
-        public decimal TotalProductPrice { get; set; }
+        public decimal TotalOrderPrice { get; set; }
     }
+
 }
