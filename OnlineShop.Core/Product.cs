@@ -30,10 +30,11 @@ namespace OnlineShop.Core
         /// Cantidades en stock del producto
         /// </summary>
         public int Stock {  get; set; }
+
         /// <summary>
-        /// Path de la fotografía del producto
+        /// Coleccion de Paths de las fotografías del producto
         /// </summary>
-        public string FotographyPath { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
 
         /// <summary>
         /// Categoria a la que pertenece el producto. Clave foranea de categoria
@@ -41,9 +42,5 @@ namespace OnlineShop.Core
         public Category Category { get; set; }
         [ForeignKey ("Category")]
         public int Category_Id { get; set; }
-
-
-
-
     }
 }

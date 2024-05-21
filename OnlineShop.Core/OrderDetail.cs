@@ -14,10 +14,14 @@
         public Order Order { get; set; }
 
         /// <summary>
-        /// Clave foránea del producto
+        /// Nombre del producto
         /// </summary>
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public string ProductName { get; set; }
+
+        /// <summary>
+        /// Precio del producto
+        /// </summary>
+        public decimal UnitPrice { get; set; }
 
         /// <summary>
         /// Cantidad del producto
@@ -27,7 +31,7 @@
         /// <summary>
         /// Precio total del producto
         /// </summary>
-        public decimal TotalPrice { get; set; }
+        //public decimal TotalPrice { get; set; }
     }
 
 }

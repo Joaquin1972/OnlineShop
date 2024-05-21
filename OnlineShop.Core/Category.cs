@@ -21,6 +21,6 @@ namespace OnlineShop.Core
         /// <summary>
         /// Nombre de la categoria
         /// </summary>
-        public int CategoryName { get; set; }
+        public string CategoryName { get; set; }
     }
 }

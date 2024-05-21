@@ -1,11 +1,27 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="OnlineShop.Web._Default" %>
+    
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
+    <link href="Content/default.css" rel="stylesheet" />
     <main>
+        <h1 style="text-align: center;">BIENVENIDO A LA TIENDA PIRATA</h1>
+        <div class="img_ini">
+        <img src="img/honeyRogers.jpg">
+            <img src="img/honeyRogers.jpg">
+            <img src="img/honeyRogers.jpg">
+            <img src="img/honeyRogers.jpg">
+            <img src="img/honeyRogers.jpg">
+
+        </div>
         <section class="row" aria-labelledby="aspnetTitle">
-            <h1 id="aspnetTitle">ASP.NET</h1>
-            <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
+
+
+            <p class="lead">
+                ¡Bienvenido a <b>La Tienda Pirata</b>! Descubre nuestro extenso y fascinante stock de Playmobiles, 
+                perfecto para despertar la imaginación y la aventura en cada rincón de tu hogar. 
+                ¡Explora y encuentra tu playmobil favorito hoy mismo!
+            </p>
             <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
         </section>
 

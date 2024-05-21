@@ -58,6 +58,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Migrations\202405192140015_InitialCreate.cs" />
+    <Compile Include="Migrations\202405192140015_InitialCreate.Designer.cs">
+      <DependentUpon>202405192140015_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405201210348_init.cs" />
+    <Compile Include="Migrations\202405201210348_init.Designer.cs">
+      <DependentUpon>202405201210348_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405201424557_cambio id a string.cs" />
+    <Compile Include="Migrations\202405201424557_cambio id a string.Designer.cs">
+      <DependentUpon>202405201424557_cambio id a string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405202008173_image añadido.cs" />
+    <Compile Include="Migrations\202405202008173_image añadido.Designer.cs">
+      <DependentUpon>202405202008173_image añadido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +86,20 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202405192140015_InitialCreate.resx">
+      <DependentUpon>202405192140015_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405201210348_init.resx">
+      <DependentUpon>202405201210348_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405201424557_cambio id a string.resx">
+      <DependentUpon>202405201424557_cambio id a string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405202008173_image añadido.resx">
+      <DependentUpon>202405202008173_image añadido.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

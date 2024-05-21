@@ -1,6 +1,7 @@
 ﻿using OnlineShop.DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,8 +47,22 @@ namespace OnlineShop.Application
 
         public T Remove(T entity)
         {
-            return Context.Set<T>().Add(entity);
+            return Context.Set<T>().Remove(entity);
         }
+
+        /// <summary>
+        /// Actualizar una entidad en el contexto de datos
+        /// </summary>
+        /// <param name="entity">Categoria a actualizar</param>
+        /// <returns>Categoria actualizada</returns>
+        public T Update(T entity)
+        {
+            Context.Set<T>().AddOrUpdate(entity);
+            Context.SaveChanges();
+            return entity;
+        }
+
+
 
         /// <summary>
         /// Obtiene una entidad por sus posible claves
@@ -60,10 +75,12 @@ namespace OnlineShop.Application
         /// Leer todas las entidades
         /// </summary>
         /// <returns>Lista de entidades</returns>
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
-            return Context.Set<T>().ToList();
+            return Context.Set<T>();
         }
+
+
         public T GetById(object[] key)
         {
             return Context.Set<T>().Find(key);

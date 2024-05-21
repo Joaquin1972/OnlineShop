@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,18 +20,30 @@ namespace OnlineShop.Core
         /// </summary>
         public ApplicationUser User { get; set; }
         [ForeignKey("User")]
-        public int User_Id { get; set; }
+        public String User_Id { get; set; }
 
         /// <summary>
         /// Detalles del pedido. Un pedido tendrá uno o varios productos
         /// Pero cada OrderDetails pertenece a un solo pedido.
         /// </summary>
-        public ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         /// <summary>
         /// Precio total del pedido
         /// </summary>
-        public decimal TotalOrderPrice { get; set; }
+        //public decimal TotalOrderPrice { get; set; }
+
+        /// <summary>
+        /// Fecha del pedido
+        /// </summary>
+
+        public DateTime DateOrder { get; set; }
+
+        /// <summary>
+        /// Estado del pedido
+        /// </summary>
+        public OrderStatus Status { get; set; }
+
     }
 
 }
