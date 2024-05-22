@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,6 +35,8 @@ namespace OnlineShop.DAL
         public DbSet<Order> Orders { get; set; }
         //Coleccion/Tabla de Detalles del pedido
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        //Coleccion/Tabla de path de imagenes
+        public DbSet<Image> Images { get; set; }
 
 
     }

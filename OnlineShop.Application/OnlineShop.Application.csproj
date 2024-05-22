@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CategoryManager.cs" />
     <Compile Include="GenericManager.cs" />
+    <Compile Include="ProductManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

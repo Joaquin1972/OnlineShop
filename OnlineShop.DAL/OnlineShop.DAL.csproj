@@ -74,6 +74,34 @@
     <Compile Include="Migrations\202405202008173_image añadido.Designer.cs">
       <DependentUpon>202405202008173_image añadido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405211457358_añadidos varios campos.cs" />
+    <Compile Include="Migrations\202405211457358_añadidos varios campos.Designer.cs">
+      <DependentUpon>202405211457358_añadidos varios campos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405212038036_prueba.cs" />
+    <Compile Include="Migrations\202405212038036_prueba.Designer.cs">
+      <DependentUpon>202405212038036_prueba.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405212042513_añadir imagenes2.cs" />
+    <Compile Include="Migrations\202405212042513_añadir imagenes2.Designer.cs">
+      <DependentUpon>202405212042513_añadir imagenes2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405212046478_añadir imagenes3.cs" />
+    <Compile Include="Migrations\202405212046478_añadir imagenes3.Designer.cs">
+      <DependentUpon>202405212046478_añadir imagenes3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405212052229_añadir imagenes5.cs" />
+    <Compile Include="Migrations\202405212052229_añadir imagenes5.Designer.cs">
+      <DependentUpon>202405212052229_añadir imagenes5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405212054554_añadir imagenes6.cs" />
+    <Compile Include="Migrations\202405212054554_añadir imagenes6.Designer.cs">
+      <DependentUpon>202405212054554_añadir imagenes6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405221041288_imagen1000.cs" />
+    <Compile Include="Migrations\202405221041288_imagen1000.Designer.cs">
+      <DependentUpon>202405221041288_imagen1000.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -99,6 +127,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405202008173_image añadido.resx">
       <DependentUpon>202405202008173_image añadido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405211457358_añadidos varios campos.resx">
+      <DependentUpon>202405211457358_añadidos varios campos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405212038036_prueba.resx">
+      <DependentUpon>202405212038036_prueba.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405212042513_añadir imagenes2.resx">
+      <DependentUpon>202405212042513_añadir imagenes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405212046478_añadir imagenes3.resx">
+      <DependentUpon>202405212046478_añadir imagenes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405212052229_añadir imagenes5.resx">
+      <DependentUpon>202405212052229_añadir imagenes5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405212054554_añadir imagenes6.resx">
+      <DependentUpon>202405212054554_añadir imagenes6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405221041288_imagen1000.resx">
+      <DependentUpon>202405221041288_imagen1000.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

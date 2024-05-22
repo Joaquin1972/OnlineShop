@@ -39,6 +39,9 @@ namespace OnlineShop.Core
         /// <summary>
         /// Categoria a la que pertenece el producto. Clave foranea de categoria
         /// </summary>
+        
+        public string ImagePath {  get; set; }
+
         public Category Category { get; set; }
         [ForeignKey ("Category")]
         public int Category_Id { get; set; }

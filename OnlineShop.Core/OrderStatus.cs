@@ -6,6 +6,7 @@
     public enum OrderStatus : int
     {
         Pending = 0,
+        Shipping = 1
 
     }
 }

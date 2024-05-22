@@ -1,4 +1,6 @@
-﻿namespace OnlineShop.Core
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace OnlineShop.Core
 {
     public class OrderDetail
     {
@@ -10,8 +12,9 @@
         /// <summary>
         /// Clave foránea en el pedido
         /// </summary>
-        public int OrderId { get; set; }
         public Order Order { get; set; }
+        [ForeignKey("Order")]
+        public int OrderId { get; set; }
 
         /// <summary>
         /// Nombre del producto
