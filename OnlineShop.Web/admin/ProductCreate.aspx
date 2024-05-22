@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProductCreate.aspx.cs" Inherits="OnlineShop.Web.admin.ProductCreate" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../Content/styles-admin.css" rel="stylesheet" />
     <h3 style="text-align: center; font-weight: bold">ZONA ADMIN</h3>
     <hr />
     <h4>CREAR PRODUCTOS</h4>
@@ -66,19 +67,22 @@
         <asp:Button ID="BtnSubmit" CssClass="offset-3 col-md-2" runat="server" Text="Crear Producto" OnClick="BtnSubmit_Click" />
     </div>
     <hr />
+    <h4>LISTADO DE PRODUCTOS</h4>
+    <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="mb-2">
+        <asp:ListItem Text="5" Value="5" Selected="True"></asp:ListItem>
+        <asp:ListItem Text="10" Value="10" ></asp:ListItem>
+        <asp:ListItem Text="20" Value="20"></asp:ListItem>
+        <asp:ListItem Text="50" Value="50"></asp:ListItem>
+    </asp:DropDownList>
     <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
-    AllowPaging="True" PageSize="5" OnPageIndexChanging="gvProducts_PageIndexChanging">
+        AllowPaging="True" PageSize="5" OnPageIndexChanging="gvProducts_PageIndexChanging">
         <Columns>
             <asp:BoundField DataField="Name" HeaderText="Nombre" />
             <asp:BoundField DataField="Description" HeaderText="Descripción" />
-            <asp:BoundField DataField="Price" HeaderText="Precio" DataFormatString="{0:C}" />
-            <asp:BoundField DataField="Stock" HeaderText="Stock" />
-            <%--<asp:BoundField DataField="Category.CategoryName" HeaderText="Categoría" />--%>
-            <asp:TemplateField HeaderText="Categoría">
-            <ItemTemplate>
-                <%# Eval("Category.CategoryName") %>
-            </ItemTemplate>
-        </asp:TemplateField>
+            <asp:BoundField DataField="Price" HeaderText="Precio" DataFormatString="{0:n} €"   />
+            <asp:BoundField DataField="Stock" HeaderText="Stock"  />
+            <asp:BoundField DataField="Category.CategoryName" HeaderText="Categoría"   />
+
             <asp:TemplateField HeaderText="Imagen">
                 <ItemTemplate>
                     <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Height="70" />
@@ -86,7 +90,12 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <a href="admin.aspx">admin.aspx</a>
+    <ul>
+        <li> <a href="admin.aspx">Volver Inicio Admin</a></li>
+        <li> <a href="#">Ver listado de productos</a></li>
+
+    </ul>
+   
 
 
 

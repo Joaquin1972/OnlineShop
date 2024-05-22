@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CategoryCreate.aspx.cs" Inherits="OnlineShop.Web.admin.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="../Content/styles-admin.css" rel="stylesheet" />
     <h3 style="text-align: center; font-weight: bold">ZONA ADMIN</h3>
     <hr />
     <h4>CREAR CATEGORIAS</h4>
@@ -31,7 +32,10 @@
             <asp:BoundField DataField="CategoryName" HeaderText="Categorías actuales" />
         </Columns>
     </asp:GridView>
+    <ul>
+        <li><a href="CategoryList.aspx">Editar/Eliminar Categorías</a></li>
+         <li><a href="admin.aspx">Volver Inicio Admin</a></li>
+    </ul>
     
-    <a href="CategoryList.aspx">Editar/Eliminar Categorías</a>
 </asp:Content>
  

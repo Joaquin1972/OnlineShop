@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Image = OnlineShop.Core.Image;
+using System.Data.Entity;
 
 namespace OnlineShop.Web.admin
 {
@@ -31,7 +32,7 @@ namespace OnlineShop.Web.admin
                 ddlCategory.DataValueField = "id";  // Propiedad que se usará como valor (usualmente un identificador único)
                 ddlCategory.DataBind();
             }
-
+            gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
             LoadProduts();
         }
 
@@ -124,8 +125,14 @@ namespace OnlineShop.Web.admin
                 txtStock.Text = "";
                 LoadProduts();
             }
-        }        
-        
+        }
+
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+            LoadProduts(); // Vuelve a cargar los productos con el nuevo tamaño de página
+        }
+
         protected void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProducts.PageIndex = e.NewPageIndex;
@@ -136,7 +143,7 @@ namespace OnlineShop.Web.admin
         {
             ApplicationDbContext context = new ApplicationDbContext();
             productManager = new ProductManager(context);
-            var products = productManager.GetAll().ToList();
+            var products = productManager.GetAll().Include(i => i.Category).ToList();
             gvProducts.DataSource = products;
             gvProducts.DataBind();
         }

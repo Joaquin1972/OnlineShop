@@ -168,6 +168,7 @@
     <Content Include="admin\CategoryList.aspx" />
     <Content Include="admin\admin.aspx" />
     <Content Include="admin\ProductCreate.aspx" />
+    <Content Include="admin\ProductList.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -387,6 +388,13 @@
     </Compile>
     <Compile Include="admin\ProductCreate.aspx.designer.cs">
       <DependentUpon>ProductCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ProductList.aspx.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ProductList.aspx.designer.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
