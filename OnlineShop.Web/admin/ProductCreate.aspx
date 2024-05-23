@@ -70,7 +70,7 @@
     <h4>LISTADO DE PRODUCTOS</h4>
     <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="mb-2">
         <asp:ListItem Text="5" Value="5" Selected="True"></asp:ListItem>
-        <asp:ListItem Text="10" Value="10" ></asp:ListItem>
+        <asp:ListItem Text="10" Value="10"></asp:ListItem>
         <asp:ListItem Text="20" Value="20"></asp:ListItem>
         <asp:ListItem Text="50" Value="50"></asp:ListItem>
     </asp:DropDownList>
@@ -79,9 +79,9 @@
         <Columns>
             <asp:BoundField DataField="Name" HeaderText="Nombre" />
             <asp:BoundField DataField="Description" HeaderText="Descripción" />
-            <asp:BoundField DataField="Price" HeaderText="Precio" DataFormatString="{0:n} €"   />
-            <asp:BoundField DataField="Stock" HeaderText="Stock"  />
-            <asp:BoundField DataField="Category.CategoryName" HeaderText="Categoría"   />
+            <asp:BoundField DataField="Price" HeaderText="Precio" DataFormatString="{0:n} €" />
+            <asp:BoundField DataField="Stock" HeaderText="Stock" />
+            <asp:BoundField DataField="Category.CategoryName" HeaderText="Categoría" />
 
             <asp:TemplateField HeaderText="Imagen">
                 <ItemTemplate>
@@ -90,12 +90,26 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+   
+     <asp:DataList ID="dlProducts" runat="server" CssClass="table table-striped" RepeatColumns="2" CellPadding="5">
+        <ItemTemplate>
+            <div class="text-center">
+                <h4>Nombre: <%# Eval("Name") %></h4>
+                <p>Descripción: <%# Eval("Description") %></p>
+                <p>Precio: <%# Eval("Price", "{0:n} €") %></p>
+                <p>Stock: <%# Eval("Stock") %></p>
+                <p>Categoría: <%# Eval("Category.CategoryName") %></p>
+                <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Height="70" />
+            </div>
+        </ItemTemplate>
+    </asp:DataList>
+    
     <ul>
-        <li> <a href="admin.aspx">Volver Inicio Admin</a></li>
-        <li> <a href="#">Ver listado de productos</a></li>
+        <li><a href="admin.aspx">Volver Inicio Admin</a></li>
+        <li><a href="#">Ver listado de productos</a></li>
 
     </ul>
-   
+
 
 
 
