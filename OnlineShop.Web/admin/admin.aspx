@@ -14,6 +14,7 @@
         <li> <a href="CategoryCreate.aspx">Crear nuevas categorías</a></li>
         <li><a href="CategoryList.aspx">Editar o eliminar categorías</a></li>
        <li> <a href="ProductCreate.aspx">Crear Productos</a></li>
+        <li><a href="ProductList.aspx">ProductList.aspx</a></li>
     </ul>
    
     

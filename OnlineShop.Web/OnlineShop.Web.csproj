@@ -169,6 +169,7 @@
     <Content Include="admin\CategoryList.aspx" />
     <Content Include="admin\admin.aspx" />
     <Content Include="admin\ProductCreate.aspx" />
+    <Content Include="admin\ProductEdit.aspx" />
     <Content Include="admin\ProductList.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -190,6 +191,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\styles-admin.css" />
+    <Content Include="Content\tableList.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -389,6 +391,13 @@
     </Compile>
     <Compile Include="admin\ProductCreate.aspx.designer.cs">
       <DependentUpon>ProductCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ProductEdit.aspx.cs">
+      <DependentUpon>ProductEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ProductEdit.aspx.designer.cs">
+      <DependentUpon>ProductEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\ProductList.aspx.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
