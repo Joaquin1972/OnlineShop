@@ -14,7 +14,8 @@
             runat="server" Display="Dynamic"
             ErrorMessage="El nombre es obligatorio"
             Text="El nombre es obligatorio"
-            ControlToValidate="txtName"></asp:RequiredFieldValidator>
+            ControlToValidate="txtName">
+        </asp:RequiredFieldValidator>
     </div>
     <div class="row mb-3 ">
         <asp:Label ID="lblDescription" runat="server" Text="Descripción del producto" CssClass="col-md-3 fw-bold"></asp:Label>
@@ -53,7 +54,7 @@
             Text="El precio es obligatorio"
             ControlToValidate="txtPrice">
         </asp:RequiredFieldValidator>
-        <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Precio fuera de rango" Display="Dynamic" ControlToValidate="txtPrice" MaximumValue="30" MinimumValue="0" Text="Precio fuera de rango"></asp:RangeValidator>
+        <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Precio fuera de rango" Display="Dynamic" ControlToValidate="txtPrice" MaximumValue="50" MinimumValue="0" Text="Precio fuera de rango"></asp:RangeValidator>
     </div>
 
     <div class="row mb-3">
@@ -82,7 +83,6 @@
             <asp:BoundField DataField="Price" HeaderText="Precio" DataFormatString="{0:n} €" />
             <asp:BoundField DataField="Stock" HeaderText="Stock" />
             <asp:BoundField DataField="Category.CategoryName" HeaderText="Categoría" />
-
             <asp:TemplateField HeaderText="Imagen">
                 <ItemTemplate>
                     <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Height="70" />

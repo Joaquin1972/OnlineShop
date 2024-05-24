@@ -1,4 +1,5 @@
 ﻿using OnlineShop.Application;
+using OnlineShop.Core;
 using OnlineShop.DAL;
 using System;
 using System.Collections.Generic;
@@ -38,11 +39,11 @@ namespace OnlineShop.Web.admin
                     categoryManager = new CategoryManager(context);
                     var categories = categoryManager.GetAll().ToList();
 
-                    ddlCategory.DataSource = categories;
-                    ddlCategory.DataTextField = "CategoryName"; // Propiedad que se mostrará en el DropDownList
-                    ddlCategory.DataValueField = "id";  // Propiedad que se usará como valor (usualmente un identificador único)
-                    ddlCategory.DataBind();
-                
+                ddlCategory.DataSource = categories;
+                ddlCategory.DataTextField = "CategoryName"; // Propiedad que se mostrará en el DropDownList
+                ddlCategory.DataValueField = "id";  // Propiedad que se usará como valor (usualmente un identificador único)
+                ddlCategory.DataBind();
+
             }
         }
 
@@ -70,7 +71,7 @@ namespace OnlineShop.Web.admin
                     throw new Exception("Producto no encontrado.");
                 }
 
-
+                ID.Text = productId.ToString();
                 txtProduct.Text = product.Name;
                 txtDescription.Text = product.Description;
                 txtPrice.Text = product.Price.ToString();
@@ -83,6 +84,43 @@ namespace OnlineShop.Web.admin
                 // Manejo de errores, como mostrar un mensaje al usuario
                 Response.Write($"Error al cargar el producto: {ex.Message}");
             }
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            //Genero el contexto de Datos
+            ApplicationDbContext context = new ApplicationDbContext();
+            ProductManager productManager = new ProductManager(context);
+            //Cargo valores actualizados
+            Product product = new Product
+            {
+                Id = Convert.ToInt32(ID.Text),
+                Name = txtProduct.Text,
+                Description = txtDescription.Text,
+                Price = Convert.ToDecimal(txtPrice.Text),
+                Stock = Convert.ToInt32(txtStock.Text),
+                Category_Id = Convert.ToInt32(ddlCategory.SelectedValue)
+            };
+            productManager.Update(product);
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            
+            //Creo el contexto de datos
+            ApplicationDbContext context = new ApplicationDbContext();
+            ProductManager productManager = new ProductManager(context);
+            int productId = Convert.ToInt32(ID.Text);
+
+            Product product = context.Products.Find(productId);
+            productManager.Remove(product);
+            productManager.Context.SaveChanges();
+            ID.Text = "Borrado";
+            txtProduct.Text = "Borrado";
+            txtDescription.Text = "Borrado";
+            txtPrice.Text = "Borrado";
+            txtStock.Text = "Borrado";
+
         }
     }
 }

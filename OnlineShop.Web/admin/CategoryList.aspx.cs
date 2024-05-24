@@ -53,6 +53,7 @@ namespace OnlineShop.Web.admin
             //Genero el contexto de datos
             ApplicationDbContext context = new ApplicationDbContext();
             categoryManager = new CategoryManager(context);
+
             //Cargo los valores existenten en el textbox y en el campo oculto en las 
             //propiedades de la entidad
             Category category = new Category
@@ -87,7 +88,7 @@ namespace OnlineShop.Web.admin
             //Pongo en blanco el campo Categorias
             txtCategory.Text = "";
         }
-}
+    }
 
 }
 
