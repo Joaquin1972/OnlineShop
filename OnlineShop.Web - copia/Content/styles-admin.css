@@ -1,0 +1,47 @@
+﻿#image_init {
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    border: 5px solid black;
+    border-radius: 20%;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+#update {
+    border: 2px solid black;
+    padding: 10px;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    margin-top: 20px;
+}
+
+.image {
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+/*ESTILOS CABECERA SEGUNDA*/
+
+.header2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .header2 a {
+        text-decoration: none;
+        font-weight: bolder;
+        background-color: black;
+        color: white;
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+
+        .header2 a:hover {
+            background-color: gray;
+        }

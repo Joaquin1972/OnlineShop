@@ -4,6 +4,11 @@
     margin-top: 25px;
     padding-left: 15px;
     padding-right: 15px;
+    
+}
+
+.bg-gradient {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
 }
 
 

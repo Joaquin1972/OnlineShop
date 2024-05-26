@@ -1,41 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProductEdit.aspx.cs" Inherits="OnlineShop.Web.admin.ProductEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <style>
-        #update {
-            border: 2px solid black;
-            padding: 10px;
-            width: 60%;
-            margin: 0 auto;
-            border-radius: 5px;
-            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-            margin-top: 20px;
-        }
-
-        .image {
-            border: 1px solid black;
-            border-radius: 5px;
-            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-        }
-
-        .header2 {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-content: center;
-        }
-
-            .header2 a {
-                text-decoration: none;
-                font-weight: bolder;
-            }
-
-                .header2 a:hover {
-                    color: darkred;
-                    text-decoration: underline;
-                }
-    </style>
-    <%--<link href="../Content/styles-admin.css" rel="stylesheet" />--%>
+    
+    <link href="../Content/styles-admin.css" rel="stylesheet" />
     <h3 style="text-align: center; font-weight: bold">ZONA ADMIN</h3>
     <hr />
     <%-- Cabecera de la página --%>

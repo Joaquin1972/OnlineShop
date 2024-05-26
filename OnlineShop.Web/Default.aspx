@@ -1,28 +1,76 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="OnlineShop.Web._Default" %>
-    
+
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+        main {
+            height: calc(100vh-100px);
+        }
 
+        body {
+            background: rgb(0,95,255);
+            background: -moz-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
+            background: -webkit-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
+            background: radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
+        }
+img {
+            display: block;
+            margin: 0 auto;
+            width: 15%;
+            border: 1px solid black;
+            border-radius: 50%;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            transition: 0.5s;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+        }
+        /*        .img_ini {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin: 10px 0px 10px 0px;
+        }*/
+    </style>
     <link href="Content/default.css" rel="stylesheet" />
-    <main>
-        <h1 style="text-align: center;">BIENVENIDO A LA TIENDA PIRATA</h1>
-        <div class="img_ini">
-        <img src="img/honeyRogers.jpg">
-            <img src="img/honeyRogers.jpg">
-            <img src="img/honeyRogers.jpg">
-            <img src="img/honeyRogers.jpg">
-            <img src="img/honeyRogers.jpg">
+    <main class="main-gradient">
+        <div class="justify-content-center col-md-12">
+            <h1 class="bg-primary text-white p-1  rounded-4 text-center shadow">BIENVENIDO A NORABEL PLAY</h1>
+            <h2 style="text-align: center; margin-bottom: 20px;">Tu tienda online más completa del universo Playmobil</h2>
+        </div>
+        <div class="container col-md-12">
+            <div class="img_ini">
+                <img src="img/honeyRogers.jpg">
+                <img src="img/pirata2.jpg">
+                <img src="img/honeyRogers.jpg">
+                <img src="img/pirata2.jpg">
+                <img src="img/honeyRogers.jpg">
+            </div>
 
         </div>
-        <section class="row" aria-labelledby="aspnetTitle">
+        <section class="row mt-3" aria-labelledby="aspnetTitle">
 
 
             <p class="lead">
-                ¡Bienvenido a <b>La Tienda Pirata</b>! Descubre nuestro extenso y fascinante stock de Playmobiles, 
+                ¡Bienvenido a nuestra tienda online <b>Norabel Play</b>! Descubre nuestro extenso y fascinante stock de Playmobiles, 
                 perfecto para despertar la imaginación y la aventura en cada rincón de tu hogar. 
                 ¡Explora y encuentra tu playmobil favorito hoy mismo!
             </p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+            <p class="lead">
+                En <b>Norabel Play</b>
+            , sabemos la importancia de inspirar a los niños a soñar y explorar. 
+                Nuestras colecciones incluyen emocionantes aventuras de piratas, perfectas para épicas búsquedas de tesoros 
+                y enfrentamientos en altamar. 
+         <p class="lead">
+             Para los amantes del salvaje oeste, ofrecemos duelos de vaqueros y defensa contra bandidos. 
+                Sumérgete en mundos mágicos con hadas y castillos encantados. 
+                También tenemos sets urbanos de bomberos, policías y hospitales para vivir emocionantes historias de ciudad.
+         </p>
+            <p class="lead">
+                ¡Navega cual barco pirata por nuestra tienda online <b>Norabel Play</b> y sumergete en un mundo de aventuras sin límite!
+            </p>
+            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Quiero entrar &raquo;</a></p>
         </section>
 
         <div class="row">

@@ -77,7 +77,14 @@ namespace OnlineShop.Web.admin
                 txtPrice.Text = product.Price.ToString();
                 txtStock.Text = product.Stock.ToString();
                 ddlCategory.SelectedValue = product.Category_Id.ToString();
-                ProductImage.ImageUrl = product.ImagePath;
+                if (product != null && product.Images != null && product.Images.Count > 0)
+                {
+                    var firstImage = product.Images.FirstOrDefault();
+                    if (firstImage != null)
+                    {
+                        ProductImage.ImageUrl = firstImage.ImagePath;
+                    }
+                }
             }
             catch (Exception ex)
             {
