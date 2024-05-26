@@ -3,29 +3,23 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-        main {
-            height: calc(100vh-100px);
-        }
 
-        body {
-            background: rgb(0,95,255);
-            background: -moz-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
-            background: -webkit-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
-            background: radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
-        }
-img {
+        
+
+        img {
             display: block;
             margin: 0 auto;
-            width: 15%;
+            width: 100%;
+            height: auto;
             border: 1px solid black;
             border-radius: 50%;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
             transition: 0.5s;
         }
 
-        img:hover {
-            transform: scale(1.1);
-        }
+            img:hover {
+                transform: scale(1.1);
+            }
         /*        .img_ini {
             display: flex;
             flex-direction: row;
@@ -39,16 +33,21 @@ img {
             <h1 class="bg-primary text-white p-1  rounded-4 text-center shadow">BIENVENIDO A NORABEL PLAY</h1>
             <h2 style="text-align: center; margin-bottom: 20px;">Tu tienda online más completa del universo Playmobil</h2>
         </div>
-        <div class="container col-md-12">
-            <div class="img_ini">
-                <img src="img/honeyRogers.jpg">
-                <img src="img/pirata2.jpg">
-                <img src="img/honeyRogers.jpg">
-                <img src="img/pirata2.jpg">
-                <img src="img/honeyRogers.jpg">
+        <div class="container">
+            <div class="row">
+               
+                <div class="col-12 col-md-12 img_ini">
+                    <img src="img/honeyRogers.jpg" class="img-fluid">
+                    <img src="img/pirata2.jpg" class="img-fluid">
+                    <img src="img/honeyRogers.jpg" class="img-fluid">
+                    <img src="img/pirata2.jpg" class="img-fluid">
+                    <img src="img/honeyRogers.jpg" class="img-fluid">
+                </div>
             </div>
-
         </div>
+
+
+
         <section class="row mt-3" aria-labelledby="aspnetTitle">
 
 
@@ -70,7 +69,7 @@ img {
             <p class="lead">
                 ¡Navega cual barco pirata por nuestra tienda online <b>Norabel Play</b> y sumergete en un mundo de aventuras sin límite!
             </p>
-            <p><a href="http://www.asp.net" class="btn btn-primary btn-md">Quiero entrar &raquo;</a></p>
+            <p><a href="client/tienda.aspx" class="btn btn-primary btn-md">Quiero entrar &raquo;</a></p>
         </section>
 
         <div class="row">

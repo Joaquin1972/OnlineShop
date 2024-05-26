@@ -121,11 +121,7 @@
         </ItemTemplate>
     </asp:DataList>
 
-    <ul>
-        <li><a href="admin.aspx">Volver Inicio Admin</a></li>
-        <li><a href="#">Ver listado de productos</a></li>
 
-    </ul>
 
 
 

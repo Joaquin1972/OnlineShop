@@ -18,7 +18,7 @@
         <%--Columna izquierda--%>
         <%--Imagen del producto--%>
         <div class="col-md-4">
-            <asp:Image ID="ProductImage" runat="server" Width="90%" CssClass="image" />
+            <asp:Image ID="ProductImage" runat="server" Width="70%" CssClass="image" />
         </div>
         <%--Columna derecha--%>
         <div class="col-md-8">
@@ -58,7 +58,7 @@
                 <div class="col-md-4">
                     <asp:TextBox ID="txtDescription"
                         runat="server"
-                        CssClass="form-control w-100">
+                        CssClass="form-control w-100" Rows="0" TextMode="MultiLine">
                     </asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
                         runat="server" Display="Dynamic"

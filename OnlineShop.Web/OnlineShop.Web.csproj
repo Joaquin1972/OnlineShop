@@ -171,6 +171,8 @@
     <Content Include="admin\ProductCreate.aspx" />
     <Content Include="admin\ProductEdit.aspx" />
     <Content Include="admin\ProductList.aspx" />
+    <Content Include="client\ProductEditClient.aspx" />
+    <Content Include="client\tienda.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -417,6 +419,20 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="client\ProductEditClient.aspx.cs">
+      <DependentUpon>ProductEditClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\ProductEditClient.aspx.designer.cs">
+      <DependentUpon>ProductEditClient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\tienda.aspx.cs">
+      <DependentUpon>tienda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\tienda.aspx.designer.cs">
+      <DependentUpon>tienda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

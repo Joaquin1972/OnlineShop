@@ -15,15 +15,25 @@
     <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <style>
+        main {
+            height: calc(100vh-50px);
+        }
+
+        body {
+            background: rgb(0,95,255);
+            background: -moz-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
+            background: -webkit-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
+            background: radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
+        }
 
         .nav-link {
             font-weight: bold;
             color: white;
         }
+
             .nav-link:hover {
                 text-decoration: underline;
-        }
-
+            }
     </style>
 </head>
 <body>
@@ -82,8 +92,8 @@
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            
-            <footer style="height:50px">
+
+            <footer style="height: 50px">
                 <hr />
                 <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
                 <hr />

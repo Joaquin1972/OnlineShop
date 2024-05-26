@@ -25,9 +25,16 @@
         <asp:ListItem Text="20" Value="20"></asp:ListItem>
         <asp:ListItem Text="50" Value="50"></asp:ListItem>
     </asp:DropDownList>
-    <asp:GridView ID="gvProducts" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
-        AllowPaging="True" PageSize="5" OnPageIndexChanging="gvProducts_PageIndexChanging" AllowSorting="True"
-        OnSelectedIndexChanging="gvProducts_SelectedIndexChanging" DataKeyNames="Id">
+    <asp:GridView ID="gvProducts" 
+        runat="server" 
+        AutoGenerateColumns="False" 
+        CssClass="table table-striped"
+        AllowPaging="True" 
+        PageSize="5" 
+        OnPageIndexChanging="gvProducts_PageIndexChanging" 
+        AllowSorting="True"
+        OnSelectedIndexChanging="gvProducts_SelectedIndexChanging" 
+        DataKeyNames="Id">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" />
             <asp:BoundField DataField="Name" HeaderText="Nombre" />
