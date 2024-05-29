@@ -137,6 +137,7 @@ namespace OnlineShop.Web.admin
                 txtDescription.Text = "";
                 txtPrice.Text = "";
                 txtStock.Text = "";
+                UpLoadOK.Text = "";
                 LoadProduts();
             }
         }

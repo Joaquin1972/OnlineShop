@@ -5,11 +5,12 @@
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <main aria-labelledby="title">
         <h2 id="title"><%: Title %>.</h2>
-        <div class="col-md-8">
+        <div class="col-md-12 row">
+        <div class="col-md-6">
             <section id="loginForm">
                 <div class="row">
                     <h4>Utilice una cuenta local para iniciar sesión.</h4>
-                    <hr />
+                    <%--<hr />--%>
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="FailureText" />
@@ -31,7 +32,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="offset-md-2 col-md-10">
+                        <div class="offset-md-2 col-md-10 mb-2">
                             <div class="checkbox">
                                 <asp:CheckBox runat="server" ID="RememberMe" />
                                 <asp:Label runat="server" AssociatedControlID="RememberMe">¿Recordar cuenta?</asp:Label>
@@ -44,15 +45,18 @@
                         </div>
                     </div>
                 </div>
+                <br />
                 <p>
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Registrarse como usuario nuevo</asp:HyperLink>
                 </p>
                 <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
+                    <%--Enable this once you have account confirmation enabled for password reset functionality--%>
+                    <%--<asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>--%>--%>
+                    
                 </p>
             </section>
+        </div>
+            <div class="col-md-6">sdsdsd</div>
         </div>
 
         <div class="col-md-4">

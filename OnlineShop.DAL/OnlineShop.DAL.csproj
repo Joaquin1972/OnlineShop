@@ -102,6 +102,22 @@
     <Compile Include="Migrations\202405221041288_imagen1000.Designer.cs">
       <DependentUpon>202405221041288_imagen1000.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405280811013_mas cambios.cs" />
+    <Compile Include="Migrations\202405280811013_mas cambios.Designer.cs">
+      <DependentUpon>202405280811013_mas cambios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405280818445_AddShoppingCart.cs" />
+    <Compile Include="Migrations\202405280818445_AddShoppingCart.Designer.cs">
+      <DependentUpon>202405280818445_AddShoppingCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405280826173_anado shoppinCarts.cs" />
+    <Compile Include="Migrations\202405280826173_anado shoppinCarts.Designer.cs">
+      <DependentUpon>202405280826173_anado shoppinCarts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405281031382_name.cs" />
+    <Compile Include="Migrations\202405281031382_name.Designer.cs">
+      <DependentUpon>202405281031382_name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -148,6 +164,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405221041288_imagen1000.resx">
       <DependentUpon>202405221041288_imagen1000.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405280811013_mas cambios.resx">
+      <DependentUpon>202405280811013_mas cambios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405280818445_AddShoppingCart.resx">
+      <DependentUpon>202405280818445_AddShoppingCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405280826173_anado shoppinCarts.resx">
+      <DependentUpon>202405280826173_anado shoppinCarts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405281031382_name.resx">
+      <DependentUpon>202405281031382_name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

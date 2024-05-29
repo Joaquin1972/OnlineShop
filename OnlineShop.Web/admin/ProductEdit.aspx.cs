@@ -17,36 +17,35 @@ namespace OnlineShop.Web.admin
         {
             if (!IsPostBack)
             {
-                // Recuperar el ID de la consulta
+                // Recupero el ID de la consulta
                 string id = Request.QueryString["id"];
 
                 if (!string.IsNullOrEmpty(id))
                 {
-                    // Aquí puedes llamar a un método para cargar los detalles del producto
-                    // utilizando el ID recuperado
+                    //Cargo el producto seleccionado, mandandole el id enviado desde página anterior
                     LoadProduct(id);
                 }
                 else
                 {
-                    // Manejar el caso donde el ID no esté presente o sea inválido
-                    // Esto puede incluir redirigir a una página de error o mostrar un mensaje
+                    //Caso de id no válidi
                     Response.Write("ID no válido.");
                 }
 
-            
-                
-                    ApplicationDbContext context = new ApplicationDbContext();
-                    categoryManager = new CategoryManager(context);
-                    var categories = categoryManager.GetAll().ToList();
 
+                //Genero el contexto de datos de categorias
+                ApplicationDbContext context = new ApplicationDbContext();
+                categoryManager = new CategoryManager(context);
+                var categories = categoryManager.GetAll().ToList();
+                //Construyo el dropdownList
                 ddlCategory.DataSource = categories;
                 ddlCategory.DataTextField = "CategoryName"; // Propiedad que se mostrará en el DropDownList
-                ddlCategory.DataValueField = "id";  // Propiedad que se usará como valor (usualmente un identificador único)
+                ddlCategory.DataValueField = "id";  // Propiedad que se usará como valor 
                 ddlCategory.DataBind();
 
             }
         }
 
+        //Función para cargar el producto, recibe id como argunmento
         private void LoadProduct(string id)
         {
             try
@@ -56,6 +55,7 @@ namespace OnlineShop.Web.admin
                     throw new ArgumentException("El ID del producto no puede ser nulo o vacío.");
                 }
 
+                //Creo el contexto de datos del producto
                 ApplicationDbContext context = new ApplicationDbContext();
                 ProductManager productManager = new ProductManager(context);
 
@@ -65,18 +65,21 @@ namespace OnlineShop.Web.admin
                     throw new FormatException("El ID del producto no tiene un formato válido.");
                 }
 
+                //Cargo el producto seleccionado con la Id
                 var product = productManager.GetById(productId);
                 if (product == null)
                 {
                     throw new Exception("Producto no encontrado.");
                 }
 
+                //Cargo en los textbox los datos del producto
                 ID.Text = productId.ToString();
                 txtProduct.Text = product.Name;
                 txtDescription.Text = product.Description;
                 txtPrice.Text = product.Price.ToString();
                 txtStock.Text = product.Stock.ToString();
                 ddlCategory.SelectedValue = product.Category_Id.ToString();
+                //Cargo la primera imagen
                 if (product != null && product.Images != null && product.Images.Count > 0)
                 {
                     var firstImage = product.Images.FirstOrDefault();
@@ -113,12 +116,13 @@ namespace OnlineShop.Web.admin
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            
+
             //Creo el contexto de datos
             ApplicationDbContext context = new ApplicationDbContext();
             ProductManager productManager = new ProductManager(context);
             int productId = Convert.ToInt32(ID.Text);
 
+            //Borro el producto seleccionado por la id
             Product product = context.Products.Find(productId);
             productManager.Remove(product);
             productManager.Context.SaveChanges();

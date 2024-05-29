@@ -9,9 +9,9 @@
         }
 
         .container-ddl {
-            padding: 20px;
+            padding: 15px;
             border: 1px solid black;
-            width: 40%;
+            width: 20%;
             margin: 0 auto 10px auto;
         }
 
@@ -21,13 +21,14 @@
         }
 
             .makebig:hover {
-                transform: scale(2);
+                transform: scale(3);
+                         
                 border-radius: 5px;
                 box-shadow: 2px 2px 2px black;
             }
     </style>
     <div class="justify-content-center col-md-12">
-        <h1 class="bg-primary text-white p-1  rounded-4 text-center shadow">BIENVENIDO A NORABEL PLAY</h1>
+        <%--<h1 class="bg-primary text-white p-1  rounded-4 text-center shadow">BIENVENIDO A NORABEL PLAY</h1>--%>
         <h2 style="text-align: center; margin-bottom: 20px;">Aquí tienes nuestro stock</h2>
         <p class="lead text-center">Utiliza el menú desplegable para explorar nuestro catálogo completo o filtrar por una categoría específica.</p>
                 <p class="lead text-center">Puedes pasar el cursor sobre la imagen para ampliarla y hacer clic en "Seleccionar" para obtener más detalles sobre el producto y proceder con la compra</p>
@@ -47,24 +48,29 @@
     <asp:DataList ID="dlProducts" 
         runat="server" 
         CssClass="table table-striped table-bordered border-5 rounded" 
-        RepeatColumns="2" 
         BackColor="#99CCFF" 
         OnItemCommand="dlProducts_ItemCommand" 
         EditItemStyle-BorderStyle="Solid" 
-        ClientIDMode="Predictable" 
         GridLines="Both" 
         HorizontalAlign="Center" 
-        RepeatLayout="Table" RepeatDirection="Horizontal" ItemStyle-Width="10" ItemStyle-HorizontalAlign="Justify" BorderWidth="3" BorderColor="White">    
+        RepeatLayout="Table" 
+        RepeatDirection="Horizontal"   
+        BorderWidth="3" 
+        BorderColor="White" CellPadding="1" 
+        
+        RepeatColumns="2" 
+        ItemStyle-Width="50%">    
         <ItemTemplate>
             <div class="text-center">
                 <h4><%# Eval("Name") %></h4>
-                <p><%# Eval("Id") %></p>
-                <p class="fw-bold"><%# Eval("Description") %></p>
-                <p class="fw-bold"><%# Eval("Price", "{0:n} €") %></p>
-                <p><%# GetStockText((int)Eval("Stock")) %></p>
-                <p><%# Eval("CategoryName") %></p>
+                <h5><%# Eval("CategoryName") %><br /></h5> 
+               <%-- <%# Eval("Id") %><br />--%>
+                <%# Eval("Description") %><br />
+                <%# Eval("Price", "{0:n} €") %><br />
+                <%# GetStockText((int)Eval("Stock")) %><br />
+               
                 <p>
-                    <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("FirstImagePath") %>' Height="120" CssClass="makebig" />
+                    <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("FirstImagePath") %>' Height="120" CssClass="makebig border rounded-2 mt-2" />
                 </p>
                 <asp:Button ID="btnSelect" runat="server" Text="Seleccionar" CommandName="SelectProduct" cssClass="btn btn-primary" CommandArgument='<%# Eval("Id") %>' />
                 
@@ -75,3 +81,18 @@
     <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
   
 </asp:Content>
+
+
+
+<%--- Solo compra el usuario registrado.
+-- ocultar el campo de compra
+-- o alert d q se registre
+==========================
+
+Crear un order (cabecera del pedido)
+
+Recorrer todos los productos q tieen el cliete en  la cesta de la compra. (shoppingCart)
+
+Por cada registro crear un order detail
+
+Quito el producto de la cesta de la compra--%>

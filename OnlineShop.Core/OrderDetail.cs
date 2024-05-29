@@ -4,6 +4,8 @@ namespace OnlineShop.Core
 {
     public class OrderDetail
     {
+      
+
         /// <summary>
         /// Clase para agrupar los productos del pedido del usuario
         /// </summary>

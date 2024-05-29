@@ -38,6 +38,8 @@ namespace OnlineShop.DAL
         //Coleccion/Tabla de path de imagenes
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<ShoppingCart> ShoppingCarts { get; set;}
+
 
     }
 }

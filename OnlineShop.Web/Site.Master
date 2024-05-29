@@ -69,12 +69,14 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
+
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="navbar-nav navbar-right">
                                 <li><a runat="server" class="nav-link" href="~/Account/Register">Registrarse</a></li>
                                 <li><a runat="server" class="nav-link" href="~/Account/Login">Iniciar sesión</a></li>
+                                
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -83,6 +85,10 @@
                                 <li>
                                     <asp:LoginStatus runat="server" CssClass="nav-link" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
+                                <%--Añado icono de cesta de la compra--%>
+                                <li><a runat="server" class="nav-link" href="~/client/CurrentShoppingCart.aspx"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                             <li><asp:Label runat="server" CssClass="nav-link"><i class="fa-regular fa-user"></i></asp:Label></li>
+                                
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
@@ -103,5 +109,6 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
+<script src="https://kit.fontawesome.com/c613dc78b8.js" crossorigin="anonymous"></script>
 </body>
 </html>

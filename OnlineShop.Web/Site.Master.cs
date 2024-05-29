@@ -69,7 +69,7 @@ namespace OnlineShop.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Carga aqui el numero de productos de la cesta
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

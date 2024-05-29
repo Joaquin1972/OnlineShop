@@ -171,6 +171,7 @@
     <Content Include="admin\ProductCreate.aspx" />
     <Content Include="admin\ProductEdit.aspx" />
     <Content Include="admin\ProductList.aspx" />
+    <Content Include="client\CurrentShoppingCart.aspx" />
     <Content Include="client\ProductEditClient.aspx" />
     <Content Include="client\tienda.aspx" />
     <Content Include="Contact.aspx" />
@@ -419,6 +420,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="client\CurrentShoppingCart.aspx.cs">
+      <DependentUpon>CurrentShoppingCart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\CurrentShoppingCart.aspx.designer.cs">
+      <DependentUpon>CurrentShoppingCart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="client\ProductEditClient.aspx.cs">
       <DependentUpon>ProductEditClient.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
