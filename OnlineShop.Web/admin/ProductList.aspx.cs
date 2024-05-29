@@ -52,7 +52,7 @@ namespace OnlineShop.Web.admin
                 (p => p.Id).ToList();
             //gvProducts.DataSource = products;
             //gvProducts.DataBind();
-            // Proyectar los productos con FirstImagePath
+            
             var productList = products.Select(p => new
             {
                 p.Id,

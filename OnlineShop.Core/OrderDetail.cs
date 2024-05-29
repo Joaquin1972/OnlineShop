@@ -4,7 +4,7 @@ namespace OnlineShop.Core
 {
     public class OrderDetail
     {
-      
+
 
         /// <summary>
         /// Clase para agrupar los productos del pedido del usuario
@@ -34,9 +34,15 @@ namespace OnlineShop.Core
         public int Quantity { get; set; }
 
         /// <summary>
-        /// Precio total del producto
+        /// Precio del producto según la cantidad
         /// </summary>
-        //public decimal TotalPrice { get; set; }
-    }
+        public decimal TotalPrice
+        {
+            get
+            {
+                return Quantity * UnitPrice;
+            }
+        }
 
+    }
 }
