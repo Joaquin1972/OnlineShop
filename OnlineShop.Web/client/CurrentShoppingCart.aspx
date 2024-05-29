@@ -22,27 +22,26 @@
             border-radius: 5px;
         }
     </style>
-    <%-- Si el codebehind ha rellenado el GridView significa que hay productos en la cesta, por lo que se renderizar este codigo --%>
+    <%-- Si el codebehind ha rellenado el GridView significa que hay productos en la cesta, 
+        por lo que se renderizar este codigo --%>
     <% if (gvUserOrders.Rows.Count > 0)
         { %>
 
 
     <div class="text-center ">
         <h2>Hola, <%: Context.User.Identity.GetUserName() %>!</h2>
-
         <ul class="order">
-
             <li>Aquí tienes tu cesta de la compra actual</li>
             <li>Pulsa en <b>"Realizar pedido"</b> para entrar en la pasarela de pago</li>
             <li>Pulsa en <b>"Quiero seguir comprando"</b> para volver a la tienda.</li>
-
         </ul>
-
-
     </div>
     <hr />
+
+    <%-- Creo el detalle del pedido --%>
     <div class="container mt-5">
         <div class="row col-md-12">
+            <%-- Columna izda: Resumen del pedido, con fecha y cantidad total --%>
             <div class="col-md-4">
                 <h3 class="text-center">Resumen del pedido</h3>
                 <ul class="order common-style">
@@ -62,16 +61,36 @@
                     <button type="button" class="btn btn-primary">Quiero seguir comprando</button>
                 </div>
             </div>
+            <%-- Columna derecha, el detalle del pedido con todos los productos --%>
             <div class="col-md-8">
                 <h3 class="text-center">Detalle del pedido</h3>
-                <asp:GridView ID="gvUserOrders" runat="server" AutoGenerateColumns="false" CssClass="table table-striped common-style" HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
-                    <Columns>
+                <%--<asp:GridView ID="gvUserOrders" runat="server" AutoGenerateColumns="false" OnRowCommand="gvUserOrders_RowCommand" CssClass="table table-striped common-style" HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                   <Columns>
                         <asp:BoundField DataField="Quantity" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="ProductName" HeaderText="Nombre del producto" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="UnitPrice" HeaderText="Precio Unitario (€)" ItemStyle-HorizontalAlign="Center" />
                         <asp:BoundField DataField="TotalPrice" HeaderText="Total (€)" ItemStyle-HorizontalAlign="Center" />
                     </Columns>
+                </asp:GridView>--%>
+                <asp:GridView ID="gvUserOrders" runat="server" AutoGenerateColumns="false" OnRowCommand="gvUserOrders_RowCommand" CssClass="table table-striped common-style" HorizontalAlign="Center" HeaderStyle-HorizontalAlign="Center">
+                    <Columns>
+                        <asp:BoundField DataField="Quantity" HeaderText="Cantidad" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="ProductName" HeaderText="Nombre del producto" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="UnitPrice" HeaderText="Precio Unitario (€)" ItemStyle-HorizontalAlign="Center" />
+                        <asp:BoundField DataField="TotalPrice" HeaderText="Total (€)" ItemStyle-HorizontalAlign="Center" />
+                        <asp:TemplateField>
+                            <ItemTemplate>
+                                <%-- Botón para retornar al producto --%>
+                                <asp:LinkButton ID="btnReturnProduct" runat="server" CommandName="ReturnProduct" CommandArgument='<%# Eval("Productname") %>' cssclass="btn btn-secondary" Text="Ir al producto" />
+                                <%-- Botón para borrar el producto de la lista de la compra --%>
+                                <asp:LinkButton ID="btnDeleteItem" runat="server" CommandName="DeleteItem" CommandArgument='<%# Eval("Id") %>' cssclass="btn btn-danger" Text="Borrar" />
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+                    </Columns>
                 </asp:GridView>
+
+
             </div>
         </div>
     </div>

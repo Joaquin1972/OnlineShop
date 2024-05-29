@@ -70,5 +70,46 @@ namespace OnlineShop.Web.client
 
             }
         }
+
+        protected void gvUserOrders_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ReturnProduct")
+            {
+                string Name = e.CommandArgument.ToString();
+                ApplicationDbContext contextP = new ApplicationDbContext();
+                ProductManager productManager = new ProductManager(contextP);
+                var product = contextP.Products
+                             .FirstOrDefault(p => p.Name == Name);
+                if (product != null)
+                {
+                    int id = product.Id;
+                    Response.Redirect("ProductEditClient.aspx?id=" + id);
+                }
+                
+
+
+            }
+            else if (e.CommandName == "DeleteItem")
+            { 
+                ApplicationDbContext context = new ApplicationDbContext();
+                OrderDetailManager orderDetailManager = new OrderDetailManager(context);
+                int orderDetailId = Convert.ToInt32(e.CommandArgument);
+                OrderDetail orderDetail = context.OrderDetails.Find(orderDetailId);
+                if (orderDetail != null)
+                {
+                    orderDetailManager.Remove(orderDetail);
+                } 
+                
+                context.SaveChanges();
+                int Id = orderDetail.Id;
+                int remainingOrderDetailsCount = context.OrderDetails.Count(od => od.Id == Id);
+                Response.Write(remainingOrderDetailsCount);
+                CurrentOrderPendingbyUser();
+            }
+        }
+
+       
+
+
     }
 }

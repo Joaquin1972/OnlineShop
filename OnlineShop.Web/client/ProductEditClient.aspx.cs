@@ -242,7 +242,7 @@ namespace OnlineShop.Web.client
                 if (existingOrderDetail != null)
                 {
                     // Si el producto ya existe en el pedido, actualizamos la cantidad
-                    existingOrderDetail.Quantity += quantity;
+                    existingOrderDetail.Quantity = quantity;
                 }
                 else
                 {
