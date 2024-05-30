@@ -42,41 +42,40 @@ namespace OnlineShop.Web.client
                     string userId = User.Identity.GetUserId();
 
                     // Cargo el contexto de datos de Order
-                    using (ApplicationDbContext context = new ApplicationDbContext())
+                    ApplicationDbContext context = new ApplicationDbContext();
+                    OrderManager orderManager = new OrderManager(context);
+                    // Cargo de Order solo los pedidos pendiente (Status = 0)
+                    var userOrders = orderManager.GetPendingOrderByUserId(userId);
+
+                    if (userOrders != null && userOrders.OrderDetails.Any())
                     {
-                        OrderManager orderManager = new OrderManager(context);
-                        // Cargo de Order solo los pedidos pendiente (Status = 0)
-                        var userOrders = orderManager.GetPendingOrderByUserId(userId);
+                        // Envío a las labels el identificador de pedido, que actuará como nº de pedido y la fecha de pedido
+                        LblOrderUserIdPending.Text = userOrders.Id.ToString();
+                        LblDateOrderUserIdPending.Text = userOrders.DateOrder.ToString("dd/MM/yyyy");
 
-                        if (userOrders != null && userOrders.OrderDetails.Any())
-                        {
-                            // Envío a las labels el identificador de pedido, que actuará como nº de pedido y la fecha de pedido
-                            LblOrderUserIdPending.Text = userOrders.Id.ToString();
-                            LblDateOrderUserIdPending.Text = userOrders.DateOrder.ToString("dd/MM/yyyy");
+                        // Enlazo los detalles del pedido al GridView
+                        gvUserOrders.DataSource = userOrders.OrderDetails;
+                        gvUserOrders.DataBind();
 
-                            // Enlazo los detalles del pedido al GridView
-                            gvUserOrders.DataSource = userOrders.OrderDetails;
-                            gvUserOrders.DataBind();
+                        // Calculo el total de todos los detalles del pedido
+                        decimal totalOrderPrice = userOrders.OrderDetails.Sum(od => od.TotalPrice);
 
-                            // Calculo el total de todos los detalles del pedido
-                            decimal totalOrderPrice = userOrders.OrderDetails.Sum(od => od.TotalPrice);
-
-                            // Envío el total a un label en la interfaz de usuario
-                            LblTotalOrderPrice.Text = totalOrderPrice.ToString();
-                            // Asignar un valor a la variable de sesión
-                            Session["PaymentAmount"] = totalOrderPrice;
-                        }
-                        else
-                        {
-                            // Si no hay órdenes pendientes, puedes mostrar un mensaje o realizar alguna otra acción.
-                            // Por ejemplo:
-                            LblOrderUserIdPending.Text = "No hay órdenes pendientes.";
-                            LblDateOrderUserIdPending.Text = "";
-                            gvUserOrders.DataSource = null;
-                            gvUserOrders.DataBind();
-                            LblTotalOrderPrice.Text = "";
-                        }
+                        // Envío el total a un label en la interfaz de usuario
+                        LblTotalOrderPrice.Text = totalOrderPrice.ToString();
+                        // Asignar un valor a la variable de sesión
+                        Session["PaymentAmount"] = totalOrderPrice;
                     }
+                    else
+                    {
+                        // Si no hay órdenes pendientes, puedes mostrar un mensaje o realizar alguna otra acción.
+                        // Por ejemplo:
+                        LblOrderUserIdPending.Text = "No hay órdenes pendientes.";
+                        LblDateOrderUserIdPending.Text = "";
+                        gvUserOrders.DataSource = null;
+                        gvUserOrders.DataBind();
+                        LblTotalOrderPrice.Text = "";
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -171,8 +170,6 @@ namespace OnlineShop.Web.client
 
         protected void BtnMakePayment_Click(object sender, EventArgs e)
         {
-            // Lógica para procesar el pago
-            // ...
 
             // Redirigir a la página de destino
             Response.Redirect("PaymentGateway.aspx");
