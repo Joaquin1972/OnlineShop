@@ -122,6 +122,10 @@
     <Compile Include="Migrations\202405291602577_anade precio total.Designer.cs">
       <DependentUpon>202405291602577_anade precio total.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202405302042141_anado precio total del pedido.cs" />
+    <Compile Include="Migrations\202405302042141_anado precio total del pedido.Designer.cs">
+      <DependentUpon>202405302042141_anado precio total del pedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -183,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202405291602577_anade precio total.resx">
       <DependentUpon>202405291602577_anade precio total.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405302042141_anado precio total del pedido.resx">
+      <DependentUpon>202405302042141_anado precio total del pedido.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

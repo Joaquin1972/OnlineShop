@@ -7,11 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace OnlineShop.Web.Account
+namespace OnlineShop.Web.client
 {
 
 
-    public partial class OpenAuthProviders
+    public partial class WebForm2
     {
     }
 }

@@ -76,7 +76,7 @@
                             <ul class="navbar-nav navbar-right">
                                 <li><a runat="server" class="nav-link" href="~/Account/Register">Registrarse</a></li>
                                 <li><a runat="server" class="nav-link" href="~/Account/Login">Iniciar sesión</a></li>
-                                
+
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
@@ -87,8 +87,10 @@
                                 </li>
                                 <%--Añado icono de cesta de la compra--%>
                                 <li><a runat="server" class="nav-link" href="~/client/CurrentShoppingCart.aspx"><i class="fa-solid fa-cart-shopping"></i></a></li>
-                             <li><asp:Label runat="server" CssClass="nav-link"><i class="fa-regular fa-user"></i></asp:Label></li>
-                                
+                                <%--Añado icono de Usuario--%>
+                                <li>
+                                   <a runat="server" class="nav-link" href="~/client/PersonalArea.aspx"> <i class="fa-regular fa-user"></i></a></li>
+
                             </ul>
                         </LoggedInTemplate>
                     </asp:LoginView>
@@ -109,6 +111,6 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
-<script src="https://kit.fontawesome.com/c613dc78b8.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c613dc78b8.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -175,6 +175,7 @@
     <Content Include="client\ProductEditClient.aspx" />
     <Content Include="client\tienda.aspx" />
     <Content Include="client\PaymentGateway.aspx" />
+    <Content Include="client\PersonalArea.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -448,6 +449,13 @@
     </Compile>
     <Compile Include="client\PaymentGateway.aspx.designer.cs">
       <DependentUpon>PaymentGateway.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="client\PersonalArea.aspx.cs">
+      <DependentUpon>PersonalArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="client\PersonalArea.aspx.designer.cs">
+      <DependentUpon>PersonalArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

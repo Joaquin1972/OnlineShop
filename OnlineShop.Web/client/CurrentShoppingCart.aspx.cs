@@ -89,7 +89,7 @@ namespace OnlineShop.Web.client
             }
         }
 
-        protected void gvUserOrders_RowCommand(object sender, GridViewCommandEventArgs e)
+        public void gvUserOrders_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
             {
@@ -168,7 +168,7 @@ namespace OnlineShop.Web.client
             }
         }
 
-        protected void BtnMakePayment_Click(object sender, EventArgs e)
+        public void BtnMakePayment_Click(object sender, EventArgs e)
         {
 
             // Redirigir a la página de destino

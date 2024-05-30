@@ -34,6 +34,12 @@ namespace OnlineShop.Core
         public DateTime DateOrder { get; set; }
 
         /// <summary>
+        /// Precio del pedido
+        /// </summary>
+
+        public Decimal OrderTotalPrice { get; set; }
+
+        /// <summary>
         /// Estado del pedido
         /// </summary>
         public OrderStatus Status { get; set; }
