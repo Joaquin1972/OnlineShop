@@ -57,7 +57,7 @@
                     </li>
                 </ul>
                 <div class="buttons common-style">
-                    <button type="button" class="btn btn-success">Realizar Pedido</button>
+                     <asp:Button ID="MakePayment" runat="server" Text="Realizar Pedido" CssClass="btn btn-success" OnClick="BtnMakePayment_Click" />
                     <button type="button" class="btn btn-primary">Quiero seguir comprando</button>
                 </div>
             </div>
