@@ -36,9 +36,9 @@ img {
                 <div class="col-12 col-md-12 img_ini">
                     <img src="img/honeyRogers.jpg" class="img-fluid">
                     <img src="img/pirata2.jpg" class="img-fluid">
-                    <img src="img/honeyRogers.jpg" class="img-fluid">
-                    <img src="img/pirata2.jpg" class="img-fluid">
-                    <img src="img/honeyRogers.jpg" class="img-fluid">
+                    <img src="img/hadajimena.jpg" class="img-fluid">
+                    <img src="img/sheriff.jpg" class="img-fluid">
+                    <img src="img/policia.jpg" class="img-fluid">
                 </div>
             </div>
         </div>

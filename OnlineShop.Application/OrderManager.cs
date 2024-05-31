@@ -19,5 +19,11 @@ namespace OnlineShop.Application
             // Buscar un pedido pendiente para el usuario actual
             return Context.Orders.FirstOrDefault(o => o.User_Id == userId && o.Status == OrderStatus.Pending);
         }
+
+        public Order GetOrdersInPreparation(string userId)
+        {
+            // Buscar un pedido pendiente para el usuario actual
+            return Context.Orders.FirstOrDefault(o => o.User_Id == userId && o.Status == OrderStatus.InPreparation);
+        }
     }
 }

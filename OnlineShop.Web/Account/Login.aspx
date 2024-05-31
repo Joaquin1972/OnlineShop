@@ -20,7 +20,7 @@
             <div class="col-md-6">
                 <section id="loginForm">
                     <div class="row">
-                        <h4>Introduzco su login y contraseña.</h4>
+                        <h4 class="mb-3">Introduzco su login y contraseña.</h4>
 
                         <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                             <p class="text-danger">

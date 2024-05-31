@@ -65,13 +65,6 @@ namespace OnlineShop.Application
 
 
         /// <summary>
-        /// Obtiene una entidad por sus posible claves
-        /// </summary>
-        /// <param name="key">Claves del objeto</param>
-        /// <returns>Entidad si es encontrada</returns>
-
-
-        /// <summary>
         /// Leer todas las entidades
         /// </summary>
         /// <returns>Lista de entidades</returns>
@@ -79,6 +72,11 @@ namespace OnlineShop.Application
         {
             return Context.Set<T>();
         }
+        /// <summary>
+        /// Obtiene una entidad por sus posible claves
+        /// </summary>
+        /// <param name="key">Claves del objeto</param>
+        /// <returns>Entidad si es encontrada</returns>
 
 
         public T GetById(object[] key)

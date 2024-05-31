@@ -171,11 +171,12 @@
     <Content Include="admin\ProductCreate.aspx" />
     <Content Include="admin\ProductEdit.aspx" />
     <Content Include="admin\ProductList.aspx" />
+    <Content Include="admin\ViewOrders.aspx" />
     <Content Include="client\CurrentShoppingCart.aspx" />
     <Content Include="client\ProductEditClient.aspx" />
     <Content Include="client\tienda.aspx" />
     <Content Include="client\PaymentGateway.aspx" />
-    <Content Include="client\PersonalArea.aspx" />
+    <Content Include="client\UserArea.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -411,6 +412,13 @@
     <Compile Include="admin\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\ViewOrders.aspx.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ViewOrders.aspx.designer.cs">
+      <DependentUpon>ViewOrders.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -450,12 +458,12 @@
     <Compile Include="client\PaymentGateway.aspx.designer.cs">
       <DependentUpon>PaymentGateway.aspx</DependentUpon>
     </Compile>
-    <Compile Include="client\PersonalArea.aspx.cs">
-      <DependentUpon>PersonalArea.aspx</DependentUpon>
+    <Compile Include="client\UserArea.aspx.cs">
+      <DependentUpon>UserArea.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="client\PersonalArea.aspx.designer.cs">
-      <DependentUpon>PersonalArea.aspx</DependentUpon>
+    <Compile Include="client\UserArea.aspx.designer.cs">
+      <DependentUpon>UserArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
