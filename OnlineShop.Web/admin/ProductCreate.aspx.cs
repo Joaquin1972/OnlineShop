@@ -35,22 +35,21 @@ namespace OnlineShop.Web.admin
                 ddlCategory.DataValueField = "id";  // Propiedad que se usará como valor (usualmente un identificador único)
                 ddlCategory.DataBind();
             }
-            BindDataList();
+            //BindDataList();
           
             gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
             LoadProduts();
         }
-
      
-        private void BindDataList()
-        {
-            ApplicationDbContext context = new ApplicationDbContext();
-            productManager = new ProductManager(context);
-            var products = productManager.GetAll().Include(i => i.Category).ToList();
+        //private void BindDataList()
+        //{
+        //    ApplicationDbContext context = new ApplicationDbContext();
+        //    productManager = new ProductManager(context);
+        //    var products = productManager.GetAll().Include(i => i.Category).ToList();
 
-            dlProducts.DataSource = products;
-            dlProducts.DataBind();
-        }
+        //    dlProducts.DataSource = products;
+        //    dlProducts.DataBind();
+        //}
 
 
         protected void btnUpload_Click(object sender, EventArgs e)

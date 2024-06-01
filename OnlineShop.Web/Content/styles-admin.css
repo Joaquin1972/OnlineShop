@@ -25,6 +25,16 @@
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
+#product {
+    border: 1px solid gray;
+    padding: 5px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
 .image {
     border: 1px solid black;
     border-radius: 5px;

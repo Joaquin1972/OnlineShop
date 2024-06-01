@@ -43,7 +43,8 @@ namespace OnlineShop.Web.admin
                     ApplicationDbContext context = new ApplicationDbContext();
                     OrderManager orderManager = new OrderManager(context);
                     //Cargo solo las ordenes del usuario (tanto en preparacion, como enviadas, como pendientes)
-                    var orders = orderManager.GetAll().ToList();
+                    var orders = orderManager.GetAll().OrderByDescending(p => p.DateOrder).ThenBy(p => p.Status).ToList();
+
 
                     if (orders != null)
                     {
@@ -133,5 +134,35 @@ namespace OnlineShop.Web.admin
             var user = context.Users.Find(userId);
             return user.Email;
         }
+
+        protected void gvOrderDetails_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            // Asegúrate de que el CommandName es "ReturnProduct"
+            if (e.CommandName == "ReturnProduct")
+            {
+                // Obtén el nombre del producto desde el CommandArgument
+                string productName = e.CommandArgument.ToString();
+                Response.Write("Producto a devolver: " + productName);
+
+                // Crea el contexto de datos
+                using (var contextP = new ApplicationDbContext())
+                {
+                    // Localiza el producto en el listado de productos
+                    var product = contextP.Products.FirstOrDefault(p => p.Name == productName);
+
+                    // Si el producto se encuentra, redirige a la página de edición del producto
+                    if (product != null)
+                    {
+                        int id = product.Id;
+                        Response.Redirect("~/admin/ProductEdit.aspx?id=" + id);
+                    }
+                    else
+                    {
+                        Response.Write("Producto no encontrado.");
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -41,6 +41,8 @@
         <li><a href="CategoryList.aspx">Editar o eliminar categorías</a></li>
         <li><a href="ProductCreate.aspx">Crear Productos</a></li>
         <li><a href="ProductList.aspx">Listar Productos</a></li>
+        <li><a href="ViewOrders.aspx">Ver Pedidos</a></li>
+
     </ul>
     
 

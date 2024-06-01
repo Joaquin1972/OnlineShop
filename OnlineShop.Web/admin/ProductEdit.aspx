@@ -8,12 +8,15 @@
     <%-- Cabecera de la página --%>
     <div class="header2">
         <h4>ACTUALIZAR PRODUCTO</h4>
-        <a href="ProductList.aspx">Volver al listado de productos</a>
+        <div>
+            <a href="admin.aspx">Volver Inicio Administrador</a>
+            <a href="ProductList.aspx">Ver Listado</a>
+        </div>
     </div>
     <hr />
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="alert alert-danger" DisplayMode="List" />
 
-    <div class="row  container-fluid">
+    <div class="row  container-fluid" id="product" >
         <%--Creo dos columnas en pantalla, a la izda: fotografia, a la dcha: Resto de campos--%>
         <%--Columna izquierda--%>
         <%--Imagen del producto--%>
@@ -22,7 +25,7 @@
         </div>
         <%--Columna derecha--%>
         <div class="col-md-8">
-            <asp:Label ID="ID" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="ID" runat="server" Text="Label" Visible="false"></asp:Label>
             <%--Etiqueta y campo de texto para el nombre del producto--%>
             <div class="row mb-3">
                 <div class="col-md-4 fw-bold">
@@ -107,7 +110,7 @@
                         ControlToValidate="txtPrice">
                     </asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="RangeValidator1"
-                        runat="server"
+                        runat="server" Display="Dynamic"
                         ErrorMessage="Precio fuera de rango"
                         Text="Precio fuera de rango"
                         ControlToValidate="txtPrice"
@@ -136,7 +139,7 @@
                         ControlToValidate="txtStock">
                     </asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="RangeValidator2"
-                        runat="server"
+                        runat="server" Display="Dynamic"
                         ErrorMessage="Stock fuera de rango"
                         Text="Stock fuera de rango"
                         ControlToValidate="txtStock"
@@ -160,7 +163,7 @@
         <div id="update" class="d-flex justify-content-center flex-column align-items-center">
             <h5>Modifica los campos que desees y pulsa Actualizar</h5>
             <asp:Button ID="btnSubmit" runat="server" Text="Actualizar" CssClass="btn btn-primary col-md-4 mt-3" OnClick="btnSubmit_Click" />
-            <asp:Button ID="btnDelete" runat="server" Text="Borrar Producto" CssClass="btn btn-secondary col-md-4 mt-3" OnClick="btnDelete_Click" />
+            <asp:Button ID="btnDelete" runat="server" Text="Borrar Producto" CssClass="btn btn-secondary col-md-4 mt-3 mb-2" OnClick="btnDelete_Click" />
 
         </div>
 

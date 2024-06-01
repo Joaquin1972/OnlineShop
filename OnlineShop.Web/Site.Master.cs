@@ -69,8 +69,22 @@ namespace OnlineShop.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            //Hacer visible link Zona Admin solo para administrador
+            // Verificar si el usuario está autenticado
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                // Obtener el correo electrónico del usuario logueado
+                string userEmail = HttpContext.Current.User.Identity.Name;
+
+                // Verificar si el correo electrónico es admin@admin.com
+                if (userEmail.Equals("admin@admin.com", StringComparison.OrdinalIgnoreCase))
+                {
+                    // Mostrar el elemento <li> para el administrador
+                    adminMenu.Visible = true;
+                }
+            }
         }
+    
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {

@@ -48,7 +48,7 @@
                 runat="server"
                 ErrorMessage="El stock es obligatorio"
                 Text="El stock es obligatorio"
-                ControlToValidate="txtDescription" Display="Dynamic">
+                ControlToValidate="txtStock" Display="Dynamic">
             </asp:RequiredFieldValidator>
         </div>
 
@@ -104,11 +104,10 @@
                     <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("FirstImagePath") %>' Height="70" />
                 </ItemTemplate>
             </asp:TemplateField>
-
         </Columns>
     </asp:GridView>
 
-    <asp:DataList ID="dlProducts" runat="server" CssClass="table table-striped" RepeatColumns="2" CellPadding="5">
+<%--    <asp:DataList ID="dlProducts" runat="server" CssClass="table table-striped" RepeatColumns="2" CellPadding="5">
         <ItemTemplate>
             <div class="text-center">
                 <h4>Nombre: <%# Eval("Name") %></h4>
@@ -119,21 +118,7 @@
                 <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ImagePath") %>' Height="70" />
             </div>
         </ItemTemplate>
-    </asp:DataList>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </asp:DataList>--%>
 
 
 </asp:Content>

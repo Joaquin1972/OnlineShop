@@ -37,9 +37,13 @@
     </style>
 </head>
 <body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <form runat="server">
         <asp:ScriptManager runat="server">
+
             <Scripts>
+
+
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
@@ -69,7 +73,11 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
-                        
+                        <li id="adminMenu" runat="server" visible="false" class="nav-item">
+                            <a runat="server" class="nav-link" href="~/admin/admin" title="Zona Admin">Zona Admin</a>
+
+                        </li>
+
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -78,6 +86,7 @@
                                 <li><a runat="server" class="nav-link" href="~/Account/Login">Iniciar sesión</a></li>
                             </ul>
                         </AnonymousTemplate>
+
                         <LoggedInTemplate>
                             <ul class="navbar-nav navbar-right">
                                 <li><a runat="server" class="nav-link" href="~/Account/Manage" title="Manage your account">Hola, <%: Context.User.Identity.GetUserName()  %> !</a></li>
@@ -85,10 +94,11 @@
                                     <asp:LoginStatus runat="server" CssClass="nav-link" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                                 <%--Añado icono de cesta de la compra--%>
-                                <li><a runat="server" class="nav-link" href="~/client/CurrentShoppingCart.aspx"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                                <li><a runat="server" class="nav-link" href="~/client/CurrentShoppingCart.aspx"><span class="material-symbols-outlined">shopping_cart
+                                </span></a></li>
                                 <%--Añado icono de Usuario--%>
-                                <li>
-                                    <a runat="server" class="nav-link" href="~/client/UserArea.aspx"><i class="fa-regular fa-user"></i></a></li>
+                                <li><a runat="server" class="nav-link" href="~/client/UserArea.aspx"><span class="material-symbols-outlined">person
+                                </span></a></li>
 
                             </ul>
                         </LoggedInTemplate>
@@ -102,7 +112,7 @@
 
             <footer style="height: 50px">
                 <hr />
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                <p>&copy; <%: DateTime.Now.Year %> JSALVADOR</p>
                 <hr />
             </footer>
         </div>
@@ -110,6 +120,5 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>
-    <script src="https://kit.fontawesome.com/c613dc78b8.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -14,10 +14,12 @@
         </div>
     </div>
     <hr />
+
     <asp:ValidationSummary
         ID="ValidationSummary1"
         runat="server"
         CssClass="alert alert-danger" />
+
 
     <div class="container" id="update">
         <div class="row justify-content-center mb-3">
@@ -46,54 +48,30 @@
         </div>
         <div class="row justify-content-center mb-3">
             <div class="col-md-4">
-                <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary w-100" Text="Actualizar" OnClick="BtnSubmit_Click" />
+                <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-primary w-100" Text="Crear Categoría" OnClick="BtnSubmit_Click" />
             </div>
         </div>
-
-
     </div>
-    <%-- <div id="update">
-        <div>
-            <asp:Label ID="Label1" runat="server" AssociatedControlID="txtCategory" Text="Categoria:"></asp:Label>
-        </div>
-        <div>
-            <asp:TextBox ID="txtCategory" runat="server" CssClass="form-control"></asp:TextBox>
-            <asp:RequiredFieldValidator
-                ID="RequiredFieldValidator1"
-                runat="server"
-                ErrorMessage="El campo categoria es obligatorio"
-                Text="El campo categoria es obligatorio"
-                ControlToValidate="txtCategory">
-            </asp:RequiredFieldValidator>
-        </div>
-
-        <div>
-            <asp:Button ID="btnSubmit" runat="server" Text="Crear Categoría" CssClass="btn btn-primary" OnClick="BtnSubmit_Click" />
-        </div>
-
-    </div>--%>
-
-
-
-
-
-
-
-
-
-
-
-
-    <asp:GridView ID="gvCategories" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered col-md-6" AlternatingRowStyle-BackColor="#CCCCCC">
+     <div class="row justify-content-center">
+    <div class="col-6">
+    <asp:GridView ID="gvCategories"
+        runat="server"
+        AutoGenerateColumns="False"
+        CssClass="table table-bordered border-5 rounded"
+        BackColor="#99CCFF"
+        HeaderStyle-BackColor="Blue"
+        HeaderStyle-ForeColor="White"
+        AllowSorting="True"
+        RowStyle-HorizontalAlign="Center"
+        HeaderStyle-HorizontalAlign="Center"
+        HeaderStyle-VerticalAlign="Middle">
         <Columns>
             <asp:BoundField DataField="CategoryId" HeaderText="ID" Visible="False" />
             <asp:BoundField DataField="CategoryName" HeaderText="Categorías actuales" />
         </Columns>
-    </asp:GridView>
-    <ul>
-        <li><a href="CategoryList.aspx">Editar/Eliminar Categorías</a></li>
-        <li><a href="admin.aspx">Volver Inicio Admin</a></li>
-    </ul>
+    </asp:GridView></div></div>
+
+
 
 </asp:Content>
 
