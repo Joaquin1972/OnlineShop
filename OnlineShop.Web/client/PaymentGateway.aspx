@@ -1,19 +1,19 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PaymentGateway.aspx.cs" Inherits="OnlineShop.Web.client.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>Pasarela de Pago</h2>
+    <h3 class="text-center">Pasarela de Pago</h3>
 
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="alert alert-danger" />
     <div id="form1" runat="server" class="container mt-2">
         <div class="form-group row">
             <%--Importe--%>
             <div class="col-md-2">
-                <h3>
-                    <label for="lblPaymentAmount" class="col-md-2 col-form-label fw-bold">Importe</label></h3>
+                <h4>
+                    <label for="lblPaymentAmount" class="col-md-2 col-form-label fw-bold">Importe</label></h4>
             </div>
             <div class="col-md-2">
-                <h3>
-                    <asp:Label ID="lblPaymentAmount" runat="server" CssClass="form-control-plaintext fw-bold" Text="Label"></asp:Label></h3>
+                <h4>
+                    <asp:Label ID="lblPaymentAmount" runat="server" CssClass="form-control-plaintext fw-bold" Text="Label"></asp:Label></h4>
             </div>
         </div>
         <hr />
@@ -53,29 +53,30 @@
         <div class="form-group col mb-2">
             <label for="TBCCV" class="col-md-3 col-form-label fw-bolder">CCV</label>
             <div class="col-md-3">
-                <asp:TextBox ID="TBCCV" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="TBCCV" runat="server" CssClass="form-control" OnKeyPress="return isNumberKey(event)"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="CCV es obligatorio" Text="CCV es obligatorio" ControlToValidate="TBCCV" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
                 <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="CCV incorrecto" Text="CCV incorrecto" MaximumValue="999" ControlToValidate="TBCCV" MinimumValue="100" CssClass="text-danger" Display="Dynamic"></asp:RangeValidator>
             </div>
         </div>
          <%-- Mensaje de aviso del pago ok/nok --%>
         <div class="form-group row mb-2">
-            <div class="col-md-3">
+            <div class="col-md-5 mt-3">
                 <asp:Label ID="lblMessage" runat="server" CssClass="form-control" Visible="false"></asp:Label>
             </div>
         </div>
         <%-- Botones de pago y cancelar --%>
         <div class="form-group row mb-2">
-            <div class="col-md-3 mt-5">
+            <div class="col-md-3 mt-1">
                 <asp:Button ID="btnPay" runat="server" CssClass="btn btn-primary" Text="Pagar" OnClick="btnPay_Click" />
                 <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-secondary" Text="Cancelar" />
             </div>
         </div>
     </div>
 
+    <%--Solo numeros en la tarjeta de crédito y CCV --%>
     <script type="text/javascript">
-        function isNumberKey(evt) {
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
+        function isNumberKey(e) {
+            var charCode = (e.which) ? e.which : e.keyCode;
             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
                 return false;
             }

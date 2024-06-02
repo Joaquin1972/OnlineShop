@@ -77,8 +77,17 @@ namespace OnlineShop.Web.Account
                         : String.Empty;
                     successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
                 }
+               
             }
+
+
         }
+
+
+        
+
+    
+
 
 
         private void AddErrors(IdentityResult result)

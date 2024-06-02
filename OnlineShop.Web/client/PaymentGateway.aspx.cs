@@ -14,7 +14,7 @@ namespace OnlineShop.Web.client
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -33,102 +33,95 @@ namespace OnlineShop.Web.client
             }
         }
 
-        //public void btnPay_Click(object sender, EventArgs e)
-        //{
-        //    //Convierto la numeracion de la tarjeta a texto. Limpio en blanco
-        //    string CardNumber = TBCardNumber.Text.Trim();
-        //    string CardDate = TBDate.Text.Trim();
-        //    if (!string.IsNullOrEmpty(CardNumber))
-        //    {
-        //        //Obtengo 4 ultimos digitos de la tarjeta bancaria y comparo con 4321
-        //        string LastFourNumber = CardNumber.Substring(CardNumber.Length - 4);
-        //        if (LastFourNumber == "4321")
-        //        { //Si es correcto, asumo pago correcto e informo de ello
-        //            lblMessage.Text = "Pago correctamente realizado. Comenzamos a preparar su pedido";
-        //            lblMessage.CssClass = "text-success";
-        //            lblMessage.Visible = true;
-        //            TBCardNumber.Text = "";
-        //            TBDate.Text = "";
-        //            TBCCV.Text = "";
-        //            //Procedo a cambiar el estado del pedido a "1" que sería "en preparacion"
-        //            ChangeStatusOrder();
-
-        //        }
-        //        else
-        //        {// Si no es correcto, informo de pago incorrecto
-        //            lblMessage.Text = "Ha habido un error en el pago.";
-        //            lblMessage.CssClass = "text-danger";
-        //            TBCardNumber.Text = "";
-        //            TBDate.Text = "";
-        //            TBCCV.Text = "";
-        //        }
-        //    }
-        //}
-
         public void btnPay_Click(object sender, EventArgs e)
         {
             // Convierto la numeración de la tarjeta a texto y limpio en blanco
             string CardNumber = TBCardNumber.Text.Trim();
             string CardDate = TBDate.Text.Trim();
+            string CCV = TBCCV.Text.Trim();
 
-            // Verifico si el número de tarjeta no está vacío
-            if (!string.IsNullOrEmpty(CardNumber))
+            //
+            bool CCVOK = false;
+            bool CardNumberOK = false;
+            bool DateOK = false;
+
+            //VERIFICO CCV
+            if (!string.IsNullOrEmpty(CCV))
             {
-                // Verifico si la fecha de la tarjeta no está vacía y tiene el formato correcto
-                if (!string.IsNullOrEmpty(CardDate) && CardDate.Length == 5 && CardDate.Contains("/"))
+                //Verifico si es 600 (me lo invento)
+                if (CCV == "600")
                 {
-                    // Obtengo mes y año de la fecha de la tarjeta
-                    string[] dateParts = CardDate.Split('/');
-                    int month = int.Parse(dateParts[0]);
-                    int year = int.Parse("20" + dateParts[1]);
-
-                    // Verifico si la fecha de la tarjeta es mayor que la fecha actual
-                    DateTime cardExpiryDate = new DateTime(year, month, DateTime.DaysInMonth(year, month));
-                    if (cardExpiryDate > DateTime.Now) 
-                        //Si no esta caducada compruebo tarjeta
-                    {
-                        // Obtengo los 4 últimos dígitos de la tarjeta bancaria y comparo con 4321
-                        string LastFourNumber = CardNumber.Substring(CardNumber.Length - 4);
-                        if (LastFourNumber == "4321")
-                        {
-                            // Si es correcto, asumo pago correcto e informo de ello
-                            lblMessage.Text = "Pago correctamente realizado. Comenzamos a preparar su pedido";
-                            lblMessage.CssClass = "text-success";
-                            lblMessage.Visible = true;
-                            TBCardNumber.Text = "";
-                            TBDate.Text = "";
-                            TBCCV.Text = "";
-
-                            // Procedo a cambiar el estado del pedido a "1" que sería "en preparación"
-                            ChangeStatusOrder();
-                        }
-                        else
-                        {
-                            // Si no es correcto, informo de pago incorrecto
-                            lblMessage.Text = "Ha habido un error en el pago.";
-                            lblMessage.CssClass = "text-danger";
-                            TBCardNumber.Text = "";
-                            TBDate.Text = "";
-                            TBCCV.Text = "";
-                        }
-                    }
-                    else
-                    {
-                        // Si la fecha de la tarjeta es inválida (caducada), informo de error en la fecha
-                        lblMessage.Text = "La fecha de caducidad de la tarjeta no es correcta.";
-                        lblMessage.CssClass = "text-danger";
-                        TBCardNumber.Text = "";
-                        TBDate.Text = "";
-                        TBCCV.Text = "";
-                    }
+                    CCVOK = true;
                 }
                 else
                 {
-                    // Si la fecha de la tarjeta tiene un formato incorrecto, informo de error en la fecha
-                    lblMessage.Text = "El formato de la fecha es incorrecto. Use mm/aa.";
-                    lblMessage.CssClass = "text-danger";
-                    TBDate.Text = "";
+                    CCVOK = false;
                 }
+            }
+
+            // VERIFICO NUMERO DE TARJERA
+            if (!string.IsNullOrEmpty(CardNumber))
+            {
+                // Obtengo los 4 últimos dígitos de la tarjeta bancaria y comparo con 4321
+                string LastFourNumber = CardNumber.Substring(CardNumber.Length - 4);
+                if (LastFourNumber == "4321")
+                {
+                    CardNumberOK = true;
+                }
+                else
+                {
+                    CardNumberOK = false;
+                }
+            }
+
+            // VERIFICO FECHA DE CADUCIDAD
+            if (!string.IsNullOrEmpty(CardDate) && CardDate.Length == 5 && CardDate.Contains("/"))
+            {
+                // Obtengo mes y año de la fecha de la tarjeta
+                string[] dateParts = CardDate.Split('/');
+                int month = int.Parse(dateParts[0]);
+                int year = int.Parse("20" + dateParts[1]);
+
+                // Verifico si la fecha de la tarjeta es mayor que la fecha actual
+                // Para mes=12 y año = 2024 toma fecha 31-12-2024 (2024,12,31)
+                DateTime cardExpiryDate = new DateTime(year, month, DateTime.DaysInMonth(year, month));
+                if (cardExpiryDate > DateTime.Now)
+                {
+                    DateOK = true;
+                }
+                else
+                {
+                    DateOK = false;
+                }
+
+                //SI TODO ES CORRECTO
+
+                if (CCVOK && CardNumberOK && DateOK)
+                {
+                    // Si es correcto, asumo pago correcto e informo de ello
+                    lblMessage.Text = "Pago correctamente realizado. Comenzamos a preparar su pedido";
+                    lblMessage.CssClass = "alert alert-success";
+                    lblMessage.Visible = true;
+                    TBCardNumber.Text = "";
+                    TBDate.Text = "";
+                    TBCCV.Text = "";
+                    //SendMailUser();
+                    //SendMailAdmin();
+
+                    // Procedo a cambiar el estado del pedido a "1" que sería "en preparación"
+                    ChangeStatusOrder();
+                }
+                else
+                {
+                    // Si no es correcto, informo de pago incorrecto
+                    lblMessage.Text = "Ha habido un error en el pago. Compruebe numeracion de la tarjeta";
+                    lblMessage.CssClass = "alert alert-danger";
+                    lblMessage.Visible = true;
+                    TBCardNumber.Text = "";
+                    TBDate.Text = "";
+                    TBCCV.Text = "";
+                }
+
             }
         }
 
@@ -162,18 +155,19 @@ namespace OnlineShop.Web.client
                     var updatedOrder = orderManager.GetById(Pedido);
                     Response.Write(updatedOrder.Id);
                     Response.Write(updatedOrder.Status);
-
-
-
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                // Manejo de errores
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al guardar" + ex.Message,
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
             }
-            finally
-            {
-
-            }
+           
         }
     }
 }

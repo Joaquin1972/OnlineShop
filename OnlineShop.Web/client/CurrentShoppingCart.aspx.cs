@@ -174,5 +174,16 @@ namespace OnlineShop.Web.client
             // Redirigir a la página de destino
             Response.Redirect("PaymentGateway.aspx");
         }
+
+        public void BtnReturn_Click(object sender, EventArgs e)
+        {
+
+            // Redirigir a la página de destino
+            Response.Redirect("tienda.aspx");
+        }
+        protected void Return_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

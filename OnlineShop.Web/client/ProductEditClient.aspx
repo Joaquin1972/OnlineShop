@@ -16,11 +16,7 @@
         }
     </style>
     <div class="justify-content-center col-md-12">
-        <%--<div class="d-flex justify-content-between align-items-center bg-primary text-white p-1 rounded-4 shadow">--%>
-            <%--<%--<h1 id="hola" class="mb-0">YA ESTAS EN NORABEL PLAY</h1>--%>
-            <%--<i class="fas fa-shopping-cart fa-2x"></i>--%>
-            <%--<span id="cart-count" class="badge badge-pill"><%= Session["CartLineCount"] != null ? Session["CartLineCount"].ToString() : "0" %></span>
-      </div>--%>
+
         <h2 class="text-center mt-3 mb-3">
             <asp:Label ID="Label1" runat="server" Text="Te presentamos a ... "></asp:Label>
             <asp:Label ID="LblName" runat="server" Text=""></asp:Label>
@@ -51,12 +47,14 @@
         </div>
 
     </div>
-    <div class="text-center row col-12">
-        <asp:Label ID="lblAlert" runat="server" CssClass="text-center" Text=""></asp:Label>
+    <div class="row justify-content-center">
+        <div class="text-center  col-md-4 col-12 mt-3 mb-3">
+            <asp:Label ID="lblAlert" runat="server" CssClass="text-center" Text=""></asp:Label>
+        </div>
     </div>
 
-    <asp:Label ID="lblId" runat="server" Text="Label"></asp:Label>
 
-   
+
+
 
 </asp:Content>

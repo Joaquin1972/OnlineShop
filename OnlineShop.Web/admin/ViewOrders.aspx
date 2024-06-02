@@ -39,7 +39,8 @@
                     ID="gvOrderByUser"
                     runat="server"
                     AutoGenerateColumns="False"
-                    AllowCustomPaging="True" AllowPaging="True"
+                    AllowPaging="True"
+                    PageSize="5"
                     CssClass="table table-bordered border-5 rounded"
                     RowStyle-HorizontalAlign="Center"
                     HeaderStyle-HorizontalAlign="Center"
@@ -47,7 +48,9 @@
                     BackColor="#99CCFF"
                     HeaderStyle-BackColor="Blue"
                     HeaderStyle-ForeColor="White"
-                    ForeColor="White" RowStyle-ForeColor="Black">
+                    ForeColor="White"
+                    RowStyle-ForeColor="Black"
+                    OnPageIndexChanging="gvOrderByUser_PageIndexChanging">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Nº Pedido" />
                         <asp:TemplateField HeaderText="Usuario">
@@ -69,6 +72,18 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <PagerTemplate>
+                        <div style="text-align: center">
+                            <asp:LinkButton ID="lnkFirst" CommandName="Page" CommandArgument="First" runat="server" CssClass="btn btn-primary btn-sm m-2">Inicio</asp:LinkButton>
+                            <asp:LinkButton ID="lnkPrev" CommandName="Page" CommandArgument="Prev" runat="server" CssClass="btn btn-primary btn-sm m-2">Anterior</asp:LinkButton>
+                            <asp:LinkButton ID="lnkNext" CommandName="Page" CommandArgument="Next" runat="server" CssClass="btn btn-primary btn-sm m-2">Siguiente</asp:LinkButton>
+                            <asp:LinkButton ID="lnkLast" CommandName="Page" CommandArgument="Last" runat="server" CssClass="btn btn-primary btn-sm m-2">Último</asp:LinkButton>
+                        </div>
+                        <div style="text-align: center">
+                            <asp:Label ID="lblPager" CssClass="btn btn-secondary btn-sm m-2" runat="server" Text='<%# string.Format("Página {0} de {1}", gvOrderByUser.PageIndex + 1, gvOrderByUser.PageCount) %>'></asp:Label>
+                        </div>
+
+                    </PagerTemplate>
                 </asp:GridView>
             </div>
             <div class="col-md-12">

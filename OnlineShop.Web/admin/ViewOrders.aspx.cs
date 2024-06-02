@@ -46,7 +46,7 @@ namespace OnlineShop.Web.admin
                     var orders = orderManager.GetAll().OrderByDescending(p => p.DateOrder).ThenBy(p => p.Status).ToList();
 
 
-                    if (orders != null)
+                    if (orders != null && orders.Count > 0)
                     {
                         //Si hay ordenes, creo el GV
                         gvOrderByUser.DataSource = orders;
@@ -102,14 +102,15 @@ namespace OnlineShop.Web.admin
                     //}
                     switch (CurrentStatus)
                     {
+
+                        case OrderStatus.Pending:
+                            OrderToChange.Status = OrderStatus.InPreparation;
+                            break;
                         case OrderStatus.InPreparation:
                             OrderToChange.Status = OrderStatus.Shipping;
                             break;
                         case OrderStatus.Shipping:
-                            OrderToChange.Status = OrderStatus.Pending;
-                            break;
-                        case OrderStatus.Pending:
-                            OrderToChange.Status = OrderStatus.InPreparation;
+                            OrderToChange.Status = OrderStatus.Delivered;
                             break;
                     }
                     orderManager.Update(OrderToChange);
@@ -163,6 +164,16 @@ namespace OnlineShop.Web.admin
                 }
             }
         }
+
+        protected void gvOrderByUser_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            if (e.NewPageIndex >= 0 && e.NewPageIndex < gvOrderByUser.PageCount)
+            {
+                gvOrderByUser.PageIndex = e.NewPageIndex;
+                LoadAllOrders();
+            }
+        }
+
 
     }
 }

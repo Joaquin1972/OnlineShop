@@ -27,12 +27,15 @@ namespace OnlineShop.Web.client
                     BtnSell.Enabled = true;
                     string userName = User.Identity.Name;
                     string idUser = User.Identity.GetUserId();
-                    lblAlert.Text = "Usuario: " + userName + " " + idUser;
+                    //lblAlert.Text = "Usuario: " + userName + " " + idUser;
                 }
                 else
                 {
                     BtnSell.Enabled = false;
                     lblAlert.Text = "Debes estar registrado para comprar";
+                    lblAlert.CssClass = "alert alert-danger";
+
+
                 }
 
                 //----------------------------------//
@@ -49,9 +52,9 @@ namespace OnlineShop.Web.client
                 }
                 else
                 {
-                    // Manejar el caso donde el ID no esté presente o sea inválido
-                    // Esto puede incluir redirigir a una página de error o mostrar un mensaje
-                    lblId.Text = "ko" + id + "ko";
+                    // Caso de Id no localizado
+                    lblAlert.Text = "ID no encontrado";
+                    lblAlert.CssClass = "alert alert-danger";
                 }
             }
         }
@@ -60,10 +63,6 @@ namespace OnlineShop.Web.client
         {
             try
             {
-                if (string.IsNullOrEmpty(id))
-                {
-                    throw new ArgumentException("El ID del producto no puede ser nulo o vacío.");
-                }
 
                 //Creo el contexto de datos del producto
                 ApplicationDbContext context = new ApplicationDbContext();
@@ -90,7 +89,7 @@ namespace OnlineShop.Web.client
                 int maxStock = product.Stock;
                 ConfigureDropDownList(DdlStock, 1, maxStock);
 
-                //Cargo la primera imagen
+                //Cargo la primera imagen si hubiera más de 1
                 if (product != null && product.Images != null && product.Images.Count > 0)
                 {
                     var firstImage = product.Images.FirstOrDefault();
@@ -112,10 +111,12 @@ namespace OnlineShop.Web.client
 
         }
 
+        //Método para configura el Drop Down List que indica el stock
         private void ConfigureDropDownList(DropDownList DdlStock, int v, int maxStock)
         {
             if (maxStock > 0)
             {
+                //Si es mayor que cero, primero lo reinicio y luego lo relleno de 1 al máximo
                 DdlStock.Items.Clear();
                 for (int i = 1; i <= maxStock; i++)
                 {
@@ -125,87 +126,98 @@ namespace OnlineShop.Web.client
             }
             else
             {
+                //Si es 0, pongo Sin stock
                 DdlStock.Items.Add(new ListItem("Sin stock", "0"));
                 BtnSell.Enabled = false;
-                lblAlert.Text += " Pronto disponible ";
+                lblAlert.Text += " Pronto disponible. ";
+                lblAlert.CssClass = "alert alert-danger";
             }
         }
 
+        //Método para volver a la tienda
         protected void Return_Click(object sender, EventArgs e)
         {
             Response.Redirect("tienda.aspx");
         }
 
+
+        //Método para ir a la venta
         protected void BtnSell_Click(object sender, EventArgs e)
         {
             try
             {
+                //Si usurio esta autenticado
                 if (User.Identity.IsAuthenticated)
                 {
                     // Obtener el contexto de la base de datos
                     ApplicationDbContext context = new ApplicationDbContext();
+                    ShoppingCartManager shoppingCartManager = new ShoppingCartManager(context);
+
+                    // Obtener el ID del producto desde la consulta (Query String)
+                    string id = Request.QueryString["id"];
+                    if (string.IsNullOrEmpty(id) || !int.TryParse(id, out int productId))
                     {
-                        ShoppingCartManager shoppingCartManager = new ShoppingCartManager(context);
-
-                        // Obtener el ID del producto desde la consulta (Query String)
-                        string id = Request.QueryString["id"];
-                        if (string.IsNullOrEmpty(id) || !int.TryParse(id, out int productId))
-                        {
-                            throw new Exception("ID de producto inválido.");
-                        }
-
-                        // Obtener el producto por ID
-                        ProductManager productManager = new ProductManager(context);
-                        var product = productManager.GetById(productId);
-                        if (product == null)
-                        {
-                            throw new Exception("Producto no encontrado.");
-                        }
-
-                        // Obtener la cantidad seleccionada desde el DropDownList
-                        int quantity = Convert.ToInt32(DdlStock.SelectedValue);
-
-                        // Obtener el usuario autenticado
-                        string userId = User.Identity.GetUserId();
-
-                        // Crear una nueva instancia de ShoppingCart
-                        ShoppingCart shoppingCart = new ShoppingCart
-                        {
-                            User_Id = userId,
-                            Product_Id = product.Id,
-                            Quantity = quantity,
-                            Price = product.Price // Guardar el precio actual del producto
-                        };
-
-                        // Añado el producto a la cesta de la compra.
-                        shoppingCartManager.Add(shoppingCart);
-                        context.SaveChanges();
-
-                        //Añado el producot de la cesta al Pedido, le envio el usuario que ha comprado, el producto comprado por la Id y la cantidad
-                        AddProductToOrder(userId, product.Id, quantity);
-
-
-                        // Mostrar un mensaje de confirmación al usuario
-                        lblAlert.Text = "Producto añadido al carrito exitosamente.";
-
-                        // Borro el producto añadido a la cesta una vez enviado a la orden de pedido y a detalles de pedio
-                        shoppingCartManager.Remove(shoppingCart);
-                        context.SaveChanges();
+                        throw new Exception("ID de producto inválido.");
                     }
+
+                    // Obtener el producto por ID
+                    ProductManager productManager = new ProductManager(context);
+                    var product = productManager.GetById(productId);
+                    if (product == null)
+                    {
+                        throw new Exception("Producto no encontrado.");
+                    }
+
+                    // Obtener la cantidad seleccionada desde el DropDownList
+                    int quantity = Convert.ToInt32(DdlStock.SelectedValue);
+
+                    // Obtener el usuario autenticado
+                    string userId = User.Identity.GetUserId();
+
+                    // Crear una nueva instancia de en el carro de compra
+                    ShoppingCart shoppingCart = new ShoppingCart
+                    {
+                        User_Id = userId,
+                        Product_Id = product.Id,
+                        Quantity = quantity,
+                        Price = product.Price // Guardar el precio actual del producto
+                    };
+
+                    // Añado el producto a la cesta de la compra.
+                    shoppingCartManager.Add(shoppingCart);
+                    context.SaveChanges();
+
+                    //Añado el producto de la cesta al Pedido, le envio el usuario que ha comprado, el producto comprado por la Id y la cantidad
+                    AddProductToOrder(userId, product.Id, quantity);
+
+
+                    // Mostrar un mensaje de confirmación al usuario
+                    lblAlert.Text = "Producto añadido al carrito exitosamente.";
+                    lblAlert.CssClass = "alert alert-success";
+
+                    // Borro el producto añadido a la cesta una vez enviado a la orden de pedido y a detalles de pedio
+                    shoppingCartManager.Remove(shoppingCart);
+                    context.SaveChanges();
+
                 }
                 else
                 {
                     // Caso que el usuario no esté registrado
                     lblAlert.Text = "Debes estar registrado para comprar.";
+                    lblAlert.CssClass = "alert alert-danger";
+                   
+
                 }
             }
             catch (Exception ex)
             {
                 // Info que aparece en caso de error
                 lblAlert.Text = $"Error al añadir el producto al carrito: {ex.Message}";
+                lblAlert.CssClass = "alert alert-danger";
             }
         }
 
+        //Método para añdir el producto comprado al pedido
         private void AddProductToOrder(string userId, int productId, int quantity)
         {
             try
@@ -218,7 +230,7 @@ namespace OnlineShop.Web.client
                 Order order = orderManager.GetPendingOrderByUserId(userId);
                 if (order == null)
                 {
-                    //Si no tengo pedido para el usuario, lo creo
+                    //Si no tengo pedido para el usuario, lo creo, si esta creado, esta parte se salta
                     order = new Order
                     {
                         User_Id = userId,
@@ -246,7 +258,7 @@ namespace OnlineShop.Web.client
                 }
                 else
                 {
-                    // Si el producto no existe en el pedido, creamos nuevo produco en la orden de detallas
+                    // Si el producto no existe en el pedido, creamos nuevo producto en la orden de detallas
                     OrderDetail orderDetail = new OrderDetail
                     {
                         ProductName = product.Name,
@@ -261,8 +273,13 @@ namespace OnlineShop.Web.client
             }
             catch (Exception ex)
             {
-                // Manejar errores
-                throw new Exception($"Error al añadir el producto al pedido: {ex.Message}");
+                // Manejo de errores
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al guardar" + ex.Message,
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
             }
         }
 

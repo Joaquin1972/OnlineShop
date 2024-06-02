@@ -26,6 +26,12 @@ namespace OnlineShop.Core
 
         //AÑADO MAS DATOS A LA ENTIDAD USUARIO//
 
+
+        /// <summary>
+        /// Nombre del usuario
+        /// </summary>
+        public string Name { get; set; }
+
         /// <summary>
         /// DNI del usuario
         /// </summary>

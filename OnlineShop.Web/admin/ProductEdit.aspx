@@ -16,7 +16,7 @@
     <hr />
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="alert alert-danger" DisplayMode="List" />
 
-    <div class="row  container-fluid" id="product" >
+    <div class="row  container-fluid p-3" id="product" >
         <%--Creo dos columnas en pantalla, a la izda: fotografia, a la dcha: Resto de campos--%>
         <%--Columna izquierda--%>
         <%--Imagen del producto--%>

@@ -34,7 +34,7 @@ namespace OnlineShop.Web.admin
             }
             catch (Exception ex)
             {
-                //
+                // Manejo de errores
                 var err = new CustomValidator
                 {
                     ErrorMessage = "Se ha producido un error al guardar" + ex.Message,

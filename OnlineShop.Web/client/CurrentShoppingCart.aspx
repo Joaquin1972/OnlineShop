@@ -29,7 +29,7 @@
 
 
     <div class="text-center ">
-        <h2>Hola, <%: Context.User.Identity.GetUserName() %>!</h2>
+        <h3>Hola, <%: Context.User.Identity.GetUserName() %>!</h3>
         <ul class="order">
             <li>Aquí tienes tu cesta de la compra actual</li>
             <li>Pulsa en <b>"Realizar pedido"</b> para entrar en la pasarela de pago</li>
@@ -58,7 +58,7 @@
                 </ul>
                 <div class="buttons common-style">
                      <asp:Button ID="MakePayment" runat="server" Text="Realizar Pedido" CssClass="btn btn-success" OnClick="BtnMakePayment_Click" />
-                    <button type="button" class="btn btn-primary">Quiero seguir comprando</button>
+                     <asp:Button ID="Return" runat="server" Text="Seguir comprando" CssClass="btn btn-primary" OnClick="BtnReturn_Click" />
                 </div>
             </div>
             <%-- Columna derecha, el detalle del pedido con todos los productos --%>
