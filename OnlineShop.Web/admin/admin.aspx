@@ -38,6 +38,8 @@
                 <li class="p-2"><a href="ProductCreate.aspx">Crear Productos</a></li>
                 <li class="p-2"><a href="ProductList.aspx">Listar Productos</a></li>
                 <li class="p-2"><a href="ViewOrders.aspx">Ver Pedidos</a></li>
+                <li class="p-2"><a href="Users.aspx">Ver Usuarios Registrados</a></li>
+
             </ul>
         </div>
     </div>

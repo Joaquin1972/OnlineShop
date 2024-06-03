@@ -13,23 +13,26 @@
         </div>
         <div>
             <a href="admin.aspx">Volver Inicio Administrador</a>
-            <%--<a href="CategoryList.aspx">Editar/Eliminar Categorías</a>--%>
+
         </div>
     </div>
     <hr />
-    <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered border-5 rounded"
-        RowStyle-HorizontalAlign="Center"
-        HeaderStyle-HorizontalAlign="Center"
-        HeaderStyle-VerticalAlign="Middle"
-        BackColor="#99CCFF"
-        HeaderStyle-BackColor="Blue"
-        HeaderStyle-ForeColor="White"
-        ForeColor="White"
-        RowStyle-ForeColor="Black">
-        <Columns>
-            <asp:BoundField DataField="Email" HeaderText="Correo Electrónico" />
-            <asp:BoundField DataField="UserName" HeaderText="Nombre de Usuario" />
-        </Columns>
-    </asp:GridView>
-
+    <div class="container d-flex justify-content-center">
+        <div class="col-12 col-md-6">
+            <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered border-5 rounded"
+                RowStyle-HorizontalAlign="Center"
+                HeaderStyle-HorizontalAlign="Center"
+                HeaderStyle-VerticalAlign="Middle"
+                BackColor="#99CCFF"
+                HeaderStyle-BackColor="Blue"
+                HeaderStyle-ForeColor="White"
+                ForeColor="White"
+                RowStyle-ForeColor="Black">
+                <Columns>
+                    <asp:BoundField DataField="Email" HeaderText="Correo Electrónico" />
+                    <asp:BoundField DataField="UserName" HeaderText="Nombre de Usuario" />
+                </Columns>
+            </asp:GridView>
+        </div>
+    </div>
 </asp:Content>

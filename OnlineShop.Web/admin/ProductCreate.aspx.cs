@@ -21,7 +21,7 @@ namespace OnlineShop.Web.admin
         CategoryManager categoryManager = null;
         ProductManager productManager = null;
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
 
             if (!IsPostBack)
@@ -31,28 +31,19 @@ namespace OnlineShop.Web.admin
                 var categories = categoryManager.GetAll().ToList();
 
                 ddlCategory.DataSource = categories;
-                ddlCategory.DataTextField = "CategoryName"; // Propiedad que se mostrará en el DropDownList
-                ddlCategory.DataValueField = "id";  // Propiedad que se usará como valor (usualmente un identificador único)
+                ddlCategory.DataTextField = "CategoryName";
+                ddlCategory.DataValueField = "id";
                 ddlCategory.DataBind();
             }
-            //BindDataList();
-          
-            gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
-            LoadProduts();
+
+
+            //gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+            //LoadProduts();
         }
-     
-        //private void BindDataList()
-        //{
-        //    ApplicationDbContext context = new ApplicationDbContext();
-        //    productManager = new ProductManager(context);
-        //    var products = productManager.GetAll().Include(i => i.Category).ToList();
-
-        //    dlProducts.DataSource = products;
-        //    dlProducts.DataBind();
-        //}
 
 
-        protected void btnUpload_Click(object sender, EventArgs e)
+
+        public void btnUpload_Click(object sender, EventArgs e)
         {
             if (FileUpload1.HasFile)
             {
@@ -81,7 +72,7 @@ namespace OnlineShop.Web.admin
             }
         }
 
-        protected void BtnSubmit_Click(object sender, EventArgs e)
+        public void BtnSubmit_Click(object sender, EventArgs e)
         {
             //Genero el contexto de datos
             ApplicationDbContext context = new ApplicationDbContext();
@@ -110,12 +101,14 @@ namespace OnlineShop.Web.admin
                            ImagePath = uploadedFilePath,
                         }
                     }
-
                 };
                 productManager.Add(Product);
                 productManager.Context.SaveChanges();
                 //Limpiar la variable de sesión después de usarla
                 Session["UploadedFilePath"] = null;
+                LblCreateOK.Text = "Producto correctamente creado";
+                LblCreateOK.CssClass = "alert alert-success";
+                LblCreateOK.Visible = true;
 
 
 
@@ -137,47 +130,49 @@ namespace OnlineShop.Web.admin
                 txtPrice.Text = "";
                 txtStock.Text = "";
                 UpLoadOK.Text = "";
-                LoadProduts();
+                //LoadProduts();
             }
         }
 
-        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
-            LoadProduts(); // Vuelve a cargar los productos con el nuevo tamaño de página
-        }
+        //public void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+        //    LoadProduts(); // Vuelve a cargar los productos con el nuevo tamaño de página
+        //}
 
-        protected void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvProducts.PageIndex = e.NewPageIndex;
-            LoadProduts(); // Carga los datos de la página seleccionada
-        }
+        //public void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    gvProducts.PageIndex = e.NewPageIndex;
+        //    LoadProduts(); // Carga los datos de la página seleccionada
+        //}
 
-        protected void LoadProduts()
-        {
-            ApplicationDbContext context = new ApplicationDbContext();
-            productManager = new ProductManager(context);
-            var products = productManager.GetAll().
-                Include(i => i.Category).
-                Include(p => p.Images).
-                OrderByDescending
-                (p => p.Id).ToList();
-            //gvProducts.DataSource = products;
-            //gvProducts.DataBind();
-            // Proyectar los productos con FirstImagePath
-            var productList = products.Select(p => new
-            {
-                p.Name,
-                p.Description,
-                p.Price,
-                p.Stock,
-                CategoryName = p.Category.CategoryName,
-                FirstImagePath = p.Images != null && p.Images.Count > 0 ? p.Images.First().ImagePath : Session["UploadedFilePath"]
-            }).ToList();
+        //public void LoadProduts()
+        //{
+        //    ApplicationDbContext context = new ApplicationDbContext();
+        //    productManager = new ProductManager(context);
+        //    var products = productManager.GetAll().
+        //        Include(i => i.Category).
+        //        Include(p => p.Images).
+        //        OrderByDescending
+        //        (p => p.Id).ToList();
+        //    //gvProducts.DataSource = products;
+        //    //gvProducts.DataBind();
+        //    // Proyectar los productos con FirstImagePath
+        //    var productList = products.Select(p => new
+        //    {
+        //        p.Id,
+        //        p.Name,
+        //        p.Description,
+        //        p.Price,
+        //        p.Stock,
+        //        CategoryName = p.Category.CategoryName,
+        //        FirstImagePath = p.Images != null && p.Images.Count > 0 ? p.Images.First().ImagePath : Session["UploadedFilePath"]
+        //    }).ToList();
 
-            gvProducts.DataSource = productList;
-            gvProducts.DataBind();
-        }
+        //    gvProducts.DataSource = productList;
+        //    gvProducts.DataBind();
+        //}
+
 
 
 

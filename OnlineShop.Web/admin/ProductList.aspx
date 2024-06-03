@@ -59,6 +59,18 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        <PagerTemplate>
+    <div style="text-align: center">
+        <asp:LinkButton ID="lnkFirst" CommandName="Page" CommandArgument="First" runat="server" CssClass="btn btn-primary btn-sm m-2">Inicio</asp:LinkButton>
+        <asp:LinkButton ID="lnkPrev" CommandName="Page" CommandArgument="Prev" runat="server" CssClass="btn btn-primary btn-sm m-2">Anterior</asp:LinkButton>
+        <asp:LinkButton ID="lnkNext" CommandName="Page" CommandArgument="Next" runat="server" CssClass="btn btn-primary btn-sm m-2">Siguiente</asp:LinkButton>
+        <asp:LinkButton ID="lnkLast" CommandName="Page" CommandArgument="Last" runat="server" CssClass="btn btn-primary btn-sm m-2">Último</asp:LinkButton>
+    </div>
+    <div style="text-align: center">
+        <asp:Label ID="lblPager" CssClass="btn btn-secondary btn-sm m-2" runat="server" Text='<%# string.Format("Página {0} de {1}", gvProducts.PageIndex + 1, gvProducts.PageCount) %>'></asp:Label>
+    </div>
+
+</PagerTemplate>
     </asp:GridView>
 
 

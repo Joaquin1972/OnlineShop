@@ -22,7 +22,7 @@
         <p style="height: 10px; font-style: italic">* Pulsa en "Detalles" para ver el pedido detallado </p>
         <p style="height: 10px; font-style: italic">
             ** Pulsa en "Acción" para cambiar el estado del pedido
-            (Pending -> InPreparation -> Shipping -> Delivered -> Cancelled=
+            (Pending -> InPreparation -> Shipping -> Delivered -> Cancelled)
         </p>
 
     </div>
@@ -32,8 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <%--<h4 class="text-center">Listado de pedidos</h4>--%>
-
+                <%--Grid View para el listado de órdenes--%>
                 <asp:GridView
                     OnRowCommand="gvOrderByUser_RowCommand"
                     ID="gvOrderByUser"

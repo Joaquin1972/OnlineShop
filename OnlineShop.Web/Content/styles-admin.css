@@ -22,7 +22,7 @@
     margin: 0 auto;
     margin-bottom: 10px;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 #product {
@@ -32,7 +32,7 @@
     margin: 0 auto;
     margin-bottom: 10px;
     border-radius: 10px;
-    /*box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;*/
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 
 .image {
@@ -63,3 +63,12 @@
         .header2 a:hover {
             background-color: gray;
         }
+
+
+
+
+@media (max-width: 767.98px) {
+    .header2 {
+        flex-direction: column;
+    }
+}

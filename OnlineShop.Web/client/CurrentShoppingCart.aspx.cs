@@ -93,68 +93,72 @@ namespace OnlineShop.Web.client
         {
             try
             {
-                //Si el usuario a pulsado Volver al producto
+
+
+
+                //Si el usuario ha pulsado Volver al producto
                 if (e.CommandName == "ReturnProduct")
                 {
                     string Name = e.CommandArgument.ToString();
                     // Creo el contexto de datos
                     ApplicationDbContext contextP = new ApplicationDbContext();
-                    {
-                        ProductManager productManager = new ProductManager(contextP);
-                        // A traves del nombre del producto recibido, localizo el producto en el listado de productos
-                        var product = contextP.Products.FirstOrDefault(p => p.Name == Name);
+                    ProductManager productManager = new ProductManager(contextP);
+                    // A traves del nombre del producto recibido, localizo el producto en el listado de productos
+                    var product = contextP.Products.FirstOrDefault(p => p.Name == Name);
+                    int ProductId = product.Id;
+                    Session["ProductIdS"] = ProductId;
 
-                        // Si lo localizo, cargo su identificador y redirecciono al usuario al producto, por si quiere verlo o cambiar la cantidad comprada
-                        if (product != null)
-                        {
-                            int id = product.Id;
-                            Response.Redirect("ProductEditClient.aspx?id=" + id);
-                        }
-                    }
+                    //redirecciono al usuario al producto, por si quiere verlo o cambiar la cantidad comprada
+                    Response.Redirect("ProductEditClient.aspx?id=" + ProductId);
                 }
 
-                //Si el usuario a pulsado borrar
+                //Si el usuario ha pulsado borrar
                 else if (e.CommandName == "DeleteItem")
                 {
+
                     // Creo el contexto de datos
                     ApplicationDbContext context = new ApplicationDbContext();
+                    OrderDetailManager orderDetailManager = new OrderDetailManager(context);
+
+                    // Obtengo el identificador del Detalle de la Orden a borrar
+                    int orderDetailId = Convert.ToInt32(e.CommandArgument);
+                    // Obtengo el detalle de pedido a borrar          
+                    // Obtengo el detalle de pedido a borrar          
+                    OrderDetail orderDetail = context.OrderDetails.Find(orderDetailId);
+                    int Quantity = orderDetail.Quantity;
+                    int ProductId = Convert.ToInt32(Session["ProductIdS"]);
+                    ChangeStock(ProductId, Quantity);
+                    // Si fue encontrado, actualizo stock y elimino el detalle
+                    if (orderDetail != null)
                     {
-                        OrderDetailManager orderDetailManager = new OrderDetailManager(context);
+                        //Añado al stock la cantidad que se borra del producto
 
-                        // Obtengo el identificador del Detalle de la Orden a borrar
-                        int orderDetailId = Convert.ToInt32(e.CommandArgument);
-                        // Obtengo el detalle de pedido a borrar          
-                        OrderDetail orderDetail = context.OrderDetails.Find(orderDetailId);
-
-                        // Si fue encontrado, lo elimino
-                        if (orderDetail != null)
-                        {
-                            orderDetailManager.Remove(orderDetail);
-                        }
-
-                        context.SaveChanges();
-
-                        // Calculo la cantidad de elementos que aun tengo en Detalle de la orden
-                        var totalQuantity = context.OrderDetails
-                          .Where(od => od.OrderId == orderDetail.OrderId)
-                          .DefaultIfEmpty()
-                          .Sum(od => od == null ? 0 : od.Quantity);
-
-                        // Si el numero de elementos en el detalle de la orden es 0, entonces elimino el pedido
-                        if (totalQuantity == 0)
-                        {
-                            OrderManager orderManager = new OrderManager(context);
-                            Order orderToDelete = context.Orders.Find(orderDetail.OrderId);
-                            if (orderToDelete != null)
-                            {
-                                orderManager.Remove(orderToDelete);
-                            }
-                        }
-
-                        context.SaveChanges();
-                        // Vuelvo a cargar el detalle de pedido
-                        CurrentOrderPendingbyUser();
+                        orderDetailManager.Remove(orderDetail);
                     }
+
+                    context.SaveChanges();
+
+                    // Calculo la cantidad de elementos que aun tengo en Detalle de la orden
+                    var totalQuantity = context.OrderDetails
+                      .Where(od => od.OrderId == orderDetail.OrderId)
+                      .DefaultIfEmpty()
+                      .Sum(od => od == null ? 0 : od.Quantity);
+
+                    // Si el numero de elementos en el detalle de la orden es 0, entonces elimino el pedido
+                    if (totalQuantity == 0)
+                    {
+                        OrderManager orderManager = new OrderManager(context);
+                        Order orderToDelete = context.Orders.Find(orderDetail.OrderId);
+                        if (orderToDelete != null)
+                        {
+                            orderManager.Remove(orderToDelete);
+                        }
+                    }
+
+                    context.SaveChanges();
+                    // Vuelvo a cargar el detalle de pedido
+                    CurrentOrderPendingbyUser();
+
                 }
             }
             catch (Exception ex)
@@ -166,6 +170,17 @@ namespace OnlineShop.Web.client
                 };
                 Page.Validators.Add(err);
             }
+        }
+
+        //Añado al stock el producto borrado
+        public void ChangeStock(int id, int quantity)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            ProductManager productManager = new ProductManager(context);
+            var product = productManager.GetById(id);
+            product.Stock += quantity;
+            productManager.Update(product);
+            Session["ProductIdS"] = null;
         }
 
         public void BtnMakePayment_Click(object sender, EventArgs e)
@@ -181,9 +196,6 @@ namespace OnlineShop.Web.client
             // Redirigir a la página de destino
             Response.Redirect("tienda.aspx");
         }
-        protected void Return_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -87,6 +88,10 @@ namespace OnlineShop.Web.client
                 LblDescription.Text = product.Description;
                 LblPrice.Text = product.Price.ToString() + "€";
                 int maxStock = product.Stock;
+                if (maxStock>5)
+                {
+                    maxStock = 5;
+                }
                 ConfigureDropDownList(DdlStock, 1, maxStock);
 
                 //Cargo la primera imagen si hubiera más de 1
@@ -189,6 +194,7 @@ namespace OnlineShop.Web.client
 
                     //Añado el producto de la cesta al Pedido, le envio el usuario que ha comprado, el producto comprado por la Id y la cantidad
                     AddProductToOrder(userId, product.Id, quantity);
+                    ChangeStock(product.Id, quantity);
 
 
                     // Mostrar un mensaje de confirmación al usuario
@@ -215,6 +221,15 @@ namespace OnlineShop.Web.client
                 lblAlert.Text = $"Error al añadir el producto al carrito: {ex.Message}";
                 lblAlert.CssClass = "alert alert-danger";
             }
+        }
+
+        public void ChangeStock(int id, int quantity)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+            ProductManager productManager = new ProductManager(context);
+            var product = productManager.GetById(id);
+            product.Stock -= quantity;
+            productManager.Update(product);
         }
 
         //Método para añdir el producto comprado al pedido
