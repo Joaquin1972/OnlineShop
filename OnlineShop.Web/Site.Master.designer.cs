@@ -24,6 +24,24 @@ namespace OnlineShop.Web
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl adminMenu;
 
         /// <summary>
+        /// Control yesOrders.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor yesOrders;
+
+        /// <summary>
+        /// Control userIcon.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor userIcon;
+
+        /// <summary>
         /// Control MainContent.
         /// </summary>
         /// <remarks>

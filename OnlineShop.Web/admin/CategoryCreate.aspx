@@ -8,6 +8,7 @@
         <div>
             <h4>CREAR CATEGORIAS</h4>
         </div>
+        <%-- Menu zona admin --%>
         <div>
             <a href="admin.aspx">Volver Inicio Administrador</a>
             <a href="CategoryList.aspx">Editar/Eliminar Categorías</a>
@@ -15,12 +16,13 @@
     </div>
     <hr />
 
+    <%-- Validador común para controles --%>
     <asp:ValidationSummary
         ID="ValidationSummary1"
         runat="server"
         CssClass="alert alert-danger" />
 
-
+    <%-- Label y text-box para la Categoría --%>
     <div class="container" id="update">
         <div class="row justify-content-center mb-3">
             <div class="col-md-4 text-center">
@@ -52,26 +54,26 @@
             </div>
         </div>
     </div>
-     <div class="row justify-content-center">
-    <div class="col-6">
-    <asp:GridView ID="gvCategories"
-        runat="server"
-        AutoGenerateColumns="False"
-        CssClass="table table-bordered border-5 rounded"
-        BackColor="#99CCFF"
-        HeaderStyle-BackColor="Blue"
-        HeaderStyle-ForeColor="White"
-        AllowSorting="True"
-        RowStyle-HorizontalAlign="Center"
-        HeaderStyle-HorizontalAlign="Center"
-        HeaderStyle-VerticalAlign="Middle">
-        <Columns>
-            <asp:BoundField DataField="CategoryId" HeaderText="ID" Visible="False" />
-            <asp:BoundField DataField="CategoryName" HeaderText="Categorías actuales" />
-        </Columns>
-    </asp:GridView></div></div>
-
-
-
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <%-- Grid View para categorías existentes --%>
+            <asp:GridView ID="gvCategories"
+                runat="server"
+                AutoGenerateColumns="False"
+                CssClass="table table-bordered border-5 rounded"
+                BackColor="#99CCFF"
+                HeaderStyle-BackColor="Blue"
+                HeaderStyle-ForeColor="White"
+                AllowSorting="True"
+                RowStyle-HorizontalAlign="Center"
+                HeaderStyle-HorizontalAlign="Center"
+                HeaderStyle-VerticalAlign="Middle">
+                <Columns>
+                    <asp:BoundField DataField="CategoryId" HeaderText="ID" Visible="False" />
+                    <asp:BoundField DataField="CategoryName" HeaderText="Categorías actuales" />
+                </Columns>
+            </asp:GridView>
+        </div>
+    </div>
 </asp:Content>
 

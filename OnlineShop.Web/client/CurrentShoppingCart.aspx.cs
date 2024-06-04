@@ -116,18 +116,24 @@ namespace OnlineShop.Web.client
                 else if (e.CommandName == "DeleteItem")
                 {
 
+
                     // Creo el contexto de datos
                     ApplicationDbContext context = new ApplicationDbContext();
                     OrderDetailManager orderDetailManager = new OrderDetailManager(context);
 
                     // Obtengo el identificador del Detalle de la Orden a borrar
                     int orderDetailId = Convert.ToInt32(e.CommandArgument);
-                    // Obtengo el detalle de pedido a borrar          
+                              
                     // Obtengo el detalle de pedido a borrar          
                     OrderDetail orderDetail = context.OrderDetails.Find(orderDetailId);
                     int Quantity = orderDetail.Quantity;
-                    int ProductId = Convert.ToInt32(Session["ProductIdS"]);
+                    string Name = orderDetail.ProductName;
+                    ApplicationDbContext contextP = new ApplicationDbContext();
+                    ProductManager productManager = new ProductManager(contextP);
+                    var product = contextP.Products.FirstOrDefault(p => p.Name == Name);
+                    int ProductId = product.Id;
                     ChangeStock(ProductId, Quantity);
+
                     // Si fue encontrado, actualizo stock y elimino el detalle
                     if (orderDetail != null)
                     {
@@ -180,7 +186,7 @@ namespace OnlineShop.Web.client
             var product = productManager.GetById(id);
             product.Stock += quantity;
             productManager.Update(product);
-            Session["ProductIdS"] = null;
+            
         }
 
         public void BtnMakePayment_Click(object sender, EventArgs e)

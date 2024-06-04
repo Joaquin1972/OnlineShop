@@ -10,26 +10,29 @@ namespace OnlineShop.Web.admin
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        //creo el contexto de datos
+        ApplicationDbContext context = new ApplicationDbContext();
         CategoryManager categoryManager;
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ApplicationDbContext context = new ApplicationDbContext();
                 categoryManager = new CategoryManager(context);
                 LoadCategories();
             }
         }
 
-        protected void LoadCategories()
+        //Cargo todas las categorias y construyo el GV
+        public void LoadCategories()
         {
             var categories = categoryManager.GetAll().ToList();
             gvCategories.DataSource = categories;
             gvCategories.DataBind();
         }
 
-        protected void gvCategories_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void gvCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedRowIndex = gvCategories.SelectedIndex;
             string selectedCategory = gvCategories.SelectedRow.Cells[1].Text;
@@ -39,16 +42,16 @@ namespace OnlineShop.Web.admin
         }
 
 
+        //Método para borrar la categoria
+        //public void gvCategories_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        //{
+        //    ApplicationDbContext context = new ApplicationDbContext();
+        //    categoryManager = new CategoryManager(context);
 
-        protected void gvCategories_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            ApplicationDbContext context = new ApplicationDbContext();
-            categoryManager = new CategoryManager(context);
+        //}
 
-        }
-
-        //Evento generado al hacer click en el botón actualizar. Actualizar la categoria seleccionada
-        protected void txtUpdate_Click(object sender, EventArgs e)
+        //Evento generado al hacer click en el botón actualizar. Actualiza la categoria seleccionada.
+        public void txtUpdate_Click(object sender, EventArgs e)
         {
             //Genero el contexto de datos
             ApplicationDbContext context = new ApplicationDbContext();
@@ -67,7 +70,7 @@ namespace OnlineShop.Web.admin
         }
 
         //Evento generado al hacer click en el botón eliminar. Eliminar la categoria seleccionada
-        protected void txtDelete_Click(object sender, EventArgs e)
+        public void txtDelete_Click(object sender, EventArgs e)
         {
             //Creo el contexto de datos
             ApplicationDbContext context = new ApplicationDbContext();

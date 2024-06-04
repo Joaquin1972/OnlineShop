@@ -3,17 +3,17 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <style>
-img {
-    display: block;
-    margin: 0 auto;
-    width: 12%;
-    border: 1px solid black;
-    border-radius: 50%;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    transition: 0.5s;
-}
+        .img_face {
+            display: block;
+            margin: 0 auto;
+            width: 12%;
+            border: 1px solid black;
+            border-radius: 50%;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            transition: 0.5s;
+        }
 
-            img:hover {
+            .img_face:hover {
                 transform: scale(1.1);
             }
 
@@ -23,6 +23,27 @@ img {
             justify-content: space-evenly;
             margin: 10px 0px 10px 0px;
         }
+
+        .img_2 {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: auto;
+            border: 1px solid black;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+
+        .img-container {
+            width: 300px; /* Ajusta el ancho según tus necesidades */
+            height: 200px; /* Ajusta la altura según tus necesidades */
+            overflow: hidden;
+        }
+
+            .img-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+            }
     </style>
     <%--<link href="Content/default.css" rel="stylesheet" />--%>
     <main class="main-gradient">
@@ -33,12 +54,12 @@ img {
         <div class="container">
             <div class="row">
 
-                <div class="col-12 col-md-12 img_ini">
-                    <img src="img/honeyRogers.jpg" class="img-fluid">
-                    <img src="img/pirata2.jpg" class="img-fluid">
-                    <img src="img/hadajimena.jpg" class="img-fluid">
-                    <img src="img/sheriff.jpg" class="img-fluid">
-                    <img src="img/policia.jpg" class="img-fluid">
+                <div class="img_ini">
+                    <img src="img/honeyRogers.jpg" class="img_face">
+                    <img src="img/pirata2.jpg" class="img_face">
+                    <img src="img/hadajimena.jpg" class="img_face">
+                    <img src="img/sheriff.jpg" class="img_face">
+                    <img src="img/policia.jpg" class="img_face">
                 </div>
             </div>
         </div>
@@ -69,36 +90,23 @@ img {
             <p><a href="client/tienda.aspx" class="btn btn-primary btn-md">Quiero entrar &raquo;</a></p>
         </section>
 
-        <div class="row">
-            <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-                <h2 id="gettingStartedTitle">Getting started</h2>
-                <p>
-                    ASP.NET Web Forms lets you build dynamic websites using a familiar drag-and-drop, event-driven model.
-                A design surface and hundreds of controls and components let you rapidly build sophisticated, powerful UI-driven sites with data access.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301948">Learn more &raquo;</a>
-                </p>
+        <%--<div class="row">
+            <section class="col-md-4 justify-content-center" aria-labelledby="gettingStartedTitle">
+                <div class="img-container">
+                    <img src="img/barco.jpg" class="img_2" />
+                </div>
             </section>
             <section class="col-md-4" aria-labelledby="librariesTitle">
-                <h2 id="librariesTitle">Get more libraries</h2>
-                <p>
-                    NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301949">Learn more &raquo;</a>
-                </p>
+                <div class="img-container">
+                    <img src="img/escuela.jpg" class="img_2" />
+                </div>
             </section>
             <section class="col-md-4" aria-labelledby="hostingTitle">
-                <h2 id="hostingTitle">Web Hosting</h2>
-                <p>
-                    You can easily find a web hosting company that offers the right mix of features and price for your applications.
-                </p>
-                <p>
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301950">Learn more &raquo;</a>
-                </p>
+                <div class="img-container">
+                    <img src="img/indios.jpg" class="img_2" />
+                </div>
             </section>
-        </div>
+        </div>--%>
     </main>
 
 </asp:Content>

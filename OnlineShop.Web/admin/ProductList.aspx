@@ -2,8 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/styles-admin.css" rel="stylesheet" />
-    <%--<link href="../Content/tableList.css" rel="stylesheet" />--%>
-    <%--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--%>
     <h3 style="text-align: center; font-weight: bold">ZONA ADMIN</h3>
     <hr />
 
@@ -18,13 +16,14 @@
     </div>
     <hr />
 
-
+    <%-- DDL para seleccionar el número de productos que se visualizar en el GB --%>
     <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="mb-2">
         <asp:ListItem Text="5" Value="5" Selected="True"></asp:ListItem>
         <asp:ListItem Text="10" Value="10"></asp:ListItem>
+        <asp:ListItem Text="15" Value="15"></asp:ListItem>
         <asp:ListItem Text="20" Value="20"></asp:ListItem>
-        <asp:ListItem Text="50" Value="50"></asp:ListItem>
     </asp:DropDownList>
+    <%-- GV para el listado de productos --%>
     <asp:GridView ID="gvProducts"
         runat="server"
         AutoGenerateColumns="False"
@@ -55,25 +54,21 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Acción">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkSelect" runat="server" Text="Seleccionar" CommandName="Select" CommandArgument='<%# Eval("Id") %>' />
+                    <asp:LinkButton ID="lnkSelect" runat="server"  CssClass="btn btn-primary btn-sm m-2" Text="Seleccionar" CommandName="Select" CommandArgument='<%# Eval("Id") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        <%--Paginador--%>
         <PagerTemplate>
-    <div style="text-align: center">
-        <asp:LinkButton ID="lnkFirst" CommandName="Page" CommandArgument="First" runat="server" CssClass="btn btn-primary btn-sm m-2">Inicio</asp:LinkButton>
-        <asp:LinkButton ID="lnkPrev" CommandName="Page" CommandArgument="Prev" runat="server" CssClass="btn btn-primary btn-sm m-2">Anterior</asp:LinkButton>
-        <asp:LinkButton ID="lnkNext" CommandName="Page" CommandArgument="Next" runat="server" CssClass="btn btn-primary btn-sm m-2">Siguiente</asp:LinkButton>
-        <asp:LinkButton ID="lnkLast" CommandName="Page" CommandArgument="Last" runat="server" CssClass="btn btn-primary btn-sm m-2">Último</asp:LinkButton>
-    </div>
-    <div style="text-align: center">
-        <asp:Label ID="lblPager" CssClass="btn btn-secondary btn-sm m-2" runat="server" Text='<%# string.Format("Página {0} de {1}", gvProducts.PageIndex + 1, gvProducts.PageCount) %>'></asp:Label>
-    </div>
-
-</PagerTemplate>
+            <div style="text-align: center">
+                <asp:LinkButton ID="lnkFirst" CommandName="Page" CommandArgument="First" runat="server" CssClass="btn btn-primary btn-sm m-2">Inicio</asp:LinkButton>
+                <asp:LinkButton ID="lnkPrev" CommandName="Page" CommandArgument="Prev" runat="server" CssClass="btn btn-primary btn-sm m-2">Anterior</asp:LinkButton>
+                <asp:LinkButton ID="lnkNext" CommandName="Page" CommandArgument="Next" runat="server" CssClass="btn btn-primary btn-sm m-2">Siguiente</asp:LinkButton>
+                <asp:LinkButton ID="lnkLast" CommandName="Page" CommandArgument="Last" runat="server" CssClass="btn btn-primary btn-sm m-2">Último</asp:LinkButton>
+            </div>
+            <div style="text-align: center">
+                <asp:Label ID="lblPager" CssClass="btn btn-secondary btn-sm m-2" runat="server" Text='<%# string.Format("Página {0} de {1}", gvProducts.PageIndex + 1, gvProducts.PageCount) %>'></asp:Label>
+            </div>
+        </PagerTemplate>
     </asp:GridView>
-
-
-
-
 </asp:Content>

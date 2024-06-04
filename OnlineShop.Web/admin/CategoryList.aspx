@@ -10,11 +10,13 @@
             <h4>LISTADO DE CATEGORIAS</h4>
         </div>
         <div>
+            <%-- Menú zona administrador --%>
             <a href="admin.aspx">Volver Inicio Administrador</a>
             <a href="CategoryCreate.aspx">Volver a Crear Categorías</a>
         </div>
     </div>
     <hr />
+    <%-- Validator general --%>
     <asp:ValidationSummary
         ID="ValidationSummary1"
         runat="server"
@@ -23,6 +25,7 @@
     <div class="row justify-content-center">
         <div class="col-8">
             <div class="mb-3">
+                <%-- Grid view para mostrar las categorías --%>
                 <asp:GridView ID="gvCategories"
                     runat="server"
                     AutoGenerateColumns="False"

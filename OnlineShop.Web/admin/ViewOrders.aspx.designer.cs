@@ -15,6 +15,24 @@ namespace OnlineShop.Web.admin
     {
 
         /// <summary>
+        /// Control ddlOrderStatus.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrderStatus;
+
+        /// <summary>
+        /// Control lblOrders.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrders;
+
+        /// <summary>
         /// Control gvOrderByUser.
         /// </summary>
         /// <remarks>

@@ -18,6 +18,7 @@ namespace OnlineShop.Web.admin
 {
     public partial class ProductCreate : System.Web.UI.Page
     {
+        
         CategoryManager categoryManager = null;
         ProductManager productManager = null;
 
@@ -26,19 +27,17 @@ namespace OnlineShop.Web.admin
 
             if (!IsPostBack)
             {
+                //Creo el contexto de datos de categoria
                 ApplicationDbContext context = new ApplicationDbContext();
                 categoryManager = new CategoryManager(context);
                 var categories = categoryManager.GetAll().ToList();
 
+                //Construyo el DDL desplegable de categorias, con las categorías existentes
                 ddlCategory.DataSource = categories;
                 ddlCategory.DataTextField = "CategoryName";
                 ddlCategory.DataValueField = "id";
                 ddlCategory.DataBind();
             }
-
-
-            //gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
-            //LoadProduts();
         }
 
 
@@ -56,13 +55,13 @@ namespace OnlineShop.Web.admin
                 {
                     FileUpload1.SaveAs(savePath);
                     Session["UploadedFilePath"] = "~/img/" + fileName;
-                    // Mensaje de éxito
+                    // Si la fotos sube correctamente ...
                     UpLoadOK.Text = "Archivo subido correctamente!";
                 }
                 catch (Exception ex)
                 {
-                    // Manejar error
-                    Response.Write("Error al subir el archivo: " + ex.Message);
+                    // Si la foto ha dado algún error
+                    UpLoadOK.Text = "Error al subir el archivo: " + ex.Message;
                 }
             }
             else
@@ -79,6 +78,7 @@ namespace OnlineShop.Web.admin
             productManager = new ProductManager(context);
             try
             {
+                //Creo variable de sesión
                 string uploadedFilePath = Session["UploadedFilePath"] as string;
                 if (string.IsNullOrEmpty(uploadedFilePath))
                 {
@@ -94,6 +94,7 @@ namespace OnlineShop.Web.admin
                     Stock = Convert.ToInt32(txtStock.Text),
                     Category_Id = Convert.ToInt32(ddlCategory.SelectedValue),
                     ImagePath = uploadedFilePath,
+                    //Genero lista de imágenes
                     Images = new List<Image>()
                     {
                         new Image
@@ -102,10 +103,12 @@ namespace OnlineShop.Web.admin
                         }
                     }
                 };
+                //Añado el producto
                 productManager.Add(Product);
                 productManager.Context.SaveChanges();
-                //Limpiar la variable de sesión después de usarla
+                //Limpio la variable de sesión después de usarla
                 Session["UploadedFilePath"] = null;
+                //Informo de producto correctamente creado
                 LblCreateOK.Text = "Producto correctamente creado";
                 LblCreateOK.CssClass = "alert alert-success";
                 LblCreateOK.Visible = true;
@@ -115,7 +118,7 @@ namespace OnlineShop.Web.admin
             }
             catch (Exception ex)
             {
-                //
+                
                 var err = new CustomValidator
                 {
                     ErrorMessage = "Se ha producido un error al guardar" + ex.Message,
@@ -125,12 +128,13 @@ namespace OnlineShop.Web.admin
             }
             finally
             {
+                //Una vez creado el producto, limpio los TB
                 txtName.Text = "";
                 txtDescription.Text = "";
                 txtPrice.Text = "";
                 txtStock.Text = "";
                 UpLoadOK.Text = "";
-                //LoadProduts();
+                
             }
         }
 

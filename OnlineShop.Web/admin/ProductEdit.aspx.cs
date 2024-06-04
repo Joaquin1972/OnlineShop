@@ -27,7 +27,7 @@ namespace OnlineShop.Web.admin
                 }
                 else
                 {
-                    //Caso de id no válidi
+                    //Caso de id no válido
                     Response.Write("ID no válido.");
                 }
 
@@ -79,6 +79,7 @@ namespace OnlineShop.Web.admin
                 txtPrice.Text = product.Price.ToString();
                 txtStock.Text = product.Stock.ToString();
                 ddlCategory.SelectedValue = product.Category_Id.ToString();
+                
                 //Cargo la primera imagen
                 if (product != null && product.Images != null && product.Images.Count > 0)
                 {
@@ -96,6 +97,7 @@ namespace OnlineShop.Web.admin
             }
         }
 
+        //Metodo para la actualización del producto
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             //Genero el contexto de Datos
@@ -114,6 +116,7 @@ namespace OnlineShop.Web.admin
             productManager.Update(product);
         }
 
+        //Método para el borrado del producto
         protected void btnDelete_Click(object sender, EventArgs e)
         {
 

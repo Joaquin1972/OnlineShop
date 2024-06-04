@@ -12,15 +12,21 @@ namespace OnlineShop.Web.admin
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        //Creo el contexto de datos
+        ApplicationDbContext context = new ApplicationDbContext();
         CategoryManager categoryManager;
-        protected void Page_Load(object sender, EventArgs e)
+        //Cargo categorias al cargar la página
+        public void Page_Load(object sender, EventArgs e)
         {
-            ApplicationDbContext context = new ApplicationDbContext(); ;
-            categoryManager = new CategoryManager(context);
-            LoadCategories();
+            if (!IsPostBack)
+            {
+                categoryManager = new CategoryManager(context);
+                LoadCategories();
+            }
         }
 
-        protected void BtnSubmit_Click(object sender, EventArgs e)
+        //Botón para crear la categoría
+        public void BtnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -49,17 +55,14 @@ namespace OnlineShop.Web.admin
             }
         }
 
-        protected void LoadCategories()
+        public void LoadCategories()
         {
-            // Retrieve all categories and convert to a list
+            // Cargo todas las categorías existentes
             var categories = categoryManager.GetAll().ToList();
 
-            // Bind the list to the GridView
+            // Construyo el Grid View
             gvCategories.DataSource = categories;
             gvCategories.DataBind();
         }
-
-
-
     }
 }

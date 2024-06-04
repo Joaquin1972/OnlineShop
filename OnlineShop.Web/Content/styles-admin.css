@@ -67,8 +67,12 @@
 
 
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
     .header2 {
         flex-direction: column;
+    }
+
+    #update {
+        width: 100%;
     }
 }

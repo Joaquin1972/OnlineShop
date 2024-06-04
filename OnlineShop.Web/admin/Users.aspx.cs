@@ -14,6 +14,7 @@ namespace OnlineShop.Web.admin
 
         public void Page_Load(object sender, EventArgs e)
         {
+            //Cargo usuarios
             if (!IsPostBack)
             {
                 LoadUsers();

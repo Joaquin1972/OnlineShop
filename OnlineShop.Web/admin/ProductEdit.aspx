@@ -9,6 +9,7 @@
     <div class="header2">
         <h4>ACTUALIZAR PRODUCTO</h4>
         <div>
+            <%-- Menú zona Admin --%>
             <a href="admin.aspx">Volver Inicio Administrador</a>
             <a href="ProductList.aspx">Ver Listado</a>
         </div>
@@ -159,7 +160,7 @@
     </div>
     <div>
 
-
+        <%-- Botones de Actualizar y borrar el producto --%>
         <div id="update" class="d-flex justify-content-center flex-column align-items-center">
             <h5>Modifica los campos que desees y pulsa Actualizar</h5>
             <asp:Button ID="btnSubmit" runat="server" Text="Actualizar" CssClass="btn btn-primary col-md-4 mt-3" OnClick="btnSubmit_Click" />

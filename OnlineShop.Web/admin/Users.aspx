@@ -19,6 +19,7 @@
     <hr />
     <div class="container d-flex justify-content-center">
         <div class="col-12 col-md-6">
+            <%-- Grid View para el listado de usuarios --%>
             <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered border-5 rounded"
                 RowStyle-HorizontalAlign="Center"
                 HeaderStyle-HorizontalAlign="Center"

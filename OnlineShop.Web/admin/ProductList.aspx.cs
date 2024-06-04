@@ -14,35 +14,37 @@ namespace OnlineShop.Web.admin
     {
         ProductManager productManager = null;
 
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
+                //Creo el contexto de datos de los productos.
                 ApplicationDbContext context = new ApplicationDbContext();
                 productManager = new ProductManager(context);
                 var products = productManager.GetAll().Include(i => i.Category).ToList();
-                //gvProducts.DataSource = products;
-                //gvProducts.DataBind();
-               
-
             }
             gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
             LoadProduts();
         }
 
-        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        // Vuelve a cargar los productos con el nuevo tamaño de página
+        public void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
-            LoadProduts(); // Vuelve a cargar los productos con el nuevo tamaño de página
+            LoadProduts();
         }
 
-        protected void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        // Carga los datos de la página seleccionada
+        public void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvProducts.PageIndex = e.NewPageIndex;
-            LoadProduts(); // Carga los datos de la página seleccionada
+            LoadProduts();
         }
 
-        protected void LoadProduts()
+        //Cargo los productos y los ordeno por Id, el más reciente se verá al principio
+        public void LoadProduts()
         {
+            //Creo el contexto de datos
             ApplicationDbContext context = new ApplicationDbContext();
             productManager = new ProductManager(context);
             var products = productManager.GetAll().
@@ -50,9 +52,8 @@ namespace OnlineShop.Web.admin
                 Include(p => p.Images).
                 OrderByDescending
                 (p => p.Id).ToList();
-            //gvProducts.DataSource = products;
-            //gvProducts.DataBind();
-            
+
+            //Construyo el GV con el listado de los productos
             var productList = products.Select(p => new
             {
                 p.Id,
@@ -60,9 +61,11 @@ namespace OnlineShop.Web.admin
                 p.Description,
                 p.Price,
                 p.Stock,
-                CategoryName = p.Category.CategoryName,
+                p.Category.CategoryName,
+                //CategoryName = p.Category.CategoryName,
                 FirstImagePath = p.Images != null && p.Images.Count > 0 ? p.Images.First().ImagePath : Session["UploadedFilePath"]
             }).ToList();
+
 
             gvProducts.DataSource = productList;
             gvProducts.DataBind();
@@ -70,8 +73,9 @@ namespace OnlineShop.Web.admin
 
 
 
-
-        protected void gvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
+        //Redirecciono a la página concreto del producto. Le envío la Id para cargar 
+        //el producto en concreto
+        public void gvProducts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Select")
             {
@@ -80,22 +84,15 @@ namespace OnlineShop.Web.admin
             }
         }
 
-        //private void LoadProducts()
-        //{
-
-        //    var products = productManager.GetAll().Include(i => i.Category).ToList();
-        //    ProductsListView.DataSource = products;
-        //    ProductsListView.DataBind();
-        //}
 
 
 
-        protected void gvProducts_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        public void gvProducts_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
 
             // Obtener el Id del producto seleccionado
             int selectedProductId = Convert.ToInt32(gvProducts.DataKeys[e.NewSelectedIndex].Value);
-            Response.Write(selectedProductId);
+           // Response.Write(selectedProductId);
             // Redirigir a la otra página con el Id del producto
             Response.Redirect($"ProductEdit.aspx?Id={selectedProductId}");
         }

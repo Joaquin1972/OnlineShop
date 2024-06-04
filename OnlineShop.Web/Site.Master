@@ -75,8 +75,16 @@
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
                         <li id="adminMenu" runat="server" visible="false" class="nav-item">
                             <a runat="server" class="nav-link" href="~/admin/admin" title="Zona Admin">Zona Admin</a>
-
                         </li>
+                        <%--Añado icono de cesta de la compra--%>
+                        <%--                        <li><a runat="server" id="noOrders" visible="false" class="nav-link" href="~/client/CurrentShoppingCart.aspx"><span class="material-symbols-outlined">shopping_cart
+                        </span></a></li>--%>
+                        <li><a runat="server" id="yesOrders" visible="false" class="nav-link" href="~/client/CurrentShoppingCart.aspx"><span class="material-symbols-outlined">add_shopping_cart
+                        </span></a></li>
+                        <%--Añado icono de Usuario--%>
+                        <li><a runat="server" id="userIcon" visible="false" class="nav-link" href="~/client/UserArea.aspx"><span class="material-symbols-outlined">person
+                        </span></a></li>
+
 
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
