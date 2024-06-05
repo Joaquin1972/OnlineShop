@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.Owin.Security.OAuth;
 
 namespace OnlineShop.Web.admin
 {
@@ -28,6 +29,7 @@ namespace OnlineShop.Web.admin
 
             // Obtengo la lista de todos los usuarios
             var usuarios = userManager.Users.ToList();
+           
 
             // Mostrar los usuarios en un control, como un GridView
             gvUsuarios.DataSource = usuarios;

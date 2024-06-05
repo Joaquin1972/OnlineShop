@@ -13,7 +13,7 @@
         </div>
         <div>
             <a href="admin.aspx">Volver Inicio Administrador</a>
-
+            <a href="ViewOrders.aspx">Ver pedidos por Status</a>
         </div>
     </div>
     <hr />
@@ -21,19 +21,31 @@
         <div class="col-12 col-md-6">
             <%-- Grid View para el listado de usuarios --%>
             <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered border-5 rounded"
-                RowStyle-HorizontalAlign="Center"
-                HeaderStyle-HorizontalAlign="Center"
-                HeaderStyle-VerticalAlign="Middle"
-                BackColor="#99CCFF"
-                HeaderStyle-BackColor="Blue"
-                HeaderStyle-ForeColor="White"
-                ForeColor="White"
-                RowStyle-ForeColor="Black">
-                <Columns>
-                    <asp:BoundField DataField="Email" HeaderText="Correo Electrónico" />
-                    <asp:BoundField DataField="UserName" HeaderText="Nombre de Usuario" />
-                </Columns>
-            </asp:GridView>
+    RowStyle-HorizontalAlign="Center"
+    HeaderStyle-HorizontalAlign="Center"
+    HeaderStyle-VerticalAlign="Middle"
+    BackColor="#99CCFF"
+    HeaderStyle-BackColor="Blue"
+    HeaderStyle-ForeColor="White"
+    ForeColor="White"
+    RowStyle-ForeColor="Black">
+    <Columns>
+        <asp:BoundField DataField="Email" HeaderText="Correo Electrónico" />
+        <asp:BoundField DataField="UserName" HeaderText="Nombre de Usuario" />
+        <asp:TemplateField HeaderText="Ver Pedidos">
+            <ItemTemplate>
+                <asp:HyperLink 
+                    ID="hlDetails" 
+                    runat="server" 
+                    NavigateUrl='<%# "UserArea.aspx?id=" + Eval("ID") %>' 
+                    Text="Ver Pedidos" 
+                    ForeColor="White"
+                    CssClass="btn btn-primary btn-sm">
+                </asp:HyperLink>
+            </ItemTemplate>
+        </asp:TemplateField>
+    </Columns>
+</asp:GridView>
         </div>
     </div>
 </asp:Content>

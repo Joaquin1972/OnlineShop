@@ -19,12 +19,12 @@
             height: calc(100vh-50px);
         }
 
-        body {
+/*        body {
             background: rgb(0,95,255);
             background: -moz-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
             background: -webkit-radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
             background: radial-gradient(circle, rgba(0,95,255,0.1741071428571429) 20%, rgba(0,212,255,1) 100%);
-        }
+        }*/
 
         .nav-link {
             font-weight: bold;
@@ -70,8 +70,10 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>
+                        <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/">Inicio</a></li>--%>
+                        <%--<li class="nav-item"><a class="nav-link" runat="server" href="~/About">Acerca de</a></li>--%>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/client/Tienda">Ir a la Tienda</a></li>
+
                         <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contacto</a></li>
                         <li id="adminMenu" runat="server" visible="false" class="nav-item">
                             <a runat="server" class="nav-link" href="~/admin/admin" title="Zona Admin">Zona Admin</a>

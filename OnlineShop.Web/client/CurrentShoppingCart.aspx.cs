@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.SqlServer.Server;
 using OnlineShop.Application;
 using OnlineShop.Core;
 using OnlineShop.DAL;
@@ -40,6 +41,9 @@ namespace OnlineShop.Web.client
                 {
                     // Recupero Id de usuario
                     string userId = User.Identity.GetUserId();
+
+           
+
 
                     // Cargo el contexto de datos de Order
                     ApplicationDbContext context = new ApplicationDbContext();
@@ -181,12 +185,21 @@ namespace OnlineShop.Web.client
         //Añado al stock el producto borrado
         public void ChangeStock(int id, int quantity)
         {
+            try { 
             ApplicationDbContext context = new ApplicationDbContext();
             ProductManager productManager = new ProductManager(context);
             var product = productManager.GetById(id);
             product.Stock += quantity;
             productManager.Update(product);
-            
+            } catch
+            {
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al actualizar el stock",
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
+            }
         }
 
         public void BtnMakePayment_Click(object sender, EventArgs e)

@@ -171,6 +171,7 @@
     <Content Include="admin\ProductCreate.aspx" />
     <Content Include="admin\ProductEdit.aspx" />
     <Content Include="admin\ProductList.aspx" />
+    <Content Include="admin\UserArea.aspx" />
     <Content Include="admin\Users.aspx" />
     <Content Include="admin\ViewOrders.aspx" />
     <Content Include="client\CurrentShoppingCart.aspx" />
@@ -412,6 +413,13 @@
     </Compile>
     <Compile Include="admin\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\UserArea.aspx.cs">
+      <DependentUpon>UserArea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\UserArea.aspx.designer.cs">
+      <DependentUpon>UserArea.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>

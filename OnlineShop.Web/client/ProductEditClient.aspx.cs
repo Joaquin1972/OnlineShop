@@ -23,20 +23,15 @@ namespace OnlineShop.Web.client
             {
                 //COMPROBAR SI EL USUARIO ESTA IDENTIFICADO PARA HABILITAR O NO EL BOTON DE COMPRA
                 bool UserOK = User.Identity.IsAuthenticated;
-                if (UserOK)
+                if (UserOK) //Lo está, habilito botón de compra
                 {
                     BtnSell.Enabled = true;
-                    string userName = User.Identity.Name;
-                    string idUser = User.Identity.GetUserId();
-                    //lblAlert.Text = "Usuario: " + userName + " " + idUser;
-                }
-                else
+                                    }
+                else //No lo está, lo deshabilito y mensaje de aviso
                 {
                     BtnSell.Enabled = false;
                     lblAlert.Text = "Debes estar registrado para comprar";
                     lblAlert.CssClass = "alert alert-danger";
-
-
                 }
 
                 //----------------------------------//

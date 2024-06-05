@@ -26,7 +26,6 @@ namespace OnlineShop.DAL
         /// Creamos las colecciones persistentes == Tablas de Datos de 
         /// las entidades de negocio
         /// </summary>
-
         //Coleccion/Tabla de Categorías
         public DbSet<Category> Categories { get; set; }
         //Coleccion/Taba de productos
@@ -37,7 +36,7 @@ namespace OnlineShop.DAL
         public DbSet<OrderDetail> OrderDetails { get; set; }
         //Coleccion/Tabla de path de imagenes
         public DbSet<Image> Images { get; set; }
-
+        //Coleccion para la cesta de la compra
         public DbSet<ShoppingCart> ShoppingCarts { get; set;}
 
 

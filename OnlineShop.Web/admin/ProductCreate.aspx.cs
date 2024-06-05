@@ -67,7 +67,7 @@ namespace OnlineShop.Web.admin
             else
             {
                 // Mensaje de error si no se selecciona ningún archivo
-                Response.Write("Por favor, seleccione un archivo.");
+                UpLoadOK.Text = "Por favor, seleccione un archivo.";
             }
         }
 
@@ -88,8 +88,8 @@ namespace OnlineShop.Web.admin
                 //Cargo valores actualizados
                 Product Product = new Product
                 {
-                    Name = txtName.Text,
-                    Description = txtDescription.Text,
+                    Name = txtName.Text.Trim(),
+                    Description = txtDescription.Text.Trim(),
                     Price = Convert.ToDecimal(txtPrice.Text),
                     Stock = Convert.ToInt32(txtStock.Text),
                     Category_Id = Convert.ToInt32(ddlCategory.SelectedValue),
@@ -137,48 +137,6 @@ namespace OnlineShop.Web.admin
                 
             }
         }
-
-        //public void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    gvProducts.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
-        //    LoadProduts(); // Vuelve a cargar los productos con el nuevo tamaño de página
-        //}
-
-        //public void gvProducts_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        //{
-        //    gvProducts.PageIndex = e.NewPageIndex;
-        //    LoadProduts(); // Carga los datos de la página seleccionada
-        //}
-
-        //public void LoadProduts()
-        //{
-        //    ApplicationDbContext context = new ApplicationDbContext();
-        //    productManager = new ProductManager(context);
-        //    var products = productManager.GetAll().
-        //        Include(i => i.Category).
-        //        Include(p => p.Images).
-        //        OrderByDescending
-        //        (p => p.Id).ToList();
-        //    //gvProducts.DataSource = products;
-        //    //gvProducts.DataBind();
-        //    // Proyectar los productos con FirstImagePath
-        //    var productList = products.Select(p => new
-        //    {
-        //        p.Id,
-        //        p.Name,
-        //        p.Description,
-        //        p.Price,
-        //        p.Stock,
-        //        CategoryName = p.Category.CategoryName,
-        //        FirstImagePath = p.Images != null && p.Images.Count > 0 ? p.Images.First().ImagePath : Session["UploadedFilePath"]
-        //    }).ToList();
-
-        //    gvProducts.DataSource = productList;
-        //    gvProducts.DataBind();
-        //}
-
-
-
 
     }
 }

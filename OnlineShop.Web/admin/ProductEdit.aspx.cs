@@ -79,7 +79,7 @@ namespace OnlineShop.Web.admin
                 txtPrice.Text = product.Price.ToString();
                 txtStock.Text = product.Stock.ToString();
                 ddlCategory.SelectedValue = product.Category_Id.ToString();
-                
+
                 //Cargo la primera imagen
                 if (product != null && product.Images != null && product.Images.Count > 0)
                 {
@@ -92,34 +92,52 @@ namespace OnlineShop.Web.admin
             }
             catch (Exception ex)
             {
-                // Manejo de errores, como mostrar un mensaje al usuario
-                Response.Write($"Error al cargar el producto: {ex.Message}");
+                // Manejo de errores
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al cargar" + ex.Message,
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
             }
         }
 
         //Metodo para la actualización del producto
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            //Genero el contexto de Datos
-            ApplicationDbContext context = new ApplicationDbContext();
-            ProductManager productManager = new ProductManager(context);
-            //Cargo valores actualizados
-            Product product = new Product
+            try
             {
-                Id = Convert.ToInt32(ID.Text),
-                Name = txtProduct.Text,
-                Description = txtDescription.Text,
-                Price = Convert.ToDecimal(txtPrice.Text),
-                Stock = Convert.ToInt32(txtStock.Text),
-                Category_Id = Convert.ToInt32(ddlCategory.SelectedValue)
-            };
-            productManager.Update(product);
-        }
+                //Genero el contexto de Datos
+                ApplicationDbContext context = new ApplicationDbContext();
+                ProductManager productManager = new ProductManager(context);
+                //Cargo valores actualizados
+                Product product = new Product
+                {
+                    Id = Convert.ToInt32(ID.Text),
+                    Name = txtProduct.Text,
+                    Description = txtDescription.Text,
+                    Price = Convert.ToDecimal(txtPrice.Text),
+                    Stock = Convert.ToInt32(txtStock.Text),
+                    Category_Id = Convert.ToInt32(ddlCategory.SelectedValue)
+                };
+                productManager.Update(product);
+            }catch
+            {
+                // Manejo de errores
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al actualizar el producto ",
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
+            }
+            }
 
         //Método para el borrado del producto
         protected void btnDelete_Click(object sender, EventArgs e)
         {
 
+            try { 
             //Creo el contexto de datos
             ApplicationDbContext context = new ApplicationDbContext();
             ProductManager productManager = new ProductManager(context);
@@ -134,7 +152,16 @@ namespace OnlineShop.Web.admin
             txtDescription.Text = "Borrado";
             txtPrice.Text = "Borrado";
             txtStock.Text = "Borrado";
-
+}catch
+            {
+                // Manejo de errores
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al borrar el producto ",
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
+            }
         }
     }
 }

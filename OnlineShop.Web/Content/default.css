@@ -1,14 +1,14 @@
-﻿
-img {
+﻿.img_face {
     display: block;
     margin: 0 auto;
-    width: 10%;
+    width: 12%;
     border: 1px solid black;
     border-radius: 50%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    transition: 0.5s;
 }
 
-    img:hover {
+    .img_face:hover {
         transform: scale(1.1);
     }
 
@@ -17,4 +17,51 @@ img {
     flex-direction: row;
     justify-content: space-evenly;
     margin: 10px 0px 10px 0px;
+}
+
+.img_down {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.img_2 {
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    object-fit: fill;
+    border: 1px solid black;
+    transition: 0.5s;
+}
+
+    .img_2:hover {
+        filter: grayscale(100%);
+    }
+
+@media screen and (max-width: 768px) {
+    .img_down {
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .img_2 {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .face2 {
+        display: none;
+    }
+
+    .face1 {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .img_face:hover {
+        transform: scale(1);
+    }
+
 }

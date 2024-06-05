@@ -11,7 +11,7 @@
             <h4>LISTADO DE PEDIDOS</h4>
         </div>
         <div>
-            <a href="admin.aspx">Volver Inicio Administrador</a>
+            <a href="admin.aspx">Volver Inicio Administrador</a><a href="Users.aspx">Ver pedidos por Usuario</a>
         </div>
     </div>
     <hr />
@@ -49,8 +49,8 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-    <asp:Label ID="lblOrders" runat="server" Text="Label" Visible=false></asp:Label>
-</div>
+        <asp:Label ID="lblOrders" runat="server" Text="Label" Visible="false"></asp:Label>
+    </div>
     <%-- AQUI SE MUESTRAS LOS PEDIOS DE LOS CLIENTES.
         SE MUESTRAS TODOS. SE ORDENAN POR FECHA, EL MÁS RECIENTE ARRIBA Y POR ESTADO DE LA ORDEN--%>
 

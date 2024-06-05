@@ -42,31 +42,31 @@ namespace OnlineShop.Web.client
             {
                 //Creo el contexto de datos
                 ApplicationDbContext context = new ApplicationDbContext();
+
+                //Selecciono los productos ordenador por Id descendiente
+                var products = context.Products.Include(p => p.Category).Include(p => p.Images).OrderByDescending(p => p.Id).ToList();
+
+                //Seleccion no la categoria
+                if (categoryId > 0)
                 {
-                    //Selecciono los productos ordenador por Id descendiente
-                    var products = context.Products.Include(p => p.Category).Include(p => p.Images).OrderByDescending(p => p.Id).ToList();
-
-                    //Seleccion no la categoria
-                    if (categoryId > 0)
-                    {
-                        products = products.Where(p => p.Category_Id == categoryId).ToList();
-                    }
-
-                    var productList = products.Select(p => new
-                    {
-                        p.Id,
-                        p.Name,
-                        p.Description,
-                        p.Price,
-                        p.Stock,
-                        CategoryName = p.Category.CategoryName,
-                        FirstImagePath = p.Images != null && p.Images.Count > 0 ? p.Images.First().ImagePath : Session["UploadedFilePath"]
-                    }).ToList();
-
-                    //Cargo y bindeo el Listado de datos por los productos seleccionados
-                    dlProducts.DataSource = productList;
-                    dlProducts.DataBind();
+                    products = products.Where(p => p.Category_Id == categoryId).ToList();
                 }
+
+                var productList = products.Select(p => new
+                {
+                    p.Id,
+                    p.Name,
+                    p.Description,
+                    p.Price,
+                    p.Stock,
+                    CategoryName = p.Category.CategoryName,
+                    FirstImagePath = p.Images != null && p.Images.Count > 0 ? p.Images.First().ImagePath : Session["UploadedFilePath"]
+                }).ToList();
+
+                //Cargo y bindeo el Listado de datos por los productos seleccionados
+                dlProducts.DataSource = productList;
+                dlProducts.DataBind();
+
             }
             catch (Exception ex)
             {
