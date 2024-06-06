@@ -55,13 +55,13 @@
             <div class="col-md-3">
                 <asp:TextBox ID="TBCCV" runat="server" CssClass="form-control" OnKeyPress="return isNumberKey(event)"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="CCV es obligatorio" Text="CCV es obligatorio" ControlToValidate="TBCCV" CssClass="text-danger" Display="Dynamic"></asp:RequiredFieldValidator>
-                <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="CCV incorrecto" Text="CCV incorrecto" MaximumValue="999" ControlToValidate="TBCCV" MinimumValue="100" CssClass="text-danger" Display="Dynamic"></asp:RangeValidator>
+                <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="CCV incorrecto" Text="CCV incorrecto" MaximumValue="999" ControlToValidate="TBCCV" MinimumValue="000" CssClass="text-danger" Display="Dynamic"></asp:RangeValidator>
             </div>
         </div>
          <%-- Mensaje de aviso del pago ok/nok --%>
         <div class="form-group row mb-2">
             <div class="col-md-5 mt-3">
-                <asp:Label ID="lblMessage" runat="server" CssClass="form-control" Visible="false"></asp:Label>
+                <asp:Label ID="lblMessage" runat="server" CssClass="form-control mb-2" Visible="false"></asp:Label>
             </div>
         </div>
         <%-- Botones de pago y cancelar --%>

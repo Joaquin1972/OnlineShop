@@ -114,7 +114,7 @@ namespace OnlineShop.Web.client
                 else
                 {
                     // Si no es correcto, informo de pago incorrecto
-                    lblMessage.Text = "Ha habido un error en el pago. Compruebe numeracion de la tarjeta";
+                    lblMessage.Text = "Error en el pago. Compruebe datos de la tarjeta";
                     lblMessage.CssClass = "alert alert-danger";
                     lblMessage.Visible = true;
                     TBCardNumber.Text = "";

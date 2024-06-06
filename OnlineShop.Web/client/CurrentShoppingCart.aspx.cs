@@ -42,9 +42,6 @@ namespace OnlineShop.Web.client
                     // Recupero Id de usuario
                     string userId = User.Identity.GetUserId();
 
-           
-
-
                     // Cargo el contexto de datos de Order
                     ApplicationDbContext context = new ApplicationDbContext();
                     OrderManager orderManager = new OrderManager(context);

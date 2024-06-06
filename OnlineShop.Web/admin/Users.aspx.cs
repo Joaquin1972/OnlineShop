@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Owin.Security.OAuth;
+using Microsoft.AspNet.Identity.Owin;
+using OnlineShop.Core;
 
 namespace OnlineShop.Web.admin
 {
@@ -24,16 +26,30 @@ namespace OnlineShop.Web.admin
 
         public void LoadUsers()
         {
-            // Creo el UserManager y el DbContext
-            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+            try
+            {
+                // Creo el manager de usuarios y bbtengo la lista de todos los usuarios
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var usersShop = manager.Users.ToList();
 
-            // Obtengo la lista de todos los usuarios
-            var usuarios = userManager.Users.ToList();
-           
+                //Los muestro en un gridwiew
+                gvUsuarios.DataSource = usersShop;
+                gvUsuarios.DataBind();
+            }
 
-            // Mostrar los usuarios en un control, como un GridView
-            gvUsuarios.DataSource = usuarios;
-            gvUsuarios.DataBind();
+
+            catch
+            {
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al cargar los usuarios",
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
+            }
+
+            
+
         }
     }
 }

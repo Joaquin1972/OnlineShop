@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using OnlineShop.Application;
 using OnlineShop.DAL;
 using System;
@@ -17,6 +18,7 @@ namespace OnlineShop.Web.client
             try
             {
                 LoadOrdersByUser();
+                LoadPersonalData();
             }
             catch (Exception ex)
             {
@@ -27,6 +29,20 @@ namespace OnlineShop.Web.client
                 };
                 Page.Validators.Add(err);
             }
+        }
+
+        public void LoadPersonalData()
+        {
+            // Recupero Id de usuario
+            string userId = User.Identity.GetUserId();
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(userId);
+            LblCity.Text = user.City;
+            LblAdress.Text = user.Adress;
+            LblName.Text = user.Name;
+            LblCountry.Text = user.Country;
+            LblCP.Text = user.PostalCode;
+            
         }
 
         public void LoadOrdersByUser()
@@ -72,7 +88,7 @@ namespace OnlineShop.Web.client
             }
         }
 
-        protected void gvOrderByUser_RowCommand(object sender, GridViewCommandEventArgs e)
+        public void gvOrderByUser_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Details")
             {
@@ -81,7 +97,7 @@ namespace OnlineShop.Web.client
             }
         }
 
-        private void BindOrderDetails(int orderId)
+        public void BindOrderDetails(int orderId)
         {
             ApplicationDbContext context = new ApplicationDbContext();
             OrderManager orderManager = new OrderManager(context);
@@ -89,6 +105,15 @@ namespace OnlineShop.Web.client
             gvOrderDetails.DataSource = orderDetails;
             gvOrderDetails.DataBind();
         }
+
+        protected void btnUpdatePersonalData_Click(object sender, EventArgs e)
+        {
+            // Recupero Id de usuario
+            string userId = User.Identity.GetUserId();
+            Response.Redirect($"personalData.aspx?id={userId}");
+        }
+
+
     }
 
 
