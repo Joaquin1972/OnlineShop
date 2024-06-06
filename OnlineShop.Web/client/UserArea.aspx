@@ -84,15 +84,15 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="LblName">Nombre:</label>
-                        <asp:Label ID="LblName" runat="server"/>
+                        <label for="LblName" class="fw-bold" >Nombre:</label>
+                        <asp:Label ID="LblName" runat="server"  />
                     </div>
                     <div class="form-group">
-                        <label for="LblAddress">Dirección:</label>
+                        <label for="LblAddress" class="fw-bold" >Dirección:</label>
                         <asp:Label ID="LblAdress" runat="server"  />
                     </div>
                     <div class="form-group">
-                        <label for="LblCP">Código Postal:</label>
+                        <label for="LblCP" class="fw-bold">Código Postal:</label>
                         <asp:Label ID="LblCP" runat="server" />
                     </div>
                     <div class="form-group">
@@ -100,7 +100,7 @@
                         <asp:Label ID="LblCity" runat="server"/>
                     </div>
                     <div class="form-group">
-                        <label for="LblCountry">País:</label>
+                        <label for="LblCountry" class="fw-bold">País:</label>
                         <asp:Label ID="LblCountry" runat="server" />
                     </div>
                     <asp:Button ID="btnUpdate" runat="server" Text="Ir a actualizar datos personales" CssClass="btn btn-primary mt-3" OnClick="btnUpdatePersonalData_Click" />

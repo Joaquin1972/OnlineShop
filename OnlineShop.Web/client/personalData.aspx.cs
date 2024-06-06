@@ -15,17 +15,43 @@ namespace OnlineShop.Web.client
         {
             if (User.Identity.IsAuthenticated)
             {
-                // Recupero Id de usuario
-                string userId = User.Identity.GetUserId();
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var user = manager.FindById(userId);
-                user.City = "Burgos";
-                user.Adress = "Calle de la Oscuridad";
-                user.Name = "Jose";
-                user.Country = "España";
-                user.PostalCode = "50016";
-                manager.Update(user);
+                LoadCurrentData();
                 
+            }
+        }
+
+        public void LoadCurrentData()
+        {
+            string userId = User.Identity.GetUserId();
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(userId);
+            TBCity.Text = user.City;
+            TBAdress.Text = user.Adress;
+            TBName.Text = user.Name;
+            TBCountry.Text = user.Country;
+            TBCP.Text = user.PostalCode;
+        }
+
+        public void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            try {
+            // Recupero Id de usuario
+            string userId = User.Identity.GetUserId();
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(userId);
+            user.City = TBCity.Text.Trim();
+            user.Adress = TBAdress.Text.Trim();
+            user.Name = TBName.Text.Trim();
+            user.Country = TBCountry.Text.Trim();
+            user.PostalCode = TBCP.Text.Trim();
+            manager.Update(user); }
+            catch
+            {
+
+            }
+            finally
+            {
+                Response.Redirect("UserArea.aspx");
             }
         }
     }
