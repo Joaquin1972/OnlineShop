@@ -2,19 +2,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link href="../Content/styles-admin.css" rel="stylesheet" />
-     <h3 style="text-align: center; font-weight: bold">ZONA ADMIN</h3>
- <hr />
+    <h3 style="text-align: center; font-weight: bold">ZONA ADMIN</h3>
+    <hr />
 
- <div class="header2">
-     <div>
-         <h4>PEDIDOS POR USUARIO</h4>
-     </div>
-     <div>
-         <a href="admin.aspx">Volver Inicio Administrador</a>
-         <a href="Users.aspx">Volver a Usuarios Registrados</a>
-         <a href="ViewOrders.aspx">Ir a Pedidos por Status</a>
-     </div>
- </div>
+    <div class="header2">
+        <div>
+            <h4>PEDIDOS POR USUARIO</h4>
+        </div>
+        <div>
+            <a href="admin.aspx">Volver Inicio Administrador</a>
+            <a href="Users.aspx">Volver a Usuarios Registrados</a>
+            <a href="ViewOrders.aspx">Ir a Pedidos por Status</a>
+        </div>
+    </div>
     <hr />
 
     <div class="container">
@@ -23,6 +23,7 @@
                 <h4 class="text-center mb-4">
                     <asp:Label ID="OrdersUser" runat="server" Text=""></asp:Label>
                 </h4>
+                <%-- Pedidos --%>
                 <asp:GridView
                     OnRowCommand="gvOrderByUser_RowCommand"
                     ID="gvOrderByUser"
@@ -50,8 +51,9 @@
                     </Columns>
                 </asp:GridView>
             </div>
+            <%-- Detalles del pedido --%>
             <div class="col-md-6">
-                <h4  class="text-center mb-4">Detalles del pedido</h4>
+                <h4 class="text-center mb-4">Detalles del pedido</h4>
                 <asp:GridView ID="gvOrderDetails" runat="server" AutoGenerateColumns="False"
                     AllowCustomPaging="True" AllowPaging="True"
                     CssClass="table table-bordered border-5 rounded"
@@ -73,7 +75,37 @@
             </div>
         </div>
     </div>
+    <%-- Datos personales --%>
+    <div class="container mt-5">
+        <div class="card col-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title">Estos son sus datos personales</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="LblName" class="fw-bold">Nombre:</label>
+                    <asp:Label ID="LblName" runat="server" />
+                </div>
+                <div class="form-group">
+                    <label for="LblAddress" class="fw-bold">Dirección:</label>
+                    <asp:Label ID="LblAdress" runat="server" />
+                </div>
+                <div class="form-group">
+                    <label for="LblCP" class="fw-bold">Código Postal:</label>
+                    <asp:Label ID="LblCP" runat="server" />
+                </div>
+                <div class="form-group">
+                    <label for="LblCity" class="fw-bold">Ciudad:</label>
+                    <asp:Label ID="LblCity" runat="server" />
+                </div>
+                <div class="form-group">
+                    <label for="LblCountry" class="fw-bold">País:</label>
+                    <asp:Label ID="LblCountry" runat="server" />
+                </div>
 
+            </div>
+        </div>
+    </div>
 
 
 

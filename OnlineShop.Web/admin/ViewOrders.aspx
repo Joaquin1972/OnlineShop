@@ -11,7 +11,7 @@
             <h4>LISTADO DE PEDIDOS</h4>
         </div>
         <div>
-            <a href="admin.aspx">Volver Inicio Administrador</a><a href="Users.aspx">Ver pedidos por Usuario</a>
+            <a href="admin.aspx">Volver Inicio Administrador</a><a href="Users.aspx">Ver pedidos y datos de Usuario</a>
         </div>
     </div>
     <hr />

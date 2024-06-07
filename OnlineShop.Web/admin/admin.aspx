@@ -39,7 +39,7 @@
                 <li class="p-2"><a href="ProductCreate.aspx">Crear Productos</a></li>
                 <li class="p-2"><a href="ProductList.aspx">Listar Productos</a></li>
                 <li class="p-2"><a href="ViewOrders.aspx">Listar Pedidos por Status</a></li>
-                <li class="p-2"><a href="Users.aspx">Listar Pedidos por Usuario</a></li>
+                <li class="p-2"><a href="Users.aspx">Listar Pedidos y datos de Usuario</a></li>
 
             </ul>
         </div>

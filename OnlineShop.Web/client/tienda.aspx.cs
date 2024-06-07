@@ -22,6 +22,7 @@ namespace OnlineShop.Web.client
             }
         }
 
+        //Cargo categorias
         private void LoadCategories()
         {
             ApplicationDbContext context = new ApplicationDbContext();

@@ -135,16 +135,15 @@
                     </asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4"
                         runat="server" Display="Dynamic"
-                        ErrorMessage="El precio es obligatorio"
-                        Text="El precio es obligatorio"
+                        ErrorMessage="El stock es obligatorio"
+                        Text="El stock es obligatorio"
                         ControlToValidate="txtStock">
                     </asp:RequiredFieldValidator>
                     <asp:RangeValidator ID="RangeValidator2"
                         runat="server" Display="Dynamic"
                         ErrorMessage="Stock fuera de rango"
                         Text="Stock fuera de rango"
-                        ControlToValidate="txtStock"
-                        MaximumValue="50" MinimumValue="0">
+                        ControlToValidate="txtStock" MaximumValue="100" MinimumValue="0">
                     </asp:RangeValidator>
                 </div>
             </div>

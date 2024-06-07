@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using OnlineShop.Application;
 using OnlineShop.DAL;
 using OnlineShop.Web.admin;
@@ -19,6 +20,7 @@ namespace OnlineShop.Web.Admin
             try
             {
                 LoadOrdersByUser();
+                LoadPersonalData();
             }
             catch (Exception ex)
             {
@@ -29,6 +31,20 @@ namespace OnlineShop.Web.Admin
                 };
                 Page.Validators.Add(err);
             }
+        }
+
+        public void LoadPersonalData()
+        {
+            // Recupero Id de enviado desde la pagina de usuarios
+            string id = Request.QueryString["id"];
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var user = manager.FindById(id);
+            //Relleno los label de los datos personales
+            LblCity.Text = user.City;
+            LblAdress.Text = user.Adress;
+            LblName.Text = user.Name;
+            LblCountry.Text = user.Country;
+            LblCP.Text = user.PostalCode;
         }
 
         public void LoadOrdersByUser()
@@ -62,26 +78,6 @@ namespace OnlineShop.Web.Admin
                     OrdersUser.Text = "No hay pedidos de: " + userName;
 
                 }
-
-                // Obtengo el userName del cliente
-
-                //var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(new IdentityDbContext()));
-
-                //var user = userManager.FindById(id);
-                //if (user != null)
-                //{
-                //    var userName = user.UserName;
-                //    OrdersUser.Text = "Listado de pedidos de: " + userName;
-
-                //}
-                //else
-                //{
-                //    // Manejar el caso donde el usuario no se encuentra
-                //    OrdersUser.Text = "Usuario no localizado";
-                //}
-
-
-
 
             }
 

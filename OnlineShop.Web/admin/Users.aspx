@@ -32,13 +32,13 @@
     <Columns>
         <asp:BoundField DataField="Email" HeaderText="Correo Electrónico" />
         <asp:BoundField DataField="UserName" HeaderText="Nombre de Usuario" />
-        <asp:TemplateField HeaderText="Ver Pedidos">
+        <asp:TemplateField HeaderText="Más información">
             <ItemTemplate>
                 <asp:HyperLink 
                     ID="hlDetails" 
                     runat="server" 
                     NavigateUrl='<%# "UserArea.aspx?id=" + Eval("ID") %>' 
-                    Text="Ver Pedidos" 
+                    Text="Ver pedidos y datos personales" 
                     ForeColor="White"
                     CssClass="btn btn-primary btn-sm">
                 </asp:HyperLink>

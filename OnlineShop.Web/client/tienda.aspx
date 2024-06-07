@@ -33,6 +33,7 @@
         <p class="lead text-center">Utiliza el menú desplegable para explorar nuestro catálogo completo o filtrar por una categoría específica.</p>
         <p class="lead text-center">Puedes pasar el cursor sobre la imagen para ampliarla y hacer clic en "Seleccionar" para obtener más detalles sobre el producto y proceder con la compra</p>
 
+        <%-- Desplegable para seleccionar categoría --%>
         <div class="justify-content-center container-ddl bg-primary rounded-4 shadow">
             <div class="text-center">
                 <asp:DropDownList ID="ddlCategories" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCategories_SelectedIndexChanged">
@@ -43,7 +44,7 @@
     </div>
 
     <%--<asp:Button ID="btnFilter" runat="server" Text="Filtrar" OnClick="btnFilter_Click" />--%>
-
+    <%-- Listado de productos --%>
     <div class="col-md-12">
         <asp:DataList ID="dlProducts"
             runat="server"
@@ -61,27 +62,21 @@
             ItemStyle-Width="50%">
             <ItemTemplate>
                 <div class="text-center">
-
                     <div class="container">
                         <div class="row">
                             <div class="col-md-4 text-center">
-                                <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("FirstImagePath") %>' Height="200" CssClass="makebig border rounded-2 mt-2" />
+                                <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("FirstImagePath") %>' Height="200" CssClass="makebig border rounded-2 mt-2 mb-2" />
                             </div>
                             <div class="col-md-8">
                                 <h4><%# Eval("Name") %></h4>
                                 <h5><%# Eval("CategoryName") %></h5>
-                                <p><%# Eval("Description") %></p>
+                               <%-- <p><%# Eval("Description") %></p>--%>
                                 <p class="fw-bolder"><%# Eval("Price", "{0:n} €") %></p>
                                 <p><%# GetStockText((int)Eval("Stock")) %></p>
                                 <asp:Button ID="btnSelect" runat="server" Text="Seleccionar" CommandName="SelectProduct" CssClass="btn btn-primary" CommandArgument='<%# Eval("Id") %>' />
-
                             </div>
                         </div>
-
                     </div>
-
-
-
                 </div>
             </ItemTemplate>
         </asp:DataList>

@@ -33,16 +33,26 @@ namespace OnlineShop.Web.client
 
         public void LoadPersonalData()
         {
+            try {
             // Recupero Id de usuario
             string userId = User.Identity.GetUserId();
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = manager.FindById(userId);
+            //Relleno los label de los datos personales
             LblCity.Text = user.City;
             LblAdress.Text = user.Adress;
             LblName.Text = user.Name;
             LblCountry.Text = user.Country;
             LblCP.Text = user.PostalCode;
-            
+             } catch
+            {
+                var err = new CustomValidator
+                {
+                    ErrorMessage = "Se ha producido un error al actualizar los datos del cliente",
+                    IsValid = false
+                };
+                Page.Validators.Add(err);
+            }
         }
 
         public void LoadOrdersByUser()
