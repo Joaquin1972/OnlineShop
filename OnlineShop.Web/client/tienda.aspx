@@ -31,6 +31,8 @@
         <%--<h1 class="bg-primary text-white p-1  rounded-4 text-center shadow">BIENVENIDO A NORABEL PLAY</h1>--%>
         <h2 style="text-align: center; margin-bottom: 20px;">Aquí tienes nuestro stock</h2>
         <p class="lead text-center">Utiliza el menú desplegable para explorar nuestro catálogo completo o filtrar por una categoría específica.</p>
+        <p class="lead text-center">Pulsa anterior o siguiente para ver otros productos.</p>
+        
         <p class="lead text-center">Puedes pasar el cursor sobre la imagen para ampliarla y hacer clic en "Seleccionar" para obtener más detalles sobre el producto y proceder con la compra</p>
 
         <%-- Desplegable para seleccionar categoría --%>
@@ -43,23 +45,20 @@
 
     </div>
 
-    <%--<asp:Button ID="btnFilter" runat="server" Text="Filtrar" OnClick="btnFilter_Click" />--%>
-    <%-- Listado de productos --%>
-    <div class="col-md-12">
-        <asp:DataList ID="dlProducts"
-            runat="server"
-            CssClass="table table-striped table-bordered border-5 rounded"
-            BackColor="#99CCFF"
-            OnItemCommand="dlProducts_ItemCommand"
-            EditItemStyle-BorderStyle="Solid"
-            GridLines="Both"
-            HorizontalAlign="Center"
-            RepeatLayout="Table"
-            RepeatDirection="Horizontal"
-            BorderWidth="3"
-            BorderColor="White" CellPadding="1"
-            RepeatColumns="2"
-            ItemStyle-Width="50%">
+
+
+    <div class="container mt-4">
+        <div class="mb-3">
+        <%-- Botones de anterior y posterior --%>
+        <asp:Button ID="btnPrev" runat="server" Text="Anterior" OnClick="btnPrev_Click" CssClass="btn btn-primary" />
+        <asp:Button ID="btnNext" runat="server" Text="Siguiente" OnClick="btnNext_Click" CssClass="btn btn-primary" />
+        <asp:Label ID="lblPageInfo" runat="server" CssClass="btn btn-info btn-sm disabled"></asp:Label> </div>
+        <%-- Listado de productos --%>
+        <asp:DataList ID="dlProducts" runat="server" CssClass="table table-striped table-bordered border-5 rounded"
+            BackColor="#99CCFF" OnItemCommand="dlProducts_ItemCommand"
+            EditItemStyle-BorderStyle="Solid" GridLines="Both" HorizontalAlign="Center"
+            RepeatLayout="Table" RepeatDirection="Horizontal" BorderWidth="3"
+            BorderColor="White" CellPadding="1" RepeatColumns="2" ItemStyle-Width="50%">
             <ItemTemplate>
                 <div class="text-center">
                     <div class="container">
@@ -70,7 +69,6 @@
                             <div class="col-md-8">
                                 <h4><%# Eval("Name") %></h4>
                                 <h5><%# Eval("CategoryName") %></h5>
-                               <%-- <p><%# Eval("Description") %></p>--%>
                                 <p class="fw-bolder"><%# Eval("Price", "{0:n} €") %></p>
                                 <p><%# GetStockText((int)Eval("Stock")) %></p>
                                 <asp:Button ID="btnSelect" runat="server" Text="Seleccionar" CommandName="SelectProduct" CssClass="btn btn-primary" CommandArgument='<%# Eval("Id") %>' />
@@ -80,6 +78,12 @@
                 </div>
             </ItemTemplate>
         </asp:DataList>
+
+        <asp:Button ID="btnPrevBottom" runat="server" Text="Anterior" OnClick="btnPrev_Click" CssClass="btn btn-primary" />
+        <asp:Button ID="btnNextBottom" runat="server" Text="Siguiente" OnClick="btnNext_Click" CssClass="btn btn-primary" />
+
+         <asp:Label ID="lblPageInfoBottom" runat="server" CssClass="btn btn-info btn-sm disabled"></asp:Label>
+       
     </div>
     <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
 
@@ -87,15 +91,4 @@
 
 
 
-<%--- Solo compra el usuario registrado.
--- ocultar el campo de compra
--- o alert d q se registre
-==========================
 
-Crear un order (cabecera del pedido)
-
-Recorrer todos los productos q tieen el cliete en  la cesta de la compra. (shoppingCart)
-
-Por cada registro crear un order detail
-
-Quito el producto de la cesta de la compra--%>
