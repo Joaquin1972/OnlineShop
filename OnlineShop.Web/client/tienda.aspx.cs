@@ -82,7 +82,7 @@ namespace OnlineShop.Web.client
 
 
                 PagedDataSource pagedDataSource = new PagedDataSource(); //Instancio a una clase que permite paginar listas de datos
-                pagedDataSource.DataSource = productList; // Le asigno la fuente de datos
+                pagedDataSource.DataSource = productList; //  Le asigno la fuente de datos
                 pagedDataSource.AllowPaging = true; // Permito paginación
                 pagedDataSource.PageSize = PageSize; // Indico tamaño de la página
                 pagedDataSource.CurrentPageIndex = CurrentPage; //Establezco página actual
