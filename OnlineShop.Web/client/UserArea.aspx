@@ -6,9 +6,7 @@
             Aquí puedes consultar el histórico de pedidos.
         </h3>
     </div>
-
-
-
+    <%-- MUESTRO HISTORICO DE PEDIDO DEL CLIENTE --%>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -40,6 +38,7 @@
                     </Columns>
                 </asp:GridView>
             </div>
+            <%-- MUESTRO DETALLES DEL PEDIDO --%>
             <div class="col-md-6">
                 <h4 class="text-center">Detalles del pedido</h4>
                 <asp:GridView ID="gvOrderDetails" runat="server" AutoGenerateColumns="False"
@@ -63,55 +62,35 @@
             </div>
         </div>
     </div>
-
-
-
-<%--    <div>
-        <h3>Estos son tus datos personales</h3>
-        <asp:Label ID="LblName" runat="server" Text=""></asp:Label>
-        <asp:Label ID="LblAdress" runat="server" Text=""></asp:Label>
-        <asp:Label ID="LblCP" runat="server" Text=""></asp:Label>
-        <asp:Label ID="LblCity" runat="server" Text=""></asp:Label>
-        <asp:Label ID="LblCountry" runat="server" Text=""></asp:Label>
-        <asp:Button ID="btnUpdate" runat="server" Text="Ir a actualizar datos personales" CssClass="btn btn-primary" OnClick="btnUpdatePersonalData_Click" />
-    </div>--%>
-
-    
-        <div class="container mt-5">
-            <div class="card col-4">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="card-title">Estos son tus datos personales</h3>
+    <%-- MUESTRO DATOS PERSONALES --%>
+    <div class="container mt-5">
+        <div class="card col-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title">Estos son tus datos personales</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="LblName" class="fw-bold">Nombre:</label>
+                    <asp:Label ID="LblName" runat="server" />
                 </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="LblName" class="fw-bold" >Nombre:</label>
-                        <asp:Label ID="LblName" runat="server"  />
-                    </div>
-                    <div class="form-group">
-                        <label for="LblAddress" class="fw-bold" >Dirección:</label>
-                        <asp:Label ID="LblAdress" runat="server"  />
-                    </div>
-                    <div class="form-group">
-                        <label for="LblCP" class="fw-bold">Código Postal:</label>
-                        <asp:Label ID="LblCP" runat="server" />
-                    </div>
-                    <div class="form-group">
-                        <label for="LblCity" class="fw-bold">Ciudad:</label>
-                        <asp:Label ID="LblCity" runat="server"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="LblCountry" class="fw-bold">País:</label>
-                        <asp:Label ID="LblCountry" runat="server" />
-                    </div>
-                    <asp:Button ID="btnUpdate" runat="server" Text="Ir a actualizar datos personales" CssClass="btn btn-primary mt-3" OnClick="btnUpdatePersonalData_Click" />
+                <div class="form-group">
+                    <label for="LblAddress" class="fw-bold">Dirección:</label>
+                    <asp:Label ID="LblAdress" runat="server" />
                 </div>
+                <div class="form-group">
+                    <label for="LblCP" class="fw-bold">Código Postal:</label>
+                    <asp:Label ID="LblCP" runat="server" />
+                </div>
+                <div class="form-group">
+                    <label for="LblCity" class="fw-bold">Ciudad:</label>
+                    <asp:Label ID="LblCity" runat="server" />
+                </div>
+                <div class="form-group">
+                    <label for="LblCountry" class="fw-bold">País:</label>
+                    <asp:Label ID="LblCountry" runat="server" />
+                </div>
+                <asp:Button ID="btnUpdate" runat="server" Text="Ir a actualizar datos personales" CssClass="btn btn-primary mt-3" OnClick="btnUpdatePersonalData_Click" />
             </div>
         </div>
-  
-
-
-
-
-
-
+    </div>
 </asp:Content>

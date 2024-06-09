@@ -28,13 +28,10 @@
             }
     </style>
     <div class="justify-content-center col-md-12">
-        <%--<h1 class="bg-primary text-white p-1  rounded-4 text-center shadow">BIENVENIDO A NORABEL PLAY</h1>--%>
         <h2 style="text-align: center; margin-bottom: 20px;">Aquí tienes nuestro stock</h2>
         <p class="lead text-center">Utiliza el menú desplegable para explorar nuestro catálogo completo o filtrar por una categoría específica.</p>
         <p class="lead text-center">Pulsa anterior o siguiente para ver otros productos.</p>
-        
         <p class="lead text-center">Puedes pasar el cursor sobre la imagen para ampliarla y hacer clic en "Seleccionar" para obtener más detalles sobre el producto y proceder con la compra</p>
-
         <%-- Desplegable para seleccionar categoría --%>
         <div class="justify-content-center container-ddl bg-primary rounded-4 shadow">
             <div class="text-center">
@@ -42,11 +39,7 @@
                 </asp:DropDownList>
             </div>
         </div>
-
     </div>
-
-
-
     <div class="container mt-4">
         <div class="mb-3">
         <%-- Botones de anterior y posterior --%>
@@ -78,11 +71,10 @@
                 </div>
             </ItemTemplate>
         </asp:DataList>
-
+        <%-- Botones para navegar por las páginas --%>
         <asp:Button ID="btnPrevBottom" runat="server" Text="Anterior" OnClick="btnPrev_Click" CssClass="btn btn-primary" />
         <asp:Button ID="btnNextBottom" runat="server" Text="Siguiente" OnClick="btnNext_Click" CssClass="btn btn-primary" />
-
-         <asp:Label ID="lblPageInfoBottom" runat="server" CssClass="btn btn-info btn-sm disabled"></asp:Label>
+        <asp:Label ID="lblPageInfoBottom" runat="server" CssClass="btn btn-info btn-sm disabled"></asp:Label>
        
     </div>
     <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="false"></asp:Label>

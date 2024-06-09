@@ -51,14 +51,7 @@
                         Text="El stock es obligatorio"
                         ControlToValidate="txtStock" Display="Dynamic">
                     </asp:RequiredFieldValidator>
-                    <asp:RangeValidator ID="RangeValidator2"
-                        runat="server"
-                        ErrorMessage="Precio fuera de rango"
-                        Display="Dynamic" ControlToValidate="txtStock"
-                        MaximumValue="50"
-                        MinimumValue="0"
-                        Text="Stock fuera de rango">
-                    </asp:RangeValidator>
+ 
                 </div>
                 <%--Label y ddl para la categoria del producto--%>
                 <div class="row mb-3 mt-3">

@@ -15,7 +15,9 @@
         </div>
     </div>
     <hr />
-    <asp:ValidationSummary ID="ValidationSummary1" runat="server" CssClass="alert alert-danger" DisplayMode="List" />
+    <asp:ValidationSummary ID="ValidationSummary1" 
+        runat="server" 
+        CssClass="alert alert-danger" DisplayMode="List" />
 
     <div class="row  container-fluid p-3" id="product" >
         <%--Creo dos columnas en pantalla, a la izda: fotografia, a la dcha: Resto de campos--%>
@@ -139,13 +141,7 @@
                         Text="El stock es obligatorio"
                         ControlToValidate="txtStock">
                     </asp:RequiredFieldValidator>
-                    <asp:RangeValidator ID="RangeValidator2"
-                        runat="server" Display="Dynamic"
-                        ErrorMessage="Stock fuera de rango"
-                        Text="Stock fuera de rango"
-                        ControlToValidate="txtStock" MaximumValue="100" MinimumValue="0">
-                    </asp:RangeValidator>
-                </div>
+                         </div>
             </div>
             <div class="row mb-3">
                 <asp:Label ID="lblPhoto" runat="server" Text="Sube una foto" CssClass="col-md-4 fw-bold"></asp:Label>
@@ -164,7 +160,7 @@
             <h5>Modifica los campos que desees y pulsa Actualizar</h5>
             <asp:Button ID="btnSubmit" runat="server" Text="Actualizar" CssClass="btn btn-primary col-md-4 mt-3" OnClick="btnSubmit_Click" />
             <asp:Button ID="btnDelete" runat="server" Text="Borrar Producto" CssClass="btn btn-secondary col-md-4 mt-3 mb-2" OnClick="btnDelete_Click" />
-
+            <asp:Label ID="lblUpdateOk" runat="server" Text="" CssClass="mt-2 mb-2"></asp:Label>
         </div>
 
 

@@ -31,7 +31,6 @@ namespace OnlineShop.Web.admin
                 ApplicationDbContext context = new ApplicationDbContext();
                 categoryManager = new CategoryManager(context);
                 var categories = categoryManager.GetAll().ToList();
-
                 //Construyo el DDL desplegable de categorias, con las categorías existentes
                 ddlCategory.DataSource = categories;
                 ddlCategory.DataTextField = "CategoryName";
@@ -57,17 +56,20 @@ namespace OnlineShop.Web.admin
                     Session["UploadedFilePath"] = "~/img/" + fileName;
                     // Si la fotos sube correctamente ...
                     UpLoadOK.Text = "Archivo subido correctamente!";
+                    
                 }
                 catch (Exception ex)
                 {
                     // Si la foto ha dado algún error
                     UpLoadOK.Text = "Error al subir el archivo: " + ex.Message;
+                    
                 }
             }
             else
             {
                 // Mensaje de error si no se selecciona ningún archivo
                 UpLoadOK.Text = "Por favor, seleccione un archivo.";
+                UpLoadOK.CssClass = "alert alert-danger";
             }
         }
 
@@ -93,7 +95,7 @@ namespace OnlineShop.Web.admin
                     Price = Convert.ToDecimal(txtPrice.Text),
                     Stock = Convert.ToInt32(txtStock.Text),
                     Category_Id = Convert.ToInt32(ddlCategory.SelectedValue),
-                    ImagePath = uploadedFilePath,
+                    //ImagePath = uploadedFilePath,
                     //Genero lista de imágenes
                     Images = new List<Image>()
                     {
@@ -112,13 +114,10 @@ namespace OnlineShop.Web.admin
                 LblCreateOK.Text = "Producto correctamente creado";
                 LblCreateOK.CssClass = "alert alert-success";
                 LblCreateOK.Visible = true;
-
-
-
             }
             catch (Exception ex)
             {
-                
+             
                 var err = new CustomValidator
                 {
                     ErrorMessage = "Se ha producido un error al guardar" + ex.Message,

@@ -7,13 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Image = OnlineShop.Core.Image;
 
 namespace OnlineShop.Web.admin
 {
     public partial class ProductEdit : System.Web.UI.Page
     {
         CategoryManager categoryManager = null;
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -46,7 +47,7 @@ namespace OnlineShop.Web.admin
         }
 
         //Función para cargar el producto, recibe id como argunmento
-        private void LoadProduct(string id)
+        public void LoadProduct(string id)
         {
             try
             {
@@ -102,11 +103,43 @@ namespace OnlineShop.Web.admin
             }
         }
 
+        //Método para cargar la foto
+        public void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (FileUpload1.HasFile)
+            {
+                // Guardar el archivo en el servidor
+                string fileName = System.IO.Path.GetFileName(FileUpload1.PostedFile.FileName);
+                string savePath = Server.MapPath("~/img/") + fileName;
+                Session["UploadedFilePath"] = "~/img/" + fileName;
+
+                try
+                {
+                    FileUpload1.SaveAs(savePath);
+                    Session["UploadedFilePath"] = "~/img/" + fileName;
+                    // Si la fotos sube correctamente ...
+                    UpLoadOK.Text = "Archivo subido correctamente!";
+                }
+                catch (Exception ex)
+                {
+                    // Si la foto ha dado algún error
+                    UpLoadOK.Text = "Error al subir el archivo: " + ex.Message;
+                }
+            }
+            else
+            {
+                // Mensaje de error si no se selecciona ningún archivo
+                UpLoadOK.Text = "Por favor, seleccione un archivo.";
+            }
+        }
+
         //Metodo para la actualización del producto
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        public void btnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
+                //Creo variable de sesión
+                string uploadedFilePath = Session["UploadedFilePath"] as string;
                 //Genero el contexto de Datos
                 ApplicationDbContext context = new ApplicationDbContext();
                 ProductManager productManager = new ProductManager(context);
@@ -118,10 +151,21 @@ namespace OnlineShop.Web.admin
                     Description = txtDescription.Text,
                     Price = Convert.ToDecimal(txtPrice.Text),
                     Stock = Convert.ToInt32(txtStock.Text),
-                    Category_Id = Convert.ToInt32(ddlCategory.SelectedValue)
+                    Category_Id = Convert.ToInt32(ddlCategory.SelectedValue),
+                    Images = new List<Image>()
+                    {
+                        new Image
+                        {
+                           ImagePath = uploadedFilePath,
+                        }
+                    }
+
                 };
                 productManager.Update(product);
-            }catch
+                lblUpdateOk.Text = "Actualización correcta";
+                lblUpdateOk.CssClass = "alert alert-success";
+            }
+            catch
             {
                 // Manejo de errores
                 var err = new CustomValidator
@@ -131,28 +175,32 @@ namespace OnlineShop.Web.admin
                 };
                 Page.Validators.Add(err);
             }
-            }
+        }
 
         //Método para el borrado del producto
-        protected void btnDelete_Click(object sender, EventArgs e)
+        public void btnDelete_Click(object sender, EventArgs e)
         {
 
-            try { 
-            //Creo el contexto de datos
-            ApplicationDbContext context = new ApplicationDbContext();
-            ProductManager productManager = new ProductManager(context);
-            int productId = Convert.ToInt32(ID.Text);
+            try
+            {
+                //Creo el contexto de datos
+                ApplicationDbContext context = new ApplicationDbContext();
+                ProductManager productManager = new ProductManager(context);
+                int productId = Convert.ToInt32(ID.Text);
 
-            //Borro el producto seleccionado por la id
-            Product product = context.Products.Find(productId);
-            productManager.Remove(product);
-            productManager.Context.SaveChanges();
-            ID.Text = "Borrado";
-            txtProduct.Text = "Borrado";
-            txtDescription.Text = "Borrado";
-            txtPrice.Text = "Borrado";
-            txtStock.Text = "Borrado";
-}catch
+                //Borro el producto seleccionado por la id
+                Product product = context.Products.Find(productId);
+                productManager.Remove(product);
+                productManager.Context.SaveChanges();
+                ID.Text = "Borrado";
+                txtProduct.Text = "Borrado";
+                txtDescription.Text = "Borrado";
+                txtPrice.Text = "Borrado";
+                txtStock.Text = "Borrado";
+                lblUpdateOk.Text = "Borrado correcto";
+                lblUpdateOk.CssClass = "alert alert-success";
+            }
+            catch
             {
                 // Manejo de errores
                 var err = new CustomValidator

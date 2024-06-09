@@ -13,6 +13,7 @@ namespace OnlineShop.Web.client
 {
     public partial class UserArea : System.Web.UI.Page
     {
+        //Cargo pedidos y datos del usuario seleccionado
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -20,7 +21,7 @@ namespace OnlineShop.Web.client
                 LoadOrdersByUser();
                 LoadPersonalData();
             }
-            catch (Exception ex)
+            catch 
             {
                 var err = new CustomValidator
                 {
@@ -31,6 +32,7 @@ namespace OnlineShop.Web.client
             }
         }
 
+        //Cargo datos personales
         public void LoadPersonalData()
         {
             try {
@@ -55,6 +57,7 @@ namespace OnlineShop.Web.client
             }
         }
 
+        //Cargo pedidos
         public void LoadOrdersByUser()
         {
             try
@@ -98,6 +101,7 @@ namespace OnlineShop.Web.client
             }
         }
 
+        //Metodo que se ejecuta si de pulsa detalles en el GV. Se construyo el GV de detalles con el Id
         public void gvOrderByUser_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Details")
@@ -107,6 +111,7 @@ namespace OnlineShop.Web.client
             }
         }
 
+        //Construyo el GV con el Id enviado desde la fila del anterior GV
         public void BindOrderDetails(int orderId)
         {
             ApplicationDbContext context = new ApplicationDbContext();
@@ -115,6 +120,7 @@ namespace OnlineShop.Web.client
             gvOrderDetails.DataSource = orderDetails;
             gvOrderDetails.DataBind();
         }
+
 
         protected void btnUpdatePersonalData_Click(object sender, EventArgs e)
         {

@@ -18,6 +18,7 @@ namespace OnlineShop.Web.client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Cargo ordenes pendientes del usuario autenticado
             try
             {
                 CurrentOrderPendingbyUser();
@@ -94,9 +95,6 @@ namespace OnlineShop.Web.client
         {
             try
             {
-
-
-
                 //Si el usuario ha pulsado Volver al producto
                 if (e.CommandName == "ReturnProduct")
                 {
@@ -116,7 +114,6 @@ namespace OnlineShop.Web.client
                 //Si el usuario ha pulsado borrar
                 else if (e.CommandName == "DeleteItem")
                 {
-
 
                     // Creo el contexto de datos
                     ApplicationDbContext context = new ApplicationDbContext();

@@ -16,7 +16,7 @@
     </div>
     <hr />
 
-    <%-- DDL para seleccionar el número de productos que se visualizar en el GB --%>
+    <%-- DDL para seleccionar el número de productos que se visualizar en el GV --%>
     <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="mb-2">
         <asp:ListItem Text="5" Value="5" Selected="True"></asp:ListItem>
         <asp:ListItem Text="10" Value="10"></asp:ListItem>
@@ -39,7 +39,7 @@
         HeaderStyle-HorizontalAlign="Center"
         HeaderStyle-VerticalAlign="Middle"
         OnSelectedIndexChanging="gvProducts_SelectedIndexChanging"
-        DataKeyNames="Id">
+        DataKeyNames="Id" RowStyle-VerticalAlign="Middle">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" />
             <asp:BoundField DataField="Name" HeaderText="Nombre" />

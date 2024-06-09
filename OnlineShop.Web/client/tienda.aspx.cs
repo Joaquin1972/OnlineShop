@@ -13,6 +13,8 @@ namespace OnlineShop.Web.client
     {
         //Establezco los productos por página
         public int PageSize = 6;
+
+        //Establezco página actual
         public int CurrentPage
         {
             get
@@ -87,7 +89,7 @@ namespace OnlineShop.Web.client
                 pagedDataSource.PageSize = PageSize; // Indico tamaño de la página
                 pagedDataSource.CurrentPageIndex = CurrentPage; //Establezco página actual
 
-                //Habilito los botones anterior o posterior en función si hay más paginas
+                //Habilito los botones anterior o posterior en función si hay más paginas anteriores o posteriores
                 btnPrev.Enabled = !pagedDataSource.IsFirstPage;
                 btnPrevBottom.Enabled = !pagedDataSource.IsFirstPage;
                 btnNext.Enabled = !pagedDataSource.IsLastPage;

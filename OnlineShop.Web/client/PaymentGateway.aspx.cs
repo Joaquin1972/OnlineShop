@@ -19,28 +19,28 @@ namespace OnlineShop.Web.client
         {
             if (!IsPostBack)
             {
-                // Recuperar el valor de la variable de sesión
+                // Recupero el valor de la variable de sesión y lo aplico a la label
                 if (Session["PaymentAmount"] != null)
                 {
                     decimal paymentAmount = (decimal)Session["PaymentAmount"];
-                    // Utiliza el valor según sea necesario
+                    // 
                     lblPaymentAmount.Text = paymentAmount + "€";
                 }
                 else
                 {
-                    lblPaymentAmount.Text = "No se ha especificado un monto de pago.";
+                    lblPaymentAmount.Text = "No se ha especificado una cantidad de pago.";
                 }
             }
         }
 
         public void btnPay_Click(object sender, EventArgs e)
         {
-            // Convierto la numeración de la tarjeta a texto y limpio en blanco
+            // Convierto la numeración de la tarjeta a texto y limpio blancos
             string CardNumber = TBCardNumber.Text.Trim();
             string CardDate = TBDate.Text.Trim();
             string CCV = TBCCV.Text.Trim();
 
-            //
+            // Inicializo variables
             bool CCVOK = false;
             bool CardNumberOK = false;
             bool DateOK = false;
