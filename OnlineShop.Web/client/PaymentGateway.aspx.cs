@@ -169,5 +169,10 @@ namespace OnlineShop.Web.client
             }
            
         }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CurrentShoppingCart.aspx");
+        }
     }
 }

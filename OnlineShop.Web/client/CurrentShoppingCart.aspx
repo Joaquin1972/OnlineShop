@@ -95,10 +95,7 @@
         </div>
     </div>
 
-    <%--    <div class="buttons common-style">
-        <button type="button" class="btn btn-success">Realizar Pedido</button>
-        <button type="button" class="btn btn-primary">Quiero seguir comprando</button>
-    </div>--%>
+
 
     <% }
 
@@ -108,7 +105,9 @@
     <%-- Si no hay productos en la cesta, se renderiza simplemente esto --%>
     <div class="text-center">
         <h2>Hola, <%: Context.User.Identity.GetUserName() %>!</h2>
-        <h3>No tienes órdenes pendientes.</h3>
+        <h3>No tienes órdenes pendientes. </h3>
+        <br />
+        <a href="tienda.aspx" class="btn btn-primary"> Volver</a>
     </div>
     <% } %>
 </asp:Content>

@@ -60,7 +60,7 @@
         </div>
          <%-- Mensaje de aviso del pago ok/nok --%>
         <div class="form-group row mb-2">
-            <div class="col-md-5 mt-3">
+            <div class="col-md-5 mt-3 mb-3">
                 <asp:Label ID="lblMessage" runat="server" CssClass="form-control mb-2" Visible="false"></asp:Label>
             </div>
         </div>
@@ -68,7 +68,7 @@
         <div class="form-group row mb-2">
             <div class="col-md-3 mt-1">
                 <asp:Button ID="btnPay" runat="server" CssClass="btn btn-primary" Text="Pagar" OnClick="btnPay_Click" />
-                <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-secondary" Text="Cancelar" />
+                <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-secondary" Text="Cancelar" OnClick="btnCancel_Click"  CausesValidation="false" />
             </div>
         </div>
     </div>
@@ -83,7 +83,4 @@
             return true;
         }
     </script>
-
-
-
 </asp:Content>
